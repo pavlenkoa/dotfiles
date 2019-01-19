@@ -1,0 +1,73 @@
+#!/bin/zsh
+print_layout(){
+	xkblayout-state print %s | awk '{print toupper($l)}' 
+}
+
+print_volume(){
+	amixer get Master | awk '$0~/%/{print $6=="[off]"?$6:$4}' | tr -d '[]'
+}
+
+print_temp1(){
+	acpi -t | awk '{ printf("%d°C", $4) }'
+}
+
+print_bat(){
+	capacity=$(cat /sys/class/power_supply/BAT0/capacity)
+	if [ $capacity -le "15" -a $capacity -ge "6" ]; then
+		# use yellow color
+		echo "$capacity%"
+	elif [ $capacity -le "5" ]; then
+		# use red color
+		echo "$capacity%"
+	else
+		# default color
+		echo "$capacity%"
+	fi
+
+}
+
+print_cpu_temp(){
+	temp="$(acpi -t | awk '{printf("%d", $4)}')"
+	if (($temp >= 52 && $temp <= 62)); then
+		echo "$temp°C"
+	elif (($temp >= 62)); then
+		echo "$temp°C"
+	else
+		echo "$temp°C"
+	fi
+}
+
+print_date(){
+	date "+%a %d %m %I:%M%P"
+}
+
+print_bat_status(){
+	bat_status="$(cat /sys/class/power_supply/BAT0/status)"
+	if [ $bat_status = "Unknown" ]; then
+		echo "Limit Reached"
+	else
+		echo $bat_status
+	fi
+}
+
+print_cpu(){
+	print_singleload="$(ps axch -o cmd,%cpu --sort=-%cpu | awk 'NR==1{print $2}')"
+	if (($print_singleload >= 100 && $print_singleload <= 200)); then
+		echo "$print_singleload%"
+	elif (($print_singleload >= 200)); then
+		echo "$print_singleload%"
+	else
+		echo "$print_singleload%"
+	fi
+}
+
+print_cpu_process(){
+	ps axch -o cmd,%cpu --sort=-%cpu | awk 'NR==1{ print $1 }' | sed -e 's/\b\(.\)/\u\1/g'
+}
+
+while true
+do	
+	xsetroot -name " $(print_layout) | VOLUME:$(print_volume) | CPU:$(print_cpu_process) $(print_cpu), $(print_cpu_temp) | BATTERY:$(print_bat_status), $(print_bat) | $(print_date)"
+	sleep 1
+
+done
