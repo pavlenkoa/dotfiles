@@ -7,10 +7,6 @@ print_volume(){
 	amixer get Master | awk '$0~/%/{print $6=="[off]"?$6:$4}' | tr -d '[]'
 }
 
-print_temp1(){
-	acpi -t | awk '{ printf("%d°C", $4) }'
-}
-
 print_bat(){
 	capacity=$(cat /sys/class/power_supply/BAT0/capacity)
 	if [ $capacity -le "15" -a $capacity -ge "6" ]; then
