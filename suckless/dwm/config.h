@@ -42,6 +42,7 @@ static const Rule rules[] = {
 	{ NULL,	      NULL,      "Thunderbird", 1 << 7,     0,           -1 },
 	{ NULL,	      NULL,      "Discord",   1 << 6,       0,           -1 },
 	{ NULL,	      NULL,      "Steam",     1 << 5,       0,           -1 },
+	{ NULL,	      NULL,      "Spotify",     1 << 4,       0,           -1 },
 };
 
 /* layout(s) */
@@ -115,7 +116,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY,	                XK_w,      killclient,     {0} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
-/*      { MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} }, */
+        { MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} }, 
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
         { MODKEY|ShiftMask,             XK_space,  setlayout,      {0} },
 /*      { MODKEY,                       XK_space,  togglefloating, {0} }, */
