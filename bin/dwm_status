@@ -14,7 +14,10 @@ print_cpu_process(){
 
 print_cpu_percentage(){
 	print_singleload="$(ps axch -o cmd,%cpu --sort=-%cpu | awk 'NR==1{print $2}')"
-	if (($print_singleload >= 100 && $print_singleload <= 200)); then
+	if (($print_singleload >= 50 && $print_singleload <= 99.9)); then
+		# use green color
+		echo "$print_singleload%"
+	elif (($print_singleload >= 100 && $print_singleload <= 199)); then
 		# use yellow color
 		echo "$print_singleload%"
 	elif (($print_singleload >= 200)); then
@@ -28,7 +31,10 @@ print_cpu_percentage(){
 
 print_cpu_temp(){
 	temp="$(acpi -t | awk '{printf("%d", $4)}')"
-	if (($temp >= 52 && $temp <= 62)); then
+	if (($temp >= 42 && $temp <= 51)); then
+		# use green color
+		echo "$temp°C"
+	elif (($temp >= 52 && $temp <= 62)); then
 		# use yellow color
 		echo "$temp°C"
 	elif (($temp >= 62)); then
@@ -42,10 +48,20 @@ print_cpu_temp(){
 
 print_bat_status(){
 	bat_status="$(cat /sys/class/power_supply/BAT0/status)"
+	capacity=$(cat /sys/class/power_supply/BAT0/capacity)
 	if test $bat_status = "Unknown"; then
 		echo "Limit Reached"
+	elif test $bat_status = "Charging"; then
+		# use green color
+		echo "$bat_status"
+	elif (($capacity <= 15 && $capacity >= 6)); then
+		# use yellow color
+		echo "$bat_status"
+	elif (($capacity <= 5)); then
+		# use red color
+		echo "$bat_status"
 	else
-		echo $bat_status
+		echo "$bat_status"
 	fi
 }
 
@@ -61,7 +77,6 @@ print_bat_percentage(){
 		# use default color
 		echo "$capacity%"
 	fi
-
 }
 
 print_date(){
