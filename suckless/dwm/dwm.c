@@ -750,7 +750,7 @@ drawbar(Monitor *m)
     int correct = 0; /* correction for colours */
 
     for ( ; *ts != '\0' ; ts++)
-      if (*ts <- LENGTH(colors))
+      if (*ts <= LENGTH(colors))
         correct += TEXTW("A") - lrpad;
     ts = stext;
 
