@@ -28,7 +28,7 @@ static const char *colors[][3]      = {
 	[SchemeSel]  = { col_gray4, col_purple,  col_purple },
 	[SchemeWarn] = { col_yellow2, col_gray1, col_gray2 },
 	[SchemeUrgent]= { col_red2, col_gray1,  col_gray2 },
-			{ col_green2, col_gray1,  col_gray2 },
+	[SchemeGreen] =	{ col_green2, col_gray1, col_gray2 },
 };
 
 /* tagging */
