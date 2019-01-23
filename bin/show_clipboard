@@ -1,1 +1,2 @@
+#!/bin/zsh
 xsetroot -name "$(xclip -o)"
