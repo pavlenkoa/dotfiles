@@ -14,7 +14,7 @@ print_cpu_process(){
 
 print_cpu_percentage(){
 	print_singleload="$(ps axch -o cmd,%cpu --sort=-%cpu | awk 'NR==1{print $2}')"
-	if (($print_singleload >= 50 && $print_singleload <= 99.9)); then
+	if (($print_singleload >= 40 && $print_singleload <= 99.9)); then
 		# use green color
 		echo "$print_singleload%"
 	elif (($print_singleload >= 100 && $print_singleload <= 199)); then
@@ -49,9 +49,9 @@ print_cpu_temp(){
 print_bat_status(){
 	bat_status="$(cat /sys/class/power_supply/BAT0/status)"
 	capacity=$(cat /sys/class/power_supply/BAT0/capacity)
-	if test $bat_status = "Unknown"; then
-		echo "Limit Reached"
-	elif test $bat_status = "Charging"; then
+	if [ $bat_status = "Unknown" ]; then
+		echo "Limit Reached"
+	elif [ $bat_status = "Charging" ]; then
 		# use green color
 		echo "$bat_status"
 	elif (($capacity <= 15 && $capacity >= 6)); then
@@ -66,6 +66,7 @@ print_bat_status(){
 }
 
 print_bat_percentage(){
+	bat_status="$(cat /sys/class/power_supply/BAT0/status)"
 	capacity=$(cat /sys/class/power_supply/BAT0/capacity)
 	if (($capacity <= 15 && $capacity >= 6)); then
 		# use yellow color
@@ -85,7 +86,7 @@ print_date(){
 
 while true
 do	
-	xsetroot -name " $(print_layout) | VOLUME:$(print_volume) | CPU:$(print_cpu_process) $(print_cpu_percentage), $(print_cpu_temp) | BATTERY:$(print_bat_status), $(print_bat_percentage) | $(print_date)"
+	xsetroot -name " $(print_layout)  VOLUME:$(print_volume)  CPU:$(print_cpu_process) $(print_cpu_percentage) $(print_cpu_temp)  BATTERY:$(print_bat_status) $(print_bat_percentage)  $(print_date)"
 	sleep 1
 
 done

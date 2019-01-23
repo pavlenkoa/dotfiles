@@ -29,6 +29,8 @@ static const char *colors[][3]      = {
 	[SchemeWarn] = { col_yellow2, col_gray1, col_gray2 },
 	[SchemeUrgent]= { col_red2, col_gray1,  col_gray2 },
 	[SchemeGreen] =	{ col_green2, col_gray1, col_gray2 },
+	[SchemeSep] =  { col_white, col_gray1,  col_gray2 },
+
 };
 
 /* tagging */
@@ -104,7 +106,8 @@ static Key keys[] = {
 	{ 0,                            XK_Print,  spawn,          SHCMD("maim -s | xclip -sel clip -t image/png") },
 	{ MODKEY,                       XK_F12,    spawn,          {.v = cmdlock } },
 	{ MODKEY|ShiftMask,             XK_t,      spawn,          {.v = thunderbirdcmd} },
-	{ MODKEY|ShiftMask,             XK_c,      spawn,          {.v = browsercmd} },
+	{ MODKEY|ShiftMask,             XK_c,      spawn,          SHCMD("show_clipboard") }, 
+	{ MODKEY|ShiftMask,             XK_b,      spawn,          {.v = browsercmd} },
 	{ MODKEY|ShiftMask,             XK_d,      spawn,          {.v = discordcmd} },
 	{ MODKEY|ShiftMask,             XK_a,      spawn,          {.v = alsamixercmd} },
 	{ MODKEY|ShiftMask,             XK_s,      spawn,          {.v = steamcmd} },
