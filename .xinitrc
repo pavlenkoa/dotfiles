@@ -34,4 +34,18 @@ syndaemon -i 0.5 -d &
 
 ~/bin/dwm_status &
 
+# lid sleep
+while true
+do
+	if [[ $(< /proc/acpi/button/lid/LID/state) = *closed ]]
+	then
+		logger Lid closed
+		case $(< /sys/class/power_supply/AC/online) in
+			1)  ( [[ ! "$(pidof slock)" ]] && slock ) ;;
+			0) logger "suspending..."; systemctl suspend ;;
+		esac
+	fi
+	sleep 2
+done &
+
 exec dwm 
