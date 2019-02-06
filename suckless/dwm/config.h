@@ -85,7 +85,7 @@ static const char *termcmd[]  = { "st", "-e", "tmux", NULL };
 static const char *discordcmd[]  = { "apulse", "discord", NULL };
 static const char *alsamixercmd[]  = { "st", "-e", "alsamixer",  NULL };
 static const char *browsercmd[]  = { "google-chrome",  NULL };
-static const char *steamcmd[]  = { "steam",  NULL };
+/* static const char *steamcmd[]  = { "steam",  NULL }; */
 static const char *cmdbrightnessup[]  = { "xbacklight", "-inc", "4", NULL };
 static const char *cmdbrightnessdown[]  = { "xbacklight", "-dec", "4", NULL };
 static const char *cmdsoundup[]  = { "amixer", "-q", "sset", "Master", "4%+", NULL };
@@ -105,12 +105,12 @@ static Key keys[] = {
 	{ 0,                            XF86AudioLowerVolume,      spawn,          {.v = cmdsounddown } },
 	{ 0,                            XK_Print,  spawn,          SHCMD("maim -s | xclip -sel clip -t image/png") },
 	{ MODKEY,                       XK_F12,    spawn,          {.v = cmdlock } },
-	{ MODKEY|ShiftMask,             XK_t,      spawn,          {.v = thunderbirdcmd} },
-	{ MODKEY|ShiftMask,             XK_c,      spawn,          SHCMD("show_clipboard") }, 
+	{ MODKEY|ShiftMask,             XK_m,      spawn,          {.v = thunderbirdcmd} },
+	{ MODKEY,                       XK_c,      spawn,          SHCMD("show_clipboard") }, 
 	{ MODKEY|ShiftMask,             XK_b,      spawn,          {.v = browsercmd} },
 	{ MODKEY|ShiftMask,             XK_d,      spawn,          {.v = discordcmd} },
 	{ MODKEY|ShiftMask,             XK_a,      spawn,          {.v = alsamixercmd} },
-	{ MODKEY|ShiftMask,             XK_s,      spawn,          {.v = steamcmd} },
+/*	{ MODKEY|ShiftMask,             XK_s,      spawn,          {.v = steamcmd} }, */ 
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
