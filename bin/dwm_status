@@ -4,7 +4,7 @@ print_layout(){
 }
 
 print_volume(){
-	amixer get Master | awk '$0~/%/{print $6=="[off]"?$6:$4}' | tr -d '[]'
+	amixer -M get Master | awk '$0~/%/{print $6=="[off]"?$6:$4}' | tr -d '[]'
 }
 
 

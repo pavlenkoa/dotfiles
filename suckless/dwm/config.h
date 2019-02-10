@@ -7,7 +7,7 @@ static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "Terminus:pixelsize=20" };
 static const char dmenufont[]       = "Terminus:pixelsize=20";
-static const char col_gray1[]       = "#222222";
+static const char col_gray1[]       = "#202125";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
 static const char col_gray4[]       = "#eeeeee";
@@ -88,8 +88,8 @@ static const char *browsercmd[]  = { "google-chrome",  NULL };
 /* static const char *steamcmd[]  = { "steam",  NULL }; */
 static const char *cmdbrightnessup[]  = { "xbacklight", "-inc", "4", NULL };
 static const char *cmdbrightnessdown[]  = { "xbacklight", "-dec", "4", NULL };
-static const char *cmdsoundup[]  = { "amixer", "-q", "sset", "Master", "4%+", NULL };
-static const char *cmdsounddown[]  = { "amixer", "-q", "sset", "Master", "4%-", NULL };
+static const char *cmdsoundup[]  = { "amixer", "-M", "set", "Master", "5%+", NULL };
+static const char *cmdsounddown[]  = { "amixer", "-M", "set", "Master", "5%-", NULL };
 static const char *cmdsoundtoggle[]  = { "amixer", "-q", "sset", "Master", "toggle", NULL };
 static const char *cmdlock[]  = { "slock", NULL };
 static const char *thunderbirdcmd[]  = { "thunderbird", NULL };
