@@ -1,7 +1,9 @@
 ##!/bin/zsh
 
-#automatic scaling
+#automatic scaling and color settings
 xrandr --auto
+#xrandr -output eDP1 --gamma 1.25:1.25:1.25
+#dispwin -v ~/downloads/LP140WF1_SPK1.icm
 
 #font
 xset +fp /usr/share/fonts/X11/misc/ &
@@ -35,17 +37,17 @@ syndaemon -i 0.5 -d &
 ~/bin/dwm_status &
 
 # lid sleep
-while true
-do
-	if [[ $(< /proc/acpi/button/lid/LID/state) = *closed ]]
-	then
-		logger Lid closed
-		case $(< /sys/class/power_supply/AC/online) in
-			1)  ( [[ ! "$(pidof slock)" ]] && slock ) ;;
-			0) logger "suspending..."; systemctl suspend ;;
-		esac
-	fi
-	sleep 2
-done &
+#while true
+#do
+#	if [[ $(< /proc/acpi/button/lid/LID/state) = *closed ]]
+#	then
+#		logger Lid closed
+#		case $(< /sys/class/power_supply/AC/online) in
+#			1)  ( [[ ! "$(pidof slock)" ]] && slock ) ;;
+#			0) logger "suspending..."; systemctl suspend ;;
+#		esac
+#	fi
+#	sleep 2
+#done &
 
 exec dwm 
