@@ -2,7 +2,7 @@
 
 #automatic scaling and color settings
 xrandr --auto
-#xrandr -output eDP1 --gamma 1.25:1.25:1.25
+#xrandr --output eDP1 --gamma 1.05:1.05:1.05
 #dispwin -v ~/downloads/LP140WF1_SPK1.icm
 
 #font
@@ -22,7 +22,7 @@ thunderbird &
 st -e alsamixer &
 
 #wallpaper
-hsetroot -fill "/home/andrew/wallpapers/forest.jpg"
+hsetroot -fill "/home/andrew/wallpapers/mountains.jpg"
 
 #sleep 2 && st -title "alsamixer" -e alsamixer 
 #(sleep 5 && st -title "Discord" -e apulse discord ) &

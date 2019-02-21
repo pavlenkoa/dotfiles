@@ -1,2 +1,2 @@
 #!/bin/zsh
-cat ~/notes | sed -n '/^ *[^#]/p'
+cat ~/notes | sed -n '/^ *[^$]/p'
