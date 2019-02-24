@@ -86,7 +86,7 @@ print_date(){
 
 while true
 do	
-	xsetroot -name " $(print_layout)  VOLUME:$(print_volume)  CPU:$(print_cpu_process) $(print_cpu_percentage) $(print_cpu_temp)  BATTERY:$(print_bat_status) $(print_bat_percentage)  $(print_date)"
+	xsetroot -name " CPU:$(print_cpu_process) $(print_cpu_percentage) $(print_cpu_temp)  VOLUME:$(print_volume)  BATTERY:$(print_bat_status) $(print_bat_percentage)  $(print_layout)  $(print_date)"
 	sleep 1
 
 done
