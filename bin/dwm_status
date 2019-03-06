@@ -4,7 +4,11 @@ print_layout(){
 }
 
 print_volume(){
-	amixer -M get Master | awk '$0~/%/{print $6=="[off]"?$6:$4}' | tr -d '[]'
+	volume=$(amixer -M get Master | awk '$0~/%/{print $6=="[off]"?$6:$4}' | tr -d '[]')
+	if [ $volume = "off" ]; then
+		echo "Muted"
+	elif 
+		echo "$volume"
 }
 
 
@@ -13,7 +17,7 @@ print_cpu_process(){
 }
 
 print_cpu_percentage(){
-	print_singleload="$(ps axch -o cmd,%cpu --sort=-%cpu | awk 'NR==1{print $2}')"
+	print_singleload=$(ps axch -o cmd,%cpu --sort=-%cpu | awk 'NR==1{print $2}')
 	if (($print_singleload >= 40 && $print_singleload <= 99.9)); then
 		# use green color
 		echo "$print_singleload%"
@@ -30,7 +34,7 @@ print_cpu_percentage(){
 }
 
 print_cpu_temp(){
-	temp="$(acpi -t | awk '{printf("%d", $4)}')"
+	temp=$(acpi -t | awk '{printf("%d", $4)}')
 	if (($temp >= 42 && $temp <= 51)); then
 		# use green color
 		echo "$temp°C"
@@ -47,7 +51,7 @@ print_cpu_temp(){
 }
 
 print_bat_status(){
-	bat_status="$(cat /sys/class/power_supply/BAT0/status)"
+	bat_status=$(cat /sys/class/power_supply/BAT0/status)
 	capacity=$(cat /sys/class/power_supply/BAT0/capacity)
 	if [ $bat_status = "Unknown" ]; then
 		echo "Limit Reached"
@@ -66,7 +70,7 @@ print_bat_status(){
 }
 
 print_bat_percentage(){
-	bat_status="$(cat /sys/class/power_supply/BAT0/status)"
+	bat_status=$(cat /sys/class/power_supply/BAT0/status)
 	capacity=$(cat /sys/class/power_supply/BAT0/capacity)
 	if (($capacity <= 15 && $capacity >= 6)); then
 		# use yellow color
@@ -86,7 +90,7 @@ print_date(){
 
 while true
 do	
-	xsetroot -name " CPU:$(print_cpu_process) $(print_cpu_percentage) $(print_cpu_temp)  VOLUME:$(print_volume)  BATTERY:$(print_bat_status) $(print_bat_percentage)  $(print_layout)  $(print_date)"
+	xsetroot -name " $(print_cpu_process) $(print_cpu_percentage) $(print_cpu_temp)  VOLUME:$(print_volume)  BATTERY:$(print_bat_status) $(print_bat_percentage)  $(print_layout)  $(print_date)"
 	sleep 1
 
 done
