@@ -5,6 +5,9 @@ xrandr --auto
 #xrandr --output eDP1 --gamma 1.05:1.05:1.05
 #dispwin -v ~/downloads/LP140WF1_SPK1.icm
 
+#xmodmap keybindings
+xmodmap ~/.Xmodmap
+
 #font
 xset +fp /usr/share/fonts/X11/misc/ &
 xset fp rehash &

@@ -69,6 +69,7 @@ static const Layout layouts[] = {
 #define XF86AudioMute			0x1008ff12
 #define XF86AudioLowerVolume		0x1008ff11
 #define XF86AudioRaiseVolume		0x1008ff13
+#define XF86AudioMicMute		0x1008ffb2
 #define MODKEY Mod1Mask
 #define TAGKEYS(KEY,TAG) \
 	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
@@ -85,13 +86,15 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
 static const char *termcmd[]  = { "st", "-e", "tmux", NULL };
 static const char *discordcmd[]  = { "apulse", "discord", NULL };
 static const char *alsamixercmd[]  = { "st", "-e", "alsamixer",  NULL };
-static const char *browsercmd[]  = { "google-chrome",  NULL };
+/*static const char *browsercmd[]  = { "google-chrome", "--force-device-scale-factor=1.5",  NULL };*/
+static const char *browsercmd[]  = { "google-chrome", NULL };
 /* static const char *steamcmd[]  = { "steam",  NULL }; */
 static const char *cmdbrightnessup[]  = { "xbacklight", "-inc", "4", NULL };
 static const char *cmdbrightnessdown[]  = { "xbacklight", "-dec", "4", NULL };
 static const char *cmdsoundup[]  = { "amixer", "-M", "set", "Master", "5%+", NULL };
 static const char *cmdsounddown[]  = { "amixer", "-M", "set", "Master", "5%-", NULL };
 static const char *cmdsoundtoggle[]  = { "amixer", "-q", "sset", "Master", "toggle", NULL };
+static const char *cmdmicmutetoggle[] = { "amixer", "set", "Capture", "toggle", NULL };
 static const char *cmdlock[]  = { "slock", NULL };
 static const char *thunderbirdcmd[]  = { "thunderbird", NULL };
 
@@ -104,6 +107,7 @@ static Key keys[] = {
 	{ 0,                            XF86AudioMute,             spawn,          {.v = cmdsoundtoggle } },
 	{ 0,                            XF86AudioRaiseVolume,      spawn,          {.v = cmdsoundup } },
 	{ 0,                            XF86AudioLowerVolume,      spawn,          {.v = cmdsounddown } },
+	{ 0,                            XF86AudioMicMute,          spawn,          {.v = cmdmicmutetoggle } },
 	{ 0,                            XK_Print,  spawn,          SHCMD("maim -s | xclip -sel clip -t image/png") },
 	{ MODKEY,                       XK_F12,    spawn,          {.v = cmdlock } },
 	{ MODKEY|ShiftMask,             XK_m,      spawn,          {.v = thunderbirdcmd} },
