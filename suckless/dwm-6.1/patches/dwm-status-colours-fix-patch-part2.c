@@ -5,8 +5,8 @@ diff --git a/suckless/dwm/dwm.c b/suckless/dwm/dwm.c
      char ctmp;
  	Client *c;
      int correct = 0; /* correction for colours */
--  
-+
+  
+
      for ( ; *ts != '\0' ; ts++)
        if (*ts < LENGTH(colors))
          correct += TEXTW("A") - lrpad;
