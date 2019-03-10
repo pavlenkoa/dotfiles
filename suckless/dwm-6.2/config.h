@@ -86,8 +86,8 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
 static const char *termcmd[]  = { "st", "-e", "tmux", NULL };
 static const char *discordcmd[]  = { "apulse", "discord", NULL };
 static const char *alsamixercmd[]  = { "st", "-e", "alsamixer",  NULL };
-/*static const char *browsercmd[]  = { "google-chrome", "--force-device-scale-factor=1.5",  NULL };*/
-static const char *browsercmd[]  = { "google-chrome", NULL };
+/*static const char *browsercmd[]  = { "chromium", "--force-device-scale-factor=1.5",  NULL };*/
+static const char *browsercmd[]  = { "chromium", NULL };
 /* static const char *steamcmd[]  = { "steam",  NULL }; */
 static const char *cmdbrightnessup[]  = { "xbacklight", "-inc", "4", NULL };
 static const char *cmdbrightnessdown[]  = { "xbacklight", "-dec", "4", NULL };

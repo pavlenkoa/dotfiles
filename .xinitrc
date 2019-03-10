@@ -19,7 +19,7 @@ xset -b
 #done
 
 #autorun
-google-chrome &
+chromium &
 thunderbird &
 #sleep 1 && apulse discord &
 st -e alsamixer &
