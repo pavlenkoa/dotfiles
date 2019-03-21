@@ -109,6 +109,7 @@ static const char *colorname[] = {
 	/* more colors can be added after 255 to use with DefaultXX */
 	"#cccccc",
 	"#555555",
+	"#1C1C1C",
 	"#18171c",
 	"#202125",
 };
@@ -372,11 +373,11 @@ static Key key[] = {
 	{ XK_F3, /* F39 */  Mod4Mask,       "\033[1;6R",     0,    0},
 	{ XK_F3, /* F51 */  Mod1Mask,       "\033[1;3R",     0,    0},
 	{ XK_F3, /* F63 */  Mod3Mask,       "\033[1;4R",     0,    0},
-	{ XK_F4,            XK_NO_MOD,      "\033OS" ,       0,    0},
-	{ XK_F4, /* F16 */  ShiftMask,      "\033[1;2S",     0,    0},
-	{ XK_F4, /* F28 */  ControlMask,    "\033[1;5S",     0,    0},
-	{ XK_F4, /* F40 */  Mod4Mask,       "\033[1;6S",     0,    0},
-	{ XK_F4, /* F52 */  Mod1Mask,       "\033[1;3S",     0,    0},
+/*{ XK_F4,            XK_NO_MOD,      "\033OS" ,       0,    0}, 
+	{ XK_F4, * F16 *  ShiftMask,      "\033[1;2S",     0,    0}, 
+	{ XK_F4, * F28 *  ControlMask,    "\033[1;5S",     0,    0}, 
+	{ XK_F4, * F40 *  Mod4Mask,       "\033[1;6S",     0,    0}, 
+	{ XK_F4, * F52 *  Mod1Mask,       "\033[1;3S",     0,    0}, */ 
 	{ XK_F5,            XK_NO_MOD,      "\033[15~",      0,    0},
 	{ XK_F5, /* F17 */  ShiftMask,      "\033[15;2~",    0,    0},
 	{ XK_F5, /* F29 */  ControlMask,    "\033[15;5~",    0,    0},
