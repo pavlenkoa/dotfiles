@@ -123,6 +123,16 @@ fun! s:register_default_theme()
   "       \     }
   "       \ }
 
+"        \       'cursor_fg' : ['#1c1c1c', '234'],
+"        \       'cursor_bg' : ['#c6c6c6', '251'],
+"        \       'cursorline' : ['#303030', '236'],
+"        \       'cursorcolumn' : ['#303030', '236'],
+"        \       'cursorlinenr_fg' : ['#ffff00', '226'],
+"        \       'cursorlinenr_bg' : ['#1c1c1c', '234'],
+"  	     \       'search_fg' : ['#000000', '16'],
+"		     \       'search_bg' : ['#bcbcbc', '250'],
+
+
   let s:themes['default'].dark = {
         \     'NO_CONVERSION': 1,
         \     'TEST_256_COLOR_CONSISTENCY' : 1,
@@ -153,8 +163,8 @@ fun! s:register_default_theme()
         \       'cursorlinenr_bg' : ['#1c1c1c', '234'],
         \       'popupmenu_fg' : ['#c6c6c6', '251'],
         \       'popupmenu_bg' : ['#303030', '236'],
-        \       'search_fg' : ['#000000', '16'],
-        \       'search_bg' : ['#bcbcbc', '250'],
+  			\       'search_fg' : ['#444444', '238'],
+        \       'search_bg' : ['#ffff5f', '227'],
         \       'linenumber_fg' : ['#585858', '240'],
         \       'linenumber_bg' : ['#1c1c1c', '234'],
         \       'vertsplit_fg' : ['#5f8787', '66'],
@@ -1134,8 +1144,8 @@ fun! s:apply_syntax_highlightings()
       set background=light
     endif
 
-    exec 'hi NonText' . s:fg_nontext . s:bg_background
-    exec 'hi LineNr' . s:fg_linenumber_fg . s:bg_linenumber_bg
+    exec 'hi NonText' . s:fg_nontext  
+    exec 'hi LineNr' . s:fg_linenumber_fg 
     exec 'hi Conceal' . s:fg_linenumber_fg . s:bg_linenumber_bg
     exec 'hi VertSplit' . s:fg_vertsplit_bg . s:bg_vertsplit_fg
     exec 'hi FoldColumn' . s:fg_folded_fg . s:bg_background . s:ft_none
@@ -1159,9 +1169,9 @@ fun! s:apply_syntax_highlightings()
   if version >= 700
     exec 'hi CursorLine'  . s:bg_cursorline . s:ft_none
     if s:mode == s:MODE_16_COLOR
-      exec 'hi CursorLineNr' . s:fg_cursorlinenr_fg . s:bg_cursorlinenr_bg
+      exec 'hi CursorLineNr' . s:fg_cursorlinenr_fg  
     else
-      exec 'hi CursorLineNr' . s:fg_cursorlinenr_fg . s:bg_cursorlinenr_bg . s:ft_none
+      exec 'hi CursorLineNr' . s:fg_cursorlinenr_fg . s:ft_none
     endif
     exec 'hi CursorColumn'  . s:bg_cursorcolumn . s:ft_none
     exec 'hi PMenu' . s:fg_popupmenu_fg . s:bg_popupmenu_bg . s:ft_none
