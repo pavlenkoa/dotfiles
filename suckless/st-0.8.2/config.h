@@ -6,6 +6,7 @@
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
 char font[] = "Terminus:pixelsize=22:antialias=true:autohint=true";
+/*char font[] = "SF Mono:style=Regular:pixelsize=18:antialias=true:autohint=true";*/
 static int borderpx = 2;
 
 /*

@@ -5,8 +5,8 @@ static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "Terminus:pixelsize=20" };
-static const char dmenufont[]       = "Terminus:pixelsize=20";
+static const char *fonts[]          = { "Terminus:style=Regular:pixelsize=20:antialias=true:autohint=true" };
+static const char dmenufont[]       = "Terminus:style=Regular:pixelsize=20:antialias=true:autohint=true";
 static const char col_gray1[]       = "#202125";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
@@ -32,13 +32,6 @@ static const char *colors[][3]      = {
 	[SchemeSep] =  { col_white, col_gray1,  col_gray2 },
 
 };
-
-/* 
-  Comments 76629D
-  
- 
-	 
-										 */
 
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
