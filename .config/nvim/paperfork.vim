@@ -26,7 +26,7 @@ fun! s:register_default_theme()
         \   'source' : 'http://github.com/NLKNguyen/papercolor-theme',
         \   'description' : 'The original PaperColor Theme, inspired by Google Material Design',
         \   'options' : {
-        \       'allow_bold': 1
+        \       'allow_bold': 0
         \    }
         \ }
 
@@ -41,7 +41,7 @@ fun! s:register_default_theme()
         \       'color01' : ['#af0000', '124'],
         \       'color02' : ['#008700', '28'],
         \       'color03' : ['#5f8700', '64'],
-        \       'color04' : ['#0087af', '31'],
+        \       'color04' : ['#0087af', '31'], 
         \       'color05' : ['#878787', '102'],
         \       'color06' : ['#005f87', '24'],
         \       'color07' : ['#444444', '238'],
@@ -140,20 +140,20 @@ fun! s:register_default_theme()
         \       'color00' : ['#1c1c1c', '234'],
         \       'color01' : ['#af0000', '124'],
         \       'color02' : ['#008700', '28'],
-        \       'color03' : ['#5f8700', '64'],
-        \       'color04' : ['#0087af', '31'],
-        \       'color05' : ['#878787', '102'],
+        \       'color03' : ['#d75f00', '166'],
+        \       'color04' : ['#5fd7d7', '80'],
+        \       'color05' : ['#875fd7', '98'],
         \       'color06' : ['#005f87', '24'],
-        \       'color07' : ['#bcbcbc', '250'],
-        \       'color08' : ['#bcbcbc', '250'],
-        \       'color09' : ['#d70000', '160'],
-        \       'color10' : ['#d70087', '162'],
-        \       'color11' : ['#8700af', '91'],
+        \       'color07' : ['#5fd7d7', '80'],
+        \       'color08' : ['#dadada', '253'],
+        \       'color09' : ['#d700d7', '164'],
+        \       'color10' : ['#d70087', '184'],
+        \       'color11' : ['#d70087', '184'],
         \       'color12' : ['#d75f00', '166'],
         \       'color13' : ['#d75f00', '166'],
-        \       'color14' : ['#005faf', '25'],
+        \       'color14' : ['#dadada', '253'],
         \       'color15' : ['#005f87', '24'],
-        \       'color16' : ['#0087af', '31'],
+        \       'color16' : ['#5fd7d7', '80'],
         \       'color17' : ['#008700', '28'],
         \       'cursor_fg' : ['#1c1c1c', '234'],
         \       'cursor_bg' : ['#c6c6c6', '251'],
@@ -173,8 +173,8 @@ fun! s:register_default_theme()
         \       'statusline_active_bg' : ['#005f87', '24'],
         \       'statusline_inactive_fg' : ['#444444', '238'],
         \       'statusline_inactive_bg' : ['#d0d0d0', '252'],
-        \       'todo_fg' : ['#ff8700', '208'],
-        \       'todo_bg' : ['#1c1c1c', '234'],
+        \       'todo_fg' : ['#00000', '0'],
+        \       'todo_bg' : ['#d70087', '184'],
         \       'error_fg' : ['#af005f', '125'],
         \       'error_bg' : ['#5f0000', '52'],
         \       'matchparen_bg' : ['#4e4e4e', '239'],
@@ -1158,9 +1158,9 @@ fun! s:apply_syntax_highlightings()
   exec 'hi StatusLineNC' . s:fg_statusline_inactive_bg . s:bg_statusline_inactive_fg
   exec 'hi Visual' . s:fg_visual_fg . s:bg_visual_bg
   exec 'hi Directory' . s:fg_blue
-  exec 'hi ModeMsg' . s:fg_olive
-  exec 'hi MoreMsg' . s:fg_olive
-  exec 'hi Question' . s:fg_olive
+  exec 'hi ModeMsg' . s:fg_nontext
+  exec 'hi MoreMsg' . s:fg_nontext
+  exec 'hi Question' . s:fg_nontext
   exec 'hi WarningMsg' . s:fg_pink
   exec 'hi MatchParen' . s:fg_matchparen_fg . s:bg_matchparen_bg
   exec 'hi Folded' . s:fg_folded_fg . s:bg_folded_bg

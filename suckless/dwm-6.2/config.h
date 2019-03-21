@@ -33,6 +33,13 @@ static const char *colors[][3]      = {
 
 };
 
+/* 
+  Comments 76629D
+  
+ 
+	 
+										 */
+
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 
@@ -125,11 +132,11 @@ static Key keys[] = {
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
 	{ MODKEY,                       XK_Return, zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
-	{ MODKEY,	                XK_w,      killclient,     {0} },
+	{ MODKEY,	                      XK_w,      killclient,     {0} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
-        { MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} }, 
+  { MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} }, 
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
-        { MODKEY|ShiftMask,             XK_space,  setlayout,      {0} },
+  { MODKEY|ShiftMask,             XK_space,  setlayout,      {0} },
 /*      { MODKEY,                       XK_space,  togglefloating, {0} }, */
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
 	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
