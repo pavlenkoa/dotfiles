@@ -4,13 +4,13 @@ print_layout(){
 }
 
 print_volume(){
-	volume=$(amixer -M get Master | awk '$0~/%/{print $6=="[off]"?$6:$4}' | tr -d '[]')
-	if [ $volume = "off" ]; then
+	muted=$(pactl list sinks | grep 'Mute' | sed -e "s/[[:space:]]\+/ /g" | tr -d ' ')
+	volume=$(pactl list sinks | grep '^[[:space:]]Volume:' | head -n $(( $SINK + 1 )) | tail -n 1 | sed -e 's,.* \([0-9][0-9]*\)%.*,\1,')
+	if [ $muted = "Mute:yes" ]; then
 		echo "Muted"
-	elif 
-		echo "$volume"
+	elif
+		echo "$volume%"
 }
-
 
 print_cpu_process(){
 	ps axch -o cmd,%cpu --sort=-%cpu | awk 'NR==1{ print $1 }' | sed -e 's/\b\(.\)/\u\1/g'

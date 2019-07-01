@@ -44,11 +44,13 @@ static const Rule rules[] = {
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
 	{ NULL,       NULL,      "alsamixer", 1 << 8,       0,           -1 },
+	{ NULL,       NULL,      "Volume Control", 1 << 8,     0,           -1 },
+	{ NULL,       NULL,      "Friends List", 1 << 5,     0,           -1 },
 	{ NULL,	      NULL,      "Thunderbird", 1 << 7,     0,           -1 },
 	{ NULL,	      NULL,      "Discord",   1 << 6,       0,           -1 },
 	{ NULL,	      NULL,      "Steam",     1 << 5,       0,           -1 },
       /*{ NULL,	      NULL,      "Spotify",   1 << 4,       0,           -1 },*/
-	{ NULL,	      NULL,      "mpv",       1 << 4,       1,           -1 },
+/*	{ NULL,	      NULL,      "mpv",       1 << 4,       1,           -1 }, */
 };
 
 /* layout(s) */
@@ -84,8 +86,12 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "st", "-e", "tmux", NULL };
-static const char *discordcmd[]  = { "apulse", "discord", NULL };
-static const char *alsamixercmd[]  = { "st", "-e", "alsamixer",  NULL };
+/*static const char *discordcmd[]  = { "apulse", "discord", NULL };
+static const char *obscmd[]  = { "apulse", "obs", NULL }; */
+static const char *discordcmd[]  = { "discord", NULL };
+static const char *obscmd[]  = { "obs", NULL };
+/*static const char *alsamixercmd[]  = { "st", "-e", "alsamixer",  NULL };*/
+static const char *pavucontrolcmd[]  = { "pavucontrol",  NULL };
 /*static const char *browsercmd[]  = { "chromium", "--force-device-scale-factor=1.5",  NULL };*/
 static const char *browsercmd[]  = { "chromium", NULL };
 /* static const char *steamcmd[]  = { "steam",  NULL }; */
@@ -114,7 +120,9 @@ static Key keys[] = {
 	{ MODKEY,                       XK_c,      spawn,          SHCMD("show_clipboard") }, 
 	{ MODKEY|ShiftMask,             XK_b,      spawn,          {.v = browsercmd} },
 	{ MODKEY|ShiftMask,             XK_d,      spawn,          {.v = discordcmd} },
-	{ MODKEY|ShiftMask,             XK_a,      spawn,          {.v = alsamixercmd} },
+	{ MODKEY|ShiftMask,             XK_o,      spawn,          {.v = obscmd} },
+/*	{ MODKEY|ShiftMask,             XK_a,      spawn,          {.v = alsamixercmd} }, */
+	{ MODKEY|ShiftMask,             XK_a,      spawn,          {.v = pavucontrolcmd} }, 
 /*	{ MODKEY|ShiftMask,             XK_s,      spawn,          {.v = steamcmd} }, */ 
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
