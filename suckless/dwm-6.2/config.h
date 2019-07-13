@@ -50,7 +50,7 @@ static const Rule rules[] = {
 	{ NULL,	      NULL,      "Discord",   1 << 6,       0,           -1 },
 	{ NULL,	      NULL,      "Steam",     1 << 5,       0,           -1 },
       /*{ NULL,	      NULL,      "Spotify",   1 << 4,       0,           -1 },*/
-/*	{ NULL,	      NULL,      "mpv",       1 << 4,       1,           -1 }, */
+	{ NULL,	      NULL,      "mpv",       0,            1,           -1 },
 };
 
 /* layout(s) */
