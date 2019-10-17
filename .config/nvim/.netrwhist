@@ -1,0 +1,11 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =9
+let g:netrw_dirhist_1='/home/andrew/env/personal/setup_mail/ansible/roles/master/vars'
+let g:netrw_dirhist_2='/home/andrew/env/personal/setup_mail/ansible/roles/post_dove_master/defaults'
+let g:netrw_dirhist_3='/etc'
+let g:netrw_dirhist_4='/home/andrew/env/work/pre-lab/final/artifactory-jenkins-docker-compose'
+let g:netrw_dirhist_5='/home/andrew/env/private/conf_mail/fail2ban'
+let g:netrw_dirhist_6='/home/andrew/env/private/setup_mail/ansible/roles/post_dove_master/tasks'
+let g:netrw_dirhist_7='/home/andrew/.ssh'
+let g:netrw_dirhist_8='/home/andrew/.local/share/nvim/plugged/vim-yaml/after/syntax'
+let g:netrw_dirhist_9='/home/andrew/downloads/telegram'

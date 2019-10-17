@@ -16,19 +16,33 @@ bindkey -v
 autoload -U compinit
 compinit
 
+# autocompletion for kubectl
+if [ /usr/bin/kubectl ]; then source <(kubectl completion zsh); fi 
+# autocompletion for helm
+if [ $commands[helm] ]; then source <(helm completion zsh); fi
+# autocompletion for gcloud
+if [ $commands[gcloud] ]; then source /home/andrew/.config/autocompletion/gcloud/gcloud.plugin.zsh; fi
+# autocompletion for docker, docker-compose
+if [ $commands[docker] ]; then source /home/andrew/.config/autocompletion/docker/_docker; fi
+if [ $commands[docker-compose] ]; then source /home/andrew/.config/autocompletion/docker-compose/_docker-compose; fi
+# autocompletion for aws
+if [ $commands[awscli] ]; then source /home/andrew/.config/autocompletion/aws/aws.plugin.zsh; fi
+# autocompletion for ansible
+if [ $commands[ansible] ]; then source /home/andrew/.config/autocompletion/ansible/ansible.plugin.zsh; fi
+
 HISTCONTROL=ignoreboth
 
-# history 
+# history
 HISTFILE=~/.zsh_history
-HISTSIZE=5000
-SAVEHIST=1000
+HISTSIZE=2000
+SAVEHIST=2000
 
 # AWS ansible exports
 source ~/.aws/.export_credentials
 
 # settings
 #setopt correct_all	#correct misspelled commands
-setopt autocd		#cd by typing directory name
+setopt autocd           #cd by typing directory name
 setopt hist_ignore_dups #ignore repeated commands
 setopt NO_BEEP
 setopt globdots
@@ -65,9 +79,21 @@ alias monitor_off='xrandr --output HDMI2 --off'
 
 # aliases
 alias suspend='sudo systemctl suspend'
-alias vim='sudo -E nvim'
+alias svim='sudo -E nvim'
+alias vim='nvim'
 alias htop='htop -t'
 alias bc='bc -l -q'
+alias k='kubectl'
+
+# nfs mount aliases
+alias showmounted='df -aTh'
+alias nfsmount='sudo mount -t nfs4 -o proto=tcp,port=2049 raspberrypi:/media/shared/ /media/shared/'
+alias nfsumount='sudo umount -f /media/shared/'
+
+# vpn aliases
+alias epamvpn='sudo openconnect --protocol=gp vpn.epam.com'
+alias homevpn='sudo openvpn --config /home/andrew/etc/openvpn/home.ovpn'
+alias servervpn='sudo openvpn --config /home/andrew/etc/openvpn/server.ovpn'
 
 # changing wget history location
 alias wget="wget --hsts-file ~/.config/wget/wget-hsts"
@@ -90,6 +116,7 @@ export EDITOR=nvim
 export PATH=$PATH:~/downloads/blender
 export PATH=$PATH:~/bin
 export PATH=$PATH:~/bin/python
-export GOPATH=$HOME/go
+export GOPATH=/home/andrew/bin/go/golibs
+export GOPATH=$GOPATH:/home/andrew/bin/go/gocode
 export PATH=$PATH:/usr/local/go/bin
-#export PATH=$PATH:/home/andrew/downloads/platform-tools/ # not needed, can't execute ccommands anyway *root needed*
+#export PATH=$PATH:/home/andrew/downloads/platform-tools/ # not needed, can't execute commands anyway *root needed*
