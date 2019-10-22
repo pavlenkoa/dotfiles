@@ -75,6 +75,7 @@ chpwd() {
 # Multiple Monitors aliases
 alias monitor_mirror='xrandr --output HDMI2 --auto --same-as eDP1 --mode 1920x1080'
 alias monitor_independent='xrandr --output HDMI2 --auto --right-of eDP1'
+alias monitor_rotate='xrandr --output HDMI2 --rotate left --right-of eDP1'
 alias monitor_off='xrandr --output HDMI2 --off'
 
 # aliases
@@ -84,6 +85,10 @@ alias vim='nvim'
 alias htop='htop -t'
 alias bc='bc -l -q'
 alias k='kubectl'
+
+# nessus start/stop aliases
+alias nessusstart='sudo /etc/init.d/nessusd start'
+alias nessusstop='sudo /etc/init.d/nessusd stop'
 
 # nfs mount aliases
 alias showmounted='df -aTh'
@@ -110,7 +115,6 @@ export TERM=xterm-256color
 export EDITOR=nvim
 #export TERM=st-256color
 #export TERM=xterm
-
 
 # export paths
 export PATH=$PATH:~/downloads/blender
