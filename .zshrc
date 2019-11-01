@@ -16,19 +16,19 @@ bindkey -v
 autoload -U compinit
 compinit
 
+# autocompletion for docker, docker-compose
+if [ $commands[docker] ]; then source /home/andrew/.config/autocompletion/_docker; fi
+if [ $commands[docker-compose] ]; then source /home/andrew/.config/autocompletion/_docker-compose; fi
 # autocompletion for kubectl
 if [ /usr/bin/kubectl ]; then source <(kubectl completion zsh); fi 
 # autocompletion for helm
 if [ $commands[helm] ]; then source <(helm completion zsh); fi
 # autocompletion for gcloud
-if [ $commands[gcloud] ]; then source /home/andrew/.config/autocompletion/gcloud/gcloud.plugin.zsh; fi
-# autocompletion for docker, docker-compose
-if [ $commands[docker] ]; then source /home/andrew/.config/autocompletion/docker/_docker; fi
-if [ $commands[docker-compose] ]; then source /home/andrew/.config/autocompletion/docker-compose/_docker-compose; fi
+if [ $commands[gcloud] ]; then source /home/andrew/.config/autocompletion/gcloud.plugin.zsh; fi
 # autocompletion for aws
-if [ $commands[awscli] ]; then source /home/andrew/.config/autocompletion/aws/aws.plugin.zsh; fi
+if [ $commands[aws] ]; then source /home/andrew/.config/autocompletion/aws.plugin.zsh; fi
 # autocompletion for ansible
-if [ $commands[ansible] ]; then source /home/andrew/.config/autocompletion/ansible/ansible.plugin.zsh; fi
+if [ $commands[ansible] ]; then source /home/andrew/.config/autocompletion/ansible.plugin.zsh; fi
 
 HISTCONTROL=ignoreboth
 
@@ -82,7 +82,6 @@ alias monitor_off='xrandr --output HDMI2 --off'
 alias suspend='sudo systemctl suspend'
 alias svim='sudo -E nvim'
 alias vim='nvim'
-alias htop='htop -t'
 alias bc='bc -l -q'
 alias k='kubectl'
 
@@ -94,6 +93,10 @@ alias nessusstop='sudo /etc/init.d/nessusd stop'
 alias showmounted='df -aTh'
 alias nfsmount='sudo mount -t nfs4 -o proto=tcp,port=2049 raspberrypi:/media/shared/ /media/shared/'
 alias nfsumount='sudo umount -f /media/shared/'
+
+# S3 bucket mounting
+alias bucketmount='s3fs fortnest-bucket /media/bucket/'
+alias bucketumount='sudo umount -f /media/bucket/'
 
 # vpn aliases
 alias epamvpn='sudo openconnect --protocol=gp vpn.epam.com'

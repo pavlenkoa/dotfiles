@@ -99,6 +99,8 @@ static const char *cmdsoundtoggle[]  = { "amixer", "-q", "sset", "Master", "togg
 static const char *cmdmicmutetoggle[] = { "amixer", "set", "Capture", "toggle", NULL };
 static const char *cmdlock[]  = { "slock", NULL };
 static const char *thunderbirdcmd[]  = { "thunderbird", NULL };
+static const char scratchpadname[] = "notes";
+static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34", "-e", "tmux", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -114,6 +116,7 @@ static Key keys[] = {
 	{ 0,                            XF86AudioLowerVolume,      spawn,          {.v = cmdsounddown } },
 	{ 0,                            XF86AudioMicMute,          spawn,          {.v = cmdmicmutetoggle } },
 	{ 0,                            XK_Print,  spawn,          SHCMD("maim -s | xclip -sel clip -t image/png") },
+	{ MODKEY,                       XK_n,      togglescratch,  {.v = scratchpadcmd } },
 	{ MODKEY,                       XK_F12,    spawn,          {.v = cmdlock } },
 	{ MODKEY,                       XK_c,      spawn,          SHCMD("show_clipboard") }, 
 	{ MODKEY|ShiftMask,             XK_m,      spawn,          {.v = thunderbirdcmd} },
