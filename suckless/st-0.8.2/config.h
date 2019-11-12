@@ -114,8 +114,7 @@ static const char *colorname[] = {
 	"#cccccc",
 	"#555555",
 	"#202026",
-	"#202125",
-	"#1C1C1C",
+	"gray90",
 };
 
 

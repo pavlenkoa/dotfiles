@@ -11,7 +11,8 @@ static const char dmenufont[]       = "Roboto Mono:style=Regular:pixelsize=16:an
 static const char dmenufont[]       = "Terminus:style=Regular:pixelsize=20:antialias=true:autohint=true"; */
 static const char col_gray1[]       = "#202125";
 static const char col_gray2[]       = "#444444";
-static const char col_gray3[]       = "#bbbbbb";
+static const char col_gray3[]       = "#d7d7d7";
+/*static const char col_gray3[]       = "#dbdbdb";*/
 static const char col_gray4[]       = "#eeeeee";
 static const char col_cyan[]        = "#005577";
 static const char col_black[]       = "#000000";
@@ -29,8 +30,8 @@ static const char *colors[][3]      = {
 	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
 	[SchemeSel]  = { col_gray4, col_purple,  col_purple },
 	[SchemeWarn] = { col_yellow2, col_gray1, col_gray2 },
-	[SchemeUrgent]= { col_red2, col_gray1,  col_gray2 },
-	[SchemeGreen] =	{ col_green2, col_gray1, col_gray2 },
+	[SchemeUrgent] = { col_red2, col_gray1,  col_gray2 },
+	[SchemeGreen] = { col_green2, col_gray1, col_gray2 },
 	[SchemeSep] =  { col_white, col_gray1,  col_gray2 },
 
 };
