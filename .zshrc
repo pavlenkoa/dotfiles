@@ -1,7 +1,7 @@
 # prompt style
 #PROMPT='%{%F{#5fd7ff}%}% $USER%{%f%}@%{%F{#00af5f	}%}% $HOST%{%f%}:%{%F{yellow}%}%~%{%f%}$ '
-#PROMPT='%~$ '
-PROMPT='%{%F{#008080}%}%~%{%f%}$ '
+#PROMPT='%{%F{yellow}%}%~%{%f%}$ ' #yellow
+PROMPT='%{%F{#008080}%}%~%{%f%}$ ' # dark green
 
 # git branch
 autoload -Uz vcs_info
@@ -20,7 +20,7 @@ compinit
 if [ $commands[docker] ]; then source /home/andrew/.config/autocompletion/_docker; fi
 if [ $commands[docker-compose] ]; then source /home/andrew/.config/autocompletion/_docker-compose; fi
 # autocompletion for kubectl
-if [ /usr/bin/kubectl ]; then source <(kubectl completion zsh); fi 
+if [ /usr/bin/kubectl ]; then source <(kubectl completion zsh); fi
 # autocompletion for helm
 if [ $commands[helm] ]; then source <(helm completion zsh); fi
 # autocompletion for gcloud
@@ -121,6 +121,7 @@ export EDITOR=nvim
 
 # export paths
 export PATH=$PATH:~/downloads/blender
+export PATH=$PATH:~/.local/share/firefox
 export PATH=$PATH:~/bin
 export PATH=$PATH:~/bin/python
 export GOPATH=/home/andrew/bin/go/golibs

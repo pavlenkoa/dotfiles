@@ -5,8 +5,10 @@ static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "Terminus:style=Regular:pixelsize=20:antialias=true:autohint=true" };
-static const char dmenufont[]       = "Terminus:style=Regular:pixelsize=20:antialias=true:autohint=true";
+static const char *fonts[]          = { "Roboto Mono:style=Regular:pixelsize=16:antialias=true:autohint=true" };
+static const char dmenufont[]       = "Roboto Mono:style=Regular:pixelsize=16:antialias=true:autohint=true";
+/*static const char *fonts[]          = { "Terminus:style=Regular:pixelsize=20:antialias=true:autohint=true" };
+static const char dmenufont[]       = "Terminus:style=Regular:pixelsize=20:antialias=true:autohint=true"; */
 static const char col_gray1[]       = "#202125";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
@@ -15,7 +17,7 @@ static const char col_cyan[]        = "#005577";
 static const char col_black[]       = "#000000";
 static const char col_red[]         = "#ff0000";
 static const char col_green[]       = "#0fff00";
-static const char col_green2[]	    = "#1EC325";
+static const char col_green2[]      = "#1EC325";
 static const char col_yellow2[]     = "#FFEE20";
 static const char col_yellow3[]     = "#F2F413";
 static const char col_red2[]        = "#EC1317";
@@ -90,7 +92,8 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
 static const char *discordcmd[]  = { "discord", NULL };
 static const char *termcmd[]  = { "st", "-e", "tmux", NULL };
 static const char *pavucontrolcmd[]  = { "pavucontrol",  NULL };
-static const char *browsercmd[]  = { "chromium", NULL };
+/*static const char *browsercmd[]  = { "chromium", NULL };*/
+static const char *browsercmd[]  = { "firefox", NULL };
 static const char *cmdbrightnessup[]  = { "xbacklight", "-inc", "4", NULL };
 static const char *cmdbrightnessdown[]  = { "xbacklight", "-dec", "4", NULL };
 static const char *cmdsoundup[]  = { "amixer", "-M", "set", "Master", "5%+", NULL };

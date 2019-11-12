@@ -3,9 +3,13 @@
 # Automatic scaling and color settings
 xrandr --auto
 
+#SystemdService=dunst.service
+
 #export VDPAU_DRIVER=va_gl
 #xrandr --output eDP1 --gamma 1.05:1.05:1.05
 #dispwin -v ~/downloads/LP140WF1_SPK1.icm
+#xrandr --output eDP1 --set "scaling mode" "Center"
+#xrandr --output eDP1 --mode 1920x1080
 
 # Key bindings
 xmodmap ~/.Xmodmap
@@ -21,7 +25,8 @@ xset -b
 #done
 
 # Autorun
-chromium &
+#chromium &
+firefox &
 thunderbird &
 pavucontrol &
 telegram-desktop &
@@ -36,6 +41,11 @@ export EDITOR=nvim &
 # Touchpad click prevent
 syndaemon -i 0.5 -d &
 
+# Notifications
+sleep 1s && dunst &
+#systemctl --user import-environment DISPLAY
+
+# DWM status
 ~/bin/dwm_status &
 
 # Lid sleep script

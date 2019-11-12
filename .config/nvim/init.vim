@@ -10,11 +10,13 @@ set bs=2
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
-set nolist listchars=nbsp:¬,tab:»·,trail:·,extends:>
+set list listchars=nbsp:¬,tab:»·,trail:·,extends:>
 
 set encoding=utf-8
 
-"set termguicolors
+set termguicolors
+
+set laststatus=0
 
 colorscheme fortnest
 
