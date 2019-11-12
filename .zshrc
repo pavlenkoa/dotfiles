@@ -95,7 +95,7 @@ alias nfsmount='sudo mount -t nfs4 -o proto=tcp,port=2049 raspberrypi:/media/sha
 alias nfsumount='sudo umount -f /media/shared/'
 
 # S3 bucket mounting
-alias bucketmount='s3fs fortnest-bucket /media/bucket/'
+alias bucketmount='s3fs fortnest-bucket /media/bucket/ -o endpoint="eu-central-1"'
 alias bucketumount='sudo umount -f /media/bucket/'
 
 # vpn aliases
