@@ -1,2 +1,4 @@
 bin/wakepc
 bin/downpc
+.mozilla
+.chromium

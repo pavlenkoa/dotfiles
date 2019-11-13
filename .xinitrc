@@ -25,8 +25,9 @@ xset -b
 #done
 
 # Autorun
-#chromium &
-firefox &
+#firefox &
+#update_chrome.sh $
+chromium &
 thunderbird &
 pavucontrol &
 telegram-desktop &

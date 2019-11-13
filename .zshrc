@@ -121,10 +121,10 @@ export EDITOR=nvim
 
 # export paths
 export PATH=$PATH:~/downloads/blender
-export PATH=$PATH:~/.local/share/firefox
 export PATH=$PATH:~/bin
 export PATH=$PATH:~/bin/python
 export GOPATH=/home/andrew/bin/go/golibs
 export GOPATH=$GOPATH:/home/andrew/bin/go/gocode
 export PATH=$PATH:/usr/local/go/bin
+
 #export PATH=$PATH:/home/andrew/downloads/platform-tools/ # not needed, can't execute commands anyway *root needed*
