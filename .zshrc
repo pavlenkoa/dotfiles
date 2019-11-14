@@ -86,8 +86,8 @@ alias bc='bc -l -q'
 alias k='kubectl'
 
 # nessus start/stop aliases
-alias nessusstart='sudo /etc/init.d/nessusd start'
-alias nessusstop='sudo /etc/init.d/nessusd stop'
+alias nessusstart='sudo /misc/init.d/nessusd start'
+alias nessusstop='sudo /misc/init.d/nessusd stop'
 
 # nfs mount aliases
 alias showmounted='df -aTh'
@@ -100,8 +100,8 @@ alias bucketumount='sudo umount -f /media/bucket/'
 
 # vpn aliases
 alias epamvpn='sudo openconnect --protocol=gp vpn.epam.com'
-alias homevpn='sudo openvpn --config /home/andrew/etc/openvpn/home.ovpn'
-alias servervpn='sudo openvpn --config /home/andrew/etc/openvpn/server.ovpn'
+alias homevpn='sudo openvpn --config /home/andrew/misc/openvpn/home.ovpn'
+alias servervpn='sudo openvpn --config /home/andrew/misc/openvpn/server.ovpn'
 
 # changing wget history location
 alias wget="wget --hsts-file ~/.config/wget/wget-hsts"
