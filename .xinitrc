@@ -33,7 +33,7 @@ pavucontrol &
 telegram-desktop &
 
 # Wallpaper
-hsetroot -fill "/home/andrew/etc/wallpapers/horseman2.jpg"
+hsetroot -fill "/home/andrew/misc/wallpapers/horseman2.jpg"
 
 # Defaults
 export BROWSER=google-chrome &

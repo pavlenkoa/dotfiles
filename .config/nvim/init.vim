@@ -37,6 +37,9 @@ call plug#begin('~/.local/share/nvim/plugged/')
 Plug 'stephpy/vim-yaml'
 "Plug 'chase/vim-ansible-yaml'
 
+" Jenkinsfile Highlitning
+Plug 'martinda/Jenkinsfile-vim-syntax'
+
 " Highlightning
 "Plug 'sheerun/vim-polyglot'
 

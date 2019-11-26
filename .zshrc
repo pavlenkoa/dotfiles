@@ -99,9 +99,7 @@ alias bucketmount='s3fs fortnest-bucket /media/bucket/ -o endpoint="eu-central-1
 alias bucketumount='sudo umount -f /media/bucket/'
 
 # vpn aliases
-alias epamvpn='sudo openconnect --protocol=gp vpn.epam.com'
-alias homevpn='sudo openvpn --config /home/andrew/misc/openvpn/home.ovpn'
-alias servervpn='sudo openvpn --config /home/andrew/misc/openvpn/server.ovpn'
+source /home/andrew/misc/openvpn/creds/aliases
 
 # changing wget history location
 alias wget="wget --hsts-file ~/.config/wget/wget-hsts"
