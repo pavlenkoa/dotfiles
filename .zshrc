@@ -101,6 +101,9 @@ alias bucketumount='sudo umount -f /media/bucket/'
 # vpn aliases
 source /home/andrew/misc/openvpn/creds/aliases
 
+#cisco
+alias anyconnectui='/opt/cisco/anyconnect/bin/vpnui'
+
 # changing wget history location
 alias wget="wget --hsts-file ~/.config/wget/wget-hsts"
 
@@ -110,6 +113,7 @@ export LESSHISTFILE=/dev/null
 # goto
 alias godwm='cd ~/dotfiles/suckless/dwm-6.2'
 alias gost='cd ~/dotfiles/suckless/st-0.8.2'
+alias gomovies='cd /media/shared/movies'
 
 # export app
 export TERM=xterm-256color
