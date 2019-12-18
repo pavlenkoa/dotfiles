@@ -74,11 +74,19 @@ chpwd() {
 
 # Multiple Monitors aliases
 alias monitor_mirror='xrandr --output HDMI2 --auto --same-as eDP1 --mode 1920x1080'
-alias monitor_independent='xrandr --output HDMI2 --auto --right-of eDP1'
-alias monitor_rotate='xrandr --output HDMI2 --rotate left --right-of eDP1'
+alias monitor_rightof='xrandr --output HDMI2 --auto --right-of eDP1'
+alias monitor_leftof='xrandr --output HDMI2 --auto --left-of eDP1'
+alias monitor_above='xrandr --output HDMI2 --auto --above eDP1'
+alias monitor_rotate_normal='xrandr --output HDMI2 --rotate normal'
+alias monitor_rotate_right='xrandr --output HDMI2 --rotate right'
+alias monitor_rotate_left='xrandr --output HDMI2 --rotate left'
+alias monitor_work='xrandr --output HDMI2 --auto --right-of eDP1 --rotate left'
 alias monitor_off='xrandr --output HDMI2 --off'
+alias background_set='feh --no-fehbg --bg-scale /home/andrew/misc/wallpapers/mandalorian/mandalorian_sunset.jpg'
 
 # aliases
+alias restart_wifi='sudo systemctl restart wpa_supplicant@wlp61s0.service'
+alias restart_resolved='sudo systemctl restart systemd-resolved.service'
 alias suspend='sudo systemctl suspend'
 alias svim='sudo -E nvim'
 alias vim='nvim'
@@ -122,6 +130,8 @@ export EDITOR=nvim
 #export TERM=xterm
 
 # export paths
+export PATH=$PATH:/snap/bin
+export PATH=$PATH:/opt/cisco/anyconnect/bin/
 export PATH=$PATH:~/downloads/blender
 export PATH=$PATH:~/bin
 export PATH=$PATH:~/bin/python

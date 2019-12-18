@@ -1,4 +1,4 @@
-!keycode 156 = F12
 clear Lock
 keycode 66 = Escape
 keycode 157 = F11
+keycode 156 = F12

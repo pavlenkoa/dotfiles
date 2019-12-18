@@ -14,6 +14,11 @@ xrandr --auto
 # Key bindings
 xmodmap ~/.Xmodmap
 
+#dbus fix
+#eval $(/usr/bin/gnome-keyring-daemon --start --components=gpg,pkcs11,secrets,ssh)
+#export $(gnome-keyring-daemon --start --components=pkcs11,secrets,ssh,gpg)
+#dbus-update-activation-environment --systemd DISPLAY
+
 # Fonts
 xset +fp /usr/share/fonts/X11/misc/ &
 xset fp rehash &
@@ -33,7 +38,7 @@ pavucontrol &
 telegram-desktop &
 
 # Wallpaper
-hsetroot -fill "/home/andrew/misc/wallpapers/horseman2.jpg"
+feh --no-fehbg --bg-scale '/home/andrew/misc/wallpapers/mandalorian/mandalorian_sunset.jpg'
 
 # Defaults
 export BROWSER=google-chrome &

@@ -49,6 +49,8 @@ static const Rule rules[] = {
 	{ NULL,       NULL,      "Volume Control", 1 << 8,     0,           -1 },
 	{ NULL,	      NULL,      "Thunderbird", 1 << 7,     0,           -1 },
 	{ NULL,	      NULL,      "Telegram",  1 << 6,       0,           -1 },
+	{ NULL,	      NULL,      "Slack",  1 << 5,       0,           -1 },
+/*	{ NULL,	      NULL,      "Microsoft Teams",   1 << 5,       0,           -1 }, */
 	{ NULL,	      NULL,      "Discord",   1 << 5,       0,           -1 },
 	{ NULL,	      NULL,      "Steam",     1 << 4,       0,           -1 },
 	{ NULL,       NULL,      "Friends List", 1 << 4,     0,           -1 },

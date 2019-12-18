@@ -7,3 +7,7 @@ x11-ssh-askpass.Indicator*background:   #090909
 x11-ssh-askpass*topShadowColor:         #000000
 x11-ssh-askpass*bottomShadowColor:      #000000
 x11-ssh-askpass.*borderWidth:           1
+
+Xcursor.size: 32
+! Xcursor.theme: DMZ-Black
+! Xcursor.theme: Adwaita
