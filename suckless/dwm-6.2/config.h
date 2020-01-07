@@ -95,6 +95,7 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
 static const char *discordcmd[]  = { "discord", NULL };
 static const char *termcmd[]  = { "st", "-e", "tmux", NULL };
 static const char *pavucontrolcmd[]  = { "pavucontrol",  NULL };
+/*static const char *browsercmd[]  = { "chromium", "--disable-gpu", NULL };*/
 static const char *browsercmd[]  = { "chromium", NULL };
 /*static const char *browsercmd[]  = { "firefox", NULL };*/
 static const char *cmdbrightnessup[]  = { "xbacklight", "-inc", "4", NULL };

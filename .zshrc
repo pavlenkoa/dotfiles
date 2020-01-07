@@ -16,6 +16,8 @@ bindkey -v
 autoload -U compinit
 compinit
 
+# autocompletion for jfrog
+source /home/andrew/.jfrog/jfrog_zsh_completion
 # autocompletion for docker, docker-compose
 if [ $commands[docker] ]; then source /home/andrew/.config/autocompletion/_docker; fi
 if [ $commands[docker-compose] ]; then source /home/andrew/.config/autocompletion/_docker-compose; fi
@@ -23,6 +25,7 @@ if [ $commands[docker-compose] ]; then source /home/andrew/.config/autocompletio
 if [ /usr/bin/kubectl ]; then source <(kubectl completion zsh); fi
 # autocompletion for helm
 if [ $commands[helm] ]; then source <(helm completion zsh); fi
+if [ $commands[helm3] ]; then source <(helm3 completion zsh); fi
 # autocompletion for gcloud
 if [ $commands[gcloud] ]; then source /home/andrew/.config/autocompletion/gcloud.plugin.zsh; fi
 # autocompletion for aws
@@ -72,19 +75,26 @@ chpwd() {
 # colored GCC warnings and errors
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
-# Multiple Monitors aliases
-alias monitor_mirror='xrandr --output HDMI2 --auto --same-as eDP1 --mode 1920x1080'
-alias monitor_rightof='xrandr --output HDMI2 --auto --right-of eDP1'
-alias monitor_leftof='xrandr --output HDMI2 --auto --left-of eDP1'
-alias monitor_above='xrandr --output HDMI2 --auto --above eDP1'
-alias monitor_rotate_normal='xrandr --output HDMI2 --rotate normal'
-alias monitor_rotate_right='xrandr --output HDMI2 --rotate right'
-alias monitor_rotate_left='xrandr --output HDMI2 --rotate left'
-alias monitor_work='xrandr --output HDMI2 --auto --right-of eDP1 --rotate left'
-alias monitor_off='xrandr --output HDMI2 --off'
-alias background_set='feh --no-fehbg --bg-scale /home/andrew/misc/wallpapers/mandalorian/mandalorian_sunset.jpg'
+# multiple monitors aliases
+alias monitor_mirror_hdmi='xrandr --output HDMI2 --auto --same-as eDP1 --mode 1920x1080'
+alias monitor_mirror_usbc='xrandr --output DP1 --auto --same-as eDP1 --mode 1920x1080'
+alias monitor_rightof_hdmi='xrandr --output HDMI2 --auto --right-of eDP1'
+alias monitor_rightof_usbc='xrandr --output DP1 --auto --right-of eDP1'
+alias monitor_leftof_hdmi='xrandr --output HDMI2 --auto --left-of eDP1'
+alias monitor_leftof_usbc='xrandr --output DP1 --auto --left-of eDP1'
+alias monitor_above_hdmi='xrandr --output HDMI2 --auto --above eDP1'
+alias monitor_above_usbc='xrandr --output DP1 --auto --above eDP1'
+alias monitor_rotate_normal_hdmi='xrandr --output HDMI2 --rotate normal'
+alias monitor_rotate_normal_usbc='xrandr --output DP1 --rotate normal'
+alias monitor_rotate_right_hdmi='xrandr --output HDMI2 --rotate right'
+alias monitor_rotate_right_usbc='xrandr --output DP1 --rotate right'
+alias monitor_rotate_left_hdmi='xrandr --output HDMI2 --rotate left'
+alias monitor_rotate_left_usbc='xrandr --output DP1 --rotate left'
+alias monitor_combo_on='xrandr --output eDP1 --off && xrandr --output DP1 --auto && xrandr --output HDMI2 --auto --left-of DP1 --rotate left'
+alias monitor_combo_off='xrandr --output eDP1 --auto && xrandr --output HDMI2 --off && xrandr--output DP1 --off'
 
 # aliases
+alias background_set='feh --no-fehbg --bg-scale /home/andrew/misc/wallpapers/mandalorian/mandalorian_cave.jpg'
 alias restart_wifi='sudo systemctl restart wpa_supplicant@wlp61s0.service'
 alias restart_resolved='sudo systemctl restart systemd-resolved.service'
 alias suspend='sudo systemctl suspend'
@@ -109,9 +119,6 @@ alias bucketumount='sudo umount -f /media/bucket/'
 # vpn aliases
 source /home/andrew/misc/openvpn/creds/aliases
 
-#cisco
-alias anyconnectui='/opt/cisco/anyconnect/bin/vpnui'
-
 # changing wget history location
 alias wget="wget --hsts-file ~/.config/wget/wget-hsts"
 
@@ -121,16 +128,21 @@ export LESSHISTFILE=/dev/null
 # goto
 alias godwm='cd ~/dotfiles/suckless/dwm-6.2'
 alias gost='cd ~/dotfiles/suckless/st-0.8.2'
-alias gomovies='cd /media/shared/movies'
+alias gomov='cd /media/shared/movies'
 
 # export app
-export TERM=xterm-256color
+export BROWSER=chromium
 export EDITOR=nvim
+export TERM=xterm-256color
+#export TERM=tmux-256color
 #export TERM=st-256color
-#export TERM=xterm
 
 # export paths
+export WINEPREFIX="/home/andrew/.local/share/Steam/steamapps/compatdata/683320/pfx"
+export PROTON="/home/andrew/.local/share/Steam/steamapps/common/Proton 4.11"
+#export WINEPREFIX=/home/andrew/.wine
 export PATH=$PATH:/snap/bin
+export PATH=$PATH:/home/andrew/.local/bin
 export PATH=$PATH:/opt/cisco/anyconnect/bin/
 export PATH=$PATH:~/downloads/blender
 export PATH=$PATH:~/bin
