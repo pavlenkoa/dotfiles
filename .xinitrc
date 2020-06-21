@@ -1,7 +1,10 @@
-##!/bin/zsh
+#!/bin/zsh
 
 # Automatic scaling and color settings
 xrandr --auto
+
+# Second monitor on top
+xrandr --output HDMI2 --auto --above eDP1
 
 # DWM status
 ~/bin/dwm_status &
@@ -10,10 +13,7 @@ xrandr --auto
 sleep 1s && dunst &
 
 # Wallpaper
-feh --no-fehbg --bg-scale '/home/andrew/misc/wallpapers/mandalorian/mandalorian_cave.jpg'
-
-# Touchpad click prevent
-syndaemon -i 0.5 -d &
+feh --no-fehbg --bg-fill "/home/andrew/misc/wallpapers/anime-landscape-waterfall-cloud-5k-mq-1920x1080.jpg"
 
 # Key bindings
 xmodmap ~/.Xmodmap
@@ -27,6 +27,7 @@ xset -b
 chromium &
 thunderbird &
 pavucontrol &
-sleep 1s && telegram-desktop &
+sleep 2s && telegram-desktop &
 
 exec dwm
+

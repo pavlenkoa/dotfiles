@@ -8,6 +8,15 @@ x11-ssh-askpass*topShadowColor:         #000000
 x11-ssh-askpass*bottomShadowColor:      #000000
 x11-ssh-askpass.*borderWidth:           1
 
+#Xterm*pointerShape: xterm
+XTerm.vt100.foreground: #eeeeee
+XTerm.vt100.background: #202026
+XTerm.vt100.color0: rgb:28/28/28
+XTerm.vt100.faceName:  Roboto Mono:pixelsize=16:antialias=true:autohint=true
+XTerm.vt100.translations: #override \n\
+    Alt Shift <Key>C: copy-selection(CLIPBOARD) \n\
+    Alt Shift <Key>V: insert-selection(CLIPBOARD)
+
 Xcursor.size: 32
 ! Xcursor.theme: DMZ-Black
 ! Xcursor.theme: Adwaita

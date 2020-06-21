@@ -5,23 +5,21 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-
-char font[] = "Roboto Mono:style=Regular:pixelsize=16:antialias=true:autohint=true";
-/*char font[] = "SF Mono:style=Regular:pixelsize=16:antialias=true:autohint=true"; */
-/*char font[] = "Terminus:pixelsize=20:antialias=true:autohint=true"; */
-
+static char font[] = "Roboto Mono:style=Regular:pixelsize=16:antialias=true:autohint=true";
 static int borderpx = 2;
 
 /*
  * What program is execed by st depends of these precedence rules:
  * 1: program passed with -e
- * 2: utmp option
+ * 2: scroll and/or utmp
  * 3: SHELL environment variable
  * 4: value of shell in /etc/passwd
  * 5: value of shell in config.h
  */
 static char *shell = "/bin/sh";
 char *utmp = NULL;
+/* scroll program: to enable use a string like "scroll" */
+char *scroll = NULL;
 char *stty_args = "stty raw pass8 nl -echo -iexten -cstopb 38400";
 
 /* identification sequence returned in DA and DECID */
@@ -34,9 +32,9 @@ static float chscale = 1.0;
 /*
  * word delimiter string
  *
- * More advanced example: " `'\"()[]{}"
+ * More advanced example: L" `'\"()[]{}"
  */
-char *worddelimiters = " ";
+wchar_t *worddelimiters = L" ";
 
 /* selection timeouts (in milliseconds) */
 static unsigned int doubleclicktimeout = 300;
@@ -115,6 +113,7 @@ static const char *colorname[] = {
 	"#555555",
 	"#202026",
 	"gray90",
+	"#eeeeee",
 };
 
 
@@ -122,7 +121,7 @@ static const char *colorname[] = {
  * Default colors (colorname index)
  * foreground, background, cursor, reverse cursor
  */
-unsigned int defaultfg = 7;
+unsigned int defaultfg = 259;
 unsigned int defaultbg = 258;
 static unsigned int defaultcs = 256;
 static unsigned int defaultrcs = 257;
@@ -157,13 +156,21 @@ static unsigned int mousebg = 0;
 static unsigned int defaultattr = 11;
 
 /*
+ * Force mouse select/shortcuts while mask is active (when MODE_MOUSE is set).
+ * Note that if you want to use ShiftMask with selmasks, set this to an other
+ * modifier, set to 0 to not use it.
+ */
+static uint forcemousemod = ShiftMask;
+
+/*
  * Internal mouse shortcuts.
  * Beware that overloading Button1 will disable the selection.
  */
 static MouseShortcut mshortcuts[] = {
-	/* button               mask            string */
-	{ Button4,              XK_ANY_MOD,     "\031" },
-	{ Button5,              XK_ANY_MOD,     "\005" },
+	/* mask                 button   function        argument       release */
+	{ XK_ANY_MOD,           Button2, selpaste,       {.i = 0},      1 },
+	{ XK_ANY_MOD,           Button4, ttysend,        {.s = "\031"} },
+	{ XK_ANY_MOD,           Button5, ttysend,        {.s = "\005"} },
 };
 
 /* Internal keyboard shortcuts. */
@@ -182,6 +189,7 @@ static Shortcut shortcuts[] = {
 	{ TERMMOD,              XK_C,           clipcopy,       {.i =  0} },
 	{ TERMMOD,              XK_V,           clippaste,      {.i =  0} },
 	{ TERMMOD,              XK_Y,           selpaste,       {.i =  0} },
+	{ ShiftMask,            XK_Insert,      selpaste,       {.i =  0} },
 	{ TERMMOD,              XK_Num_Lock,    numlock,        {.i =  0} },
 };
 
@@ -200,10 +208,6 @@ static Shortcut shortcuts[] = {
  * * 0: no value
  * * > 0: cursor application mode enabled
  * * < 0: cursor application mode disabled
- * crlf value
- * * 0: no value
- * * > 0: crlf mode is enabled
- * * < 0: crlf mode is disabled
  *
  * Be careful with the order of the definitions because st searches in
  * this table sequentially, so any XK_ANY_MOD must be in the last
@@ -221,13 +225,6 @@ static KeySym mappedkeys[] = { -1 };
  * numlock (Mod2Mask) and keyboard layout (XK_SWITCH_MOD) are ignored.
  */
 static uint ignoremod = Mod2Mask|XK_SWITCH_MOD;
-
-/*
- * Override mouse-select while mask is active (when MODE_MOUSE is set).
- * Note that if you want to use ShiftMask with selmasks, set this to an other
- * modifier, set to 0 to not use it.
- */
-static uint forceselmod = ShiftMask;
 
 /*
  * This is the huge key array which defines all compatibility to the Linux
@@ -376,11 +373,11 @@ static Key key[] = {
 	{ XK_F3, /* F39 */  Mod4Mask,       "\033[1;6R",     0,    0},
 	{ XK_F3, /* F51 */  Mod1Mask,       "\033[1;3R",     0,    0},
 	{ XK_F3, /* F63 */  Mod3Mask,       "\033[1;4R",     0,    0},
-/*{ XK_F4,            XK_NO_MOD,      "\033OS" ,       0,    0}, 
-	{ XK_F4, * F16 *  ShiftMask,      "\033[1;2S",     0,    0}, 
-	{ XK_F4, * F28 *  ControlMask,    "\033[1;5S",     0,    0}, 
-	{ XK_F4, * F40 *  Mod4Mask,       "\033[1;6S",     0,    0}, 
-	{ XK_F4, * F52 *  Mod1Mask,       "\033[1;3S",     0,    0}, */ 
+	{ XK_F4,            XK_NO_MOD,      "\033OS" ,       0,    0},
+	{ XK_F4, /* F16 */  ShiftMask,      "\033[1;2S",     0,    0},
+	{ XK_F4, /* F28 */  ControlMask,    "\033[1;5S",     0,    0},
+	{ XK_F4, /* F40 */  Mod4Mask,       "\033[1;6S",     0,    0},
+	{ XK_F4, /* F52 */  Mod1Mask,       "\033[1;3S",     0,    0},
 	{ XK_F5,            XK_NO_MOD,      "\033[15~",      0,    0},
 	{ XK_F5, /* F17 */  ShiftMask,      "\033[15;2~",    0,    0},
 	{ XK_F5, /* F29 */  ControlMask,    "\033[15;5~",    0,    0},

@@ -9,12 +9,13 @@ precmd () { vcs_info }
 setopt prompt_subst
 RPROMPT="\$vcs_info_msg_0_"
 zstyle ':vcs_info:git*' formats "* %{%F{#1EC325}%}% %b%{%f%}"
+setopt ignore_eof
 
 bindkey -v
 
 # autocompletion
 autoload -U compinit
-compinit
+compinit -D
 
 # autocompletion for jfrog
 source /home/andrew/.jfrog/jfrog_zsh_completion
@@ -40,12 +41,18 @@ HISTFILE=~/.zsh_history
 HISTSIZE=2000
 SAVEHIST=2000
 
+# changing wget history location
+alias wget="wget --hsts-file ~/.config/wget/wget-hsts"
+
+# disabling less history
+export LESSHISTFILE=/dev/null
+
 # AWS ansible exports
 source ~/.aws/.export_credentials
 
 # settings
 #setopt correct_all	#correct misspelled commands
-setopt autocd           #cd by typing directory name
+#setopt autocd           #cd by typing directory name
 setopt hist_ignore_dups #ignore repeated commands
 setopt NO_BEEP
 setopt globdots
@@ -55,7 +62,6 @@ setopt nomenucomplete
 # enable color support of ls and also add handy aliases
 #if [ -x /usr/bin/dircolors ]; then
 #    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    #alias ls='ls --color=auto'
     alias dir='dir --color=auto'
     alias vdir='vdir --color=auto'
     alias ls='ls --group-directories-first --color=auto'
@@ -73,16 +79,21 @@ chpwd() {
 }
 
 # colored GCC warnings and errors
-#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # multiple monitors aliases
-alias monitor_mirror_hdmi='xrandr --output HDMI2 --auto --same-as eDP1 --mode 1920x1080'
-alias monitor_mirror_usbc='xrandr --output DP1 --auto --same-as eDP1 --mode 1920x1080'
-alias monitor_rightof_hdmi='xrandr --output HDMI2 --auto --right-of eDP1'
-alias monitor_rightof_usbc='xrandr --output DP1 --auto --right-of eDP1'
-alias monitor_leftof_hdmi='xrandr --output HDMI2 --auto --left-of eDP1'
-alias monitor_leftof_usbc='xrandr --output DP1 --auto --left-of eDP1'
-alias monitor_above_hdmi='xrandr --output HDMI2 --auto --above eDP1'
+alias hdmi_mirror='xrandr --output HDMI2 --auto --same-as eDP1 --mode 1920x1080'
+alias hdmi_right='xrandr --output HDMI2 --auto --right-of eDP1'
+alias hdmi_left='xrandr --output HDMI2 --auto --left-of eDP1'
+alias hdmi_off='xrandr --output eDP1 --auto && xrandr --output HDMI2 --off && xrandr --output DP1 --off'
+alias edp_scale='xrandr --output eDP1 --scale 0.7x0.7'
+alias edp_scale_off='xrandr --output eDP1 --scale 1x1'
+alias edp_on='xrandr --output eDP1 --brightness 1'
+alias edp_off='xrandr --output eDP1 --brightness 0'
+alias usbc_mirror='xrandr --output DP1 --auto --same-as eDP1 --mode 1920x1080'
+alias usbc_right='xrandr --output DP1 --auto --right-of eDP1'
+alias usbc_left='xrandr --output DP1 --auto --left-of eDP1'
+alias hdmi_ontop='xrandr --output HDMI2 --auto --above eDP1'
 alias monitor_above_usbc='xrandr --output DP1 --auto --above eDP1'
 alias monitor_rotate_normal_hdmi='xrandr --output HDMI2 --rotate normal'
 alias monitor_rotate_normal_usbc='xrandr --output DP1 --rotate normal'
@@ -91,10 +102,10 @@ alias monitor_rotate_right_usbc='xrandr --output DP1 --rotate right'
 alias monitor_rotate_left_hdmi='xrandr --output HDMI2 --rotate left'
 alias monitor_rotate_left_usbc='xrandr --output DP1 --rotate left'
 alias monitor_combo_on='xrandr --output eDP1 --off && xrandr --output DP1 --auto && xrandr --output HDMI2 --auto --left-of DP1 --rotate left'
-alias monitor_combo_off='xrandr --output eDP1 --auto && xrandr --output HDMI2 --off && xrandr--output DP1 --off'
+alias monitor_combo_off='xrandr --output eDP1 --auto && xrandr --output HDMI2 --off && xrandr --output DP1 --off'
 
 # aliases
-alias background_set='feh --no-fehbg --bg-scale /home/andrew/misc/wallpapers/mandalorian/mandalorian_cave.jpg'
+alias background_set='feh --no-fehbg --bg-scale "/home/andrew/misc/wallpapers/anime-landscape-waterfall-cloud-5k-mq-1920x1080.jpg"'
 alias restart_wifi='sudo systemctl restart wpa_supplicant@wlp61s0.service'
 alias restart_resolved='sudo systemctl restart systemd-resolved.service'
 alias suspend='sudo systemctl suspend'
@@ -103,9 +114,11 @@ alias vim='nvim'
 alias bc='bc -l -q'
 alias k='kubectl'
 
-# nessus start/stop aliases
-alias nessusstart='sudo /misc/init.d/nessusd start'
-alias nessusstop='sudo /misc/init.d/nessusd stop'
+# mullvad aliases
+alias m='mullvad'
+alias mc='mullvad connect'
+alias md='mullvad disconnect'
+alias ms='mullvad status'
 
 # nfs mount aliases
 alias showmounted='df -aTh'
@@ -116,19 +129,17 @@ alias nfsumount='sudo umount -f /media/shared/'
 alias bucketmount='s3fs fortnest-bucket /media/bucket/ -o endpoint="eu-central-1"'
 alias bucketumount='sudo umount -f /media/bucket/'
 
+# goto
+alias godwm='cd ~/.dotfiles/suckless/dwm-6.2'
+alias gost='cd ~/.dotfiles/suckless/st-0.8.2'
+alias gomov='cd /media/shared/movies'
+alias gotv='cd /media/shared/tv'
+
 # vpn aliases
 source /home/andrew/misc/openvpn/creds/aliases
 
-# changing wget history location
-alias wget="wget --hsts-file ~/.config/wget/wget-hsts"
-
-# disabling less history
-export LESSHISTFILE=/dev/null
-
-# goto
-alias godwm='cd ~/dotfiles/suckless/dwm-6.2'
-alias gost='cd ~/dotfiles/suckless/st-0.8.2'
-alias gomov='cd /media/shared/movies'
+# export tokens
+source /home/andrew/secrets/tokens
 
 # export app
 export BROWSER=chromium
@@ -138,17 +149,8 @@ export TERM=xterm-256color
 #export TERM=st-256color
 
 # export paths
-export WINEPREFIX="/home/andrew/.local/share/Steam/steamapps/compatdata/683320/pfx"
-export PROTON="/home/andrew/.local/share/Steam/steamapps/common/Proton 4.11"
-#export WINEPREFIX=/home/andrew/.wine
-export PATH=$PATH:/snap/bin
-export PATH=$PATH:/home/andrew/.local/bin
 export PATH=$PATH:/opt/cisco/anyconnect/bin/
-export PATH=$PATH:~/downloads/blender
 export PATH=$PATH:~/bin
 export PATH=$PATH:~/bin/python
-export GOPATH=/home/andrew/bin/go/golibs
-export GOPATH=$GOPATH:/home/andrew/bin/go/gocode
-export PATH=$PATH:/usr/local/go/bin
+fpath+=${ZDOTDIR:-~}/.zsh_functions
 
-#export PATH=$PATH:/home/andrew/downloads/platform-tools/ # not needed, can't execute commands anyway *root needed*

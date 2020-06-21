@@ -5,8 +5,8 @@ static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "Roboto Mono:style=Regular:pixelsize=16:antialias=true:autohint=true" };
-static const char dmenufont[]       = "Roboto Mono:style=Regular:pixelsize=16:antialias=true:autohint=true";
+static const char *fonts[]          = { "Roboto Mono:style=Regular:pixelsize=18:antialias=true:autohint=true" };
+static const char dmenufont[]       = "Roboto Mono:style=Regular:pixelsize=18:antialias=true:autohint=true";
 /*static const char *fonts[]          = { "Terminus:style=Regular:pixelsize=20:antialias=true:autohint=true" };
 static const char dmenufont[]       = "Terminus:style=Regular:pixelsize=20:antialias=true:autohint=true"; */
 static const char col_gray1[]       = "#202125";
@@ -22,7 +22,8 @@ static const char col_green2[]      = "#1EC325";
 static const char col_yellow2[]     = "#FFEE20";
 static const char col_yellow3[]     = "#F2F413";
 static const char col_red2[]        = "#EC1317";
-static const char col_purple[]      = "#4B367B";
+/*static const char col_purple[]      = "#4B367B"; */
+static const char col_purple[]      = "#32376b";
 static const char col_yellow[]      = "#ffff00";
 static const char col_white[]       = "#ffffff";
 static const char *colors[][3]      = {
@@ -46,6 +47,8 @@ static const Rule rules[] = {
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
+	{ "microsoft teams - preview",       NULL,      "Microsoft Teams Notification", 0,   1,  -1 },
+	{ "Microsoft Teams - Preview",       NULL,      "Microsoft Teams Notification", 0,   1,  -1 },
 	{ NULL,       NULL,      "Volume Control", 1 << 8,     0,           -1 },
 	{ NULL,	      NULL,      "Thunderbird", 1 << 7,     0,           -1 },
 	{ NULL,	      NULL,      "Telegram",  1 << 6,       0,           -1 },
@@ -60,7 +63,7 @@ static const Rule rules[] = {
 /* layout(s) */
 static const float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
 static const int nmaster     = 1;    /* number of clients in master area */
-static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
+static const int resizehints = 0;    /* 1 means respect size hints in tiled resizals */
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
@@ -92,7 +95,6 @@ static const Layout layouts[] = {
 /*static const char *steamcmd[]  = { "steam",  NULL }; */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
-static const char *discordcmd[]  = { "discord", NULL };
 static const char *termcmd[]  = { "st", "-e", "tmux", NULL };
 static const char *pavucontrolcmd[]  = { "pavucontrol",  NULL };
 /*static const char *browsercmd[]  = { "chromium", "--disable-gpu", NULL };*/
@@ -108,6 +110,12 @@ static const char *cmdlock[]  = { "slock", NULL };
 static const char *thunderbirdcmd[]  = { "thunderbird", NULL };
 static const char scratchpadname[] = "notes";
 static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34", "-e", "tmux", NULL };
+static const char *cmdiwconfig[] = { "iwconfig.sh", NULL };
+/*static const char *cmdnethogs[] = { "st", "nethogs.sh", NULL };
+static const char *cmdcredentials[] = { "kemnt.sh", NULL };
+static const char *cmdhtop[] = { "st", "htop.sh", NULL }; 
+static const char *urlcmd[]  = { "clipmenu-url", NULL };
+static const char *clipcmd[]  = { "clipmenu", "-fn", dmenufont, NULL }; */
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -123,6 +131,8 @@ static Key keys[] = {
 	{ 0,                            XF86AudioLowerVolume,      spawn,          {.v = cmdsounddown } },
 	{ 0,                            XF86AudioMicMute,          spawn,          {.v = cmdmicmutetoggle } },
 	{ 0,                            XK_Print,  spawn,          SHCMD("maim -s | xclip -sel clip -t image/png") },
+/*	{ MODKEY,                       XK_Insert, spawn,          {.v = clipcmd } },
+	{ MODKEY,                       XK_o,      spawn,          {.v = urlcmd } }, */
 	{ MODKEY,                       XK_n,      togglescratch,  {.v = scratchpadcmd } },
 	{ MODKEY,                       XK_F12,    spawn,          {.v = cmdlock } },
 	{ MODKEY,                       XK_c,      spawn,          SHCMD("show_clipboard") }, 
@@ -171,8 +181,10 @@ static Button buttons[] = {
 	/* click                event mask      button          function        argument */
 	{ ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
 	{ ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },
-	{ ClkWinTitle,          0,              Button2,        zoom,           {0} },
-	{ ClkStatusText,        0,              Button2,        spawn,          {.v = termcmd } },
+/*	{ ClkWinTitle,          0,              Button3,        spawn,          {.v = cmdnethogs } },
+	{ ClkWinTitle,          0,              Button2,        spawn,          {.v = cmdcredentials } },
+	{ ClkStatusText,        0,              Button3,        spawn,          {.v = cmdhtop } }, */
+	{ ClkStatusText,        0,              Button2,        spawn,          {.v = cmdiwconfig } },
 	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
 	{ ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
 	{ ClkClientWin,         MODKEY,         Button3,        resizemouse,    {0} },
