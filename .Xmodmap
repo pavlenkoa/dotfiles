@@ -2,5 +2,3 @@ clear Lock
 keycode 66 = Escape
 keycode 157 = F11
 keycode 156 = F12
-keycode 191 = F13
-keycode 192 = F14

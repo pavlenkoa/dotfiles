@@ -1,20 +1,20 @@
-## prompt
-# left
-#PROMPT='%{%F{#5fd7ff}%}% $USER%{%f%}@%{%F{#00af5f	}%}% $HOST%{%f%}:%{%F{yellow}%}%~%{%f%}$ ' $ light blue, green
-#PROMPT='%{%F{yellow}%}%~%{%f%}$ ' # yellow
-PROMPT='%{%F{#008080}%}%~%{%f%}$ ' # dark green
-# right
+## Prompt
+# Left
+#PROMPT='%{%F{#5fd7ff}%}% $USER%{%f%}@%{%F{#00af5f	}%}% $HOST%{%f%}:%{%F{yellow}%}%~%{%f%}$ ' $ Light blue, green
+#PROMPT='%{%F{yellow}%}%~%{%f%}$ ' # Yellow
+PROMPT='%{%F{#008080}%}%~%{%f%}$ ' # Dark green
+# Right
 autoload -Uz vcs_info
 precmd () { vcs_info }
 setopt prompt_subst
 RPROMPT="\$vcs_info_msg_0_"
 zstyle ':vcs_info:git*' formats "* %{%F{#1EC325}%}% %b%{%f%}"
 
-## shell settings
-#setopt correct_all #correct misspelled commands
-setopt hist_ignore_dups # prevents the current line from being saved in the history if it is the same as the previous one
-setopt globdots # lets files beginning with a dot be matched without explicitly specifying the dot
-setopt ignore_eof # forces the user to type exit or logout, instead of just pressing ^D
+## Shell settings
+#setopt correct_all # Correct misspelled commands
+setopt hist_ignore_dups # Prevents the current line from being saved in the history if it is the same as the previous one
+setopt globdots # Lets files beginning with a dot be matched without explicitly specifying the dot
+setopt ignore_eof # Forces the user to type exit or logout, instead of just pressing ^D
 setopt NO_BEEP # NO BEEP
 # menu like in bash
 setopt noautomenu
@@ -22,13 +22,13 @@ setopt nomenucomplete
 # vim style bindings
 bindkey -v
 
-## execute when changing work dir
+## Execute when changing work dir
 chpwd() {
     ls -a --group-directories-first --color=auto
 }
 
-## autocompletion
-# general
+## Autocompletion
+# General
 autoload -U compinit
 compinit -D
 # jfrog
@@ -44,14 +44,14 @@ if [ $commands[aws] ]; then source ~/.config/autocompletion/aws.plugin.zsh; fi
 ## ansible
 if [ $commands[ansible] ]; then source ~/.config/autocompletion/ansible.plugin.zsh; fi
 
-## history
+## History
 HISTCONTROL=ignoreboth
 HISTFILE=~/.zsh_history
 HISTSIZE=2000
 SAVEHIST=2000
-export LESSHISTFILE=/dev/null # disabling less history
+export LESSHISTFILE=/dev/null # Disabling less history
 
-# colored GCC warnings and errors
+## Colored GCC warnings and errors
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 ## Aliases
@@ -106,7 +106,7 @@ alias gost='cd ~/.dotfiles/suckless/st-0.8.2'
 alias gomov='cd /media/shared/movies'
 alias gotv='cd /media/shared/tv'
 
-##exports
+## Exports
 # tokens
 source /home/andrew/secrets/tokens
 # apps
