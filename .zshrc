@@ -151,6 +151,7 @@ export TERM=xterm-256color
 # export paths
 export PATH=$PATH:/opt/cisco/anyconnect/bin/
 export PATH=$PATH:~/bin
+export PATH=$PATH:~/.local/bin
 export PATH=$PATH:~/bin/python
 fpath+=${ZDOTDIR:-~}/.zsh_functions
 

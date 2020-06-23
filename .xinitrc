@@ -1,5 +1,13 @@
 #!/bin/zsh
 
+# Executing defaults in xinitrc.d
+if [ -d /etc/X11/xinit/xinitrc.d ] ; then
+ for f in /etc/X11/xinit/xinitrc.d/?*.sh ; do
+  [ -x "$f" ] && . "$f"
+ done
+ unset f
+fi
+
 # Automatic scaling and color settings
 xrandr --auto
 
@@ -8,9 +16,6 @@ xrandr --output HDMI2 --auto --above eDP1
 
 # DWM status
 ~/bin/dwm_status &
-
-# Notifications
-sleep 1s && dunst &
 
 # Wallpaper
 feh --no-fehbg --bg-fill "/home/andrew/misc/wallpapers/anime-landscape-waterfall-cloud-5k-mq-1920x1080.jpg"
