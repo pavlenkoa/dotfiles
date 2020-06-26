@@ -70,11 +70,6 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 # openvpn
 source ~/misc/openvpn/creds/aliases
-# mullvad
-alias m='mullvad'
-alias mc='mullvad connect'
-alias md='mullvad disconnect'
-alias ms='mullvad status'
 # monitors
 alias hdmi_mirror='xrandr --output HDMI2 --auto --same-as eDP1 --mode 1920x1080'
 alias hdmi_right='xrandr --output HDMI2 --auto --right-of eDP1'
@@ -114,6 +109,8 @@ export BROWSER=chromium
 export EDITOR=nvim
 export TERM=xterm-256color
 # paths
+export GOPATH=/home/andrew/bin/go/golibs
+export GOPATH=$GOPATH:/home/andrew/bin/go/gocode
 export PATH=$PATH:/opt/cisco/anyconnect/bin/
 fpath+=${ZDOTDIR:-~}/.zsh_functions
 export PATH=$PATH:~/.local/bin

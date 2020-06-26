@@ -138,7 +138,6 @@ static Key keys[] = {
 	{ MODKEY,                       XK_c,      spawn,          SHCMD("show_clipboard") }, 
 	{ MODKEY|ShiftMask,             XK_m,      spawn,          {.v = thunderbirdcmd} },
 	{ MODKEY|ShiftMask,             XK_b,      spawn,          {.v = browsercmd} },
-	{ MODKEY|ShiftMask,             XK_d,      spawn,          {.v = discordcmd} },
 	{ MODKEY|ShiftMask,             XK_a,      spawn,          {.v = pavucontrolcmd} }, 
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
