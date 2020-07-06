@@ -11,9 +11,6 @@ fi
 # Automatic scaling and color settings
 xrandr --auto
 
-# Second monitor on top
-xrandr --output HDMI2 --auto --above eDP1
-
 # DWM status
 ~/bin/dwm_status &
 

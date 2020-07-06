@@ -75,9 +75,10 @@ alias hdmi_mirror='xrandr --output HDMI2 --auto --same-as eDP1 --mode 1920x1080'
 alias hdmi_right='xrandr --output HDMI2 --auto --right-of eDP1'
 alias hdmi_left='xrandr --output HDMI2 --auto --left-of eDP1'
 alias hdmi_ontop='xrandr --output HDMI2 --auto --above eDP1'
-alias hdmi_off='xrandr --output eDP1 --auto && xrandr --output HDMI2 --off && xrandr --output DP1 --off'
-alias monitor_combo_on='xrandr --output eDP1 --off && xrandr --output DP1 --auto && xrandr --output HDMI2 --auto --left-of DP1 --rotate left'
-alias monitor_combo_off='xrandr --output eDP1 --auto && xrandr --output HDMI2 --off && xrandr --output DP1 --off'
+alias hdmi_off='xrandr --output HDMI2 --off --output DP1 --off --output eDP1 --auto'
+#alias monitor_on='xrandr --output eDP1 --off --output DP1 --primary --mode 1920x1200 --pos 1920x0 --rotate right --output DP2 --off --output HDMI1 --off --output HDMI2 --mode 1920x1200 --pos 0x325 --rotate normal --output VIRTUAL1 --off'
+alias monitor_on='xrandr --output eDP1 --off --output DP1 --mode 1920x1200 --pos 0x325 --rotate normal --output DP2 --off --output HDMI1 --off --output HDMI2 --primary --mode 1920x1200 --pos 1920x0 --rotate right --output VIRTUAL1 --off'
+alias monitor_off='xrandr --output HDMI2 --off --output DP1 --off --output eDP1 --auto'
 # nfs mounting
 alias showmounted='df -aTh'
 alias nfsmount='sudo mount -t nfs4 -o proto=tcp,port=2049 raspberrypi:/media/shared/ /media/shared/'
@@ -109,8 +110,8 @@ export BROWSER=chromium
 export EDITOR=nvim
 export TERM=xterm-256color
 # paths
-export GOPATH=/home/andrew/bin/go/golibs
-export GOPATH=$GOPATH:/home/andrew/bin/go/gocode
+export GOPATH=$HOME/bin/go
+export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:/opt/cisco/anyconnect/bin/
 fpath+=${ZDOTDIR:-~}/.zsh_functions
 export PATH=$PATH:~/.local/bin

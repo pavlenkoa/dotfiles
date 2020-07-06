@@ -27,10 +27,11 @@ colorscheme fortnest
 nnoremap <space><space> :noh<cr>
 "map <F11> :w <CR> :!gcc % -o %< && ./%< <CR>
 "map <F11> :w <CR> :!make %< && ./%< <CR>
+map <F11> :w <CR> :!make %< && ./%< <CR>
 "map <F12> :!make<cr>
-nnoremap <F12> :!go run %<cr>
-nnoremap <F11> <C-w>h :q<cr>
-nnoremap <F10> <C-w>j :q<cr>
+"nnoremap <F12> :!go run %<cr>
+"nnoremap <F11> <C-w>h :q<cr>
+"nnoremap <F10> <C-w>j :q<cr>
 
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
