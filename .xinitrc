@@ -8,14 +8,18 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
  unset f
 fi
 
-# Automatic scaling and color settings
+# Automatic scaling
 xrandr --auto
+
+# Monitor setup
+~/bin/monitors.sh
 
 # DWM status
 ~/bin/dwm_status &
 
 # Wallpaper
-feh --no-fehbg --bg-fill "/home/andrew/misc/wallpapers/anime-landscape-waterfall-cloud-5k-mq-1920x1080.jpg"
+feh --no-xinerama --no-fehbg --bg-scale "/home/andrew/misc/wallpapers/full_moon.jpg"
+#feh --no-fehbg --bg-fill "/home/andrew/misc/wallpapers/anime-landscape-waterfall-cloud-5k-mq-1920x1080.jpg"
 
 # Key bindings
 xmodmap ~/.Xmodmap
