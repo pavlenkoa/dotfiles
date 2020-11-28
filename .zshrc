@@ -43,6 +43,11 @@ if [ $commands[gcloud] ]; then source ~/.config/autocompletion/gcloud.plugin.zsh
 if [ $commands[aws] ]; then source ~/.config/autocompletion/aws.plugin.zsh; fi
 ## ansible
 if [ $commands[ansible] ]; then source ~/.config/autocompletion/ansible.plugin.zsh; fi
+## buds
+compdef _buds buds
+function _buds(){
+    _describe 'command' "('on:Connect buds' 'off:Disconnect buds' 'clean:Disable bluetooth discover and scanner')"
+}
 
 ## History
 HISTCONTROL=ignoreboth
