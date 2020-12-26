@@ -46,7 +46,7 @@ if [ $commands[ansible] ]; then source ~/.config/autocompletion/ansible.plugin.z
 ## buds
 compdef _buds buds
 function _buds(){
-    _describe 'command' "('on:Connect buds' 'off:Disconnect buds' 'clean:Disable bluetooth discover and scanner')"
+    _describe 'command' "('on:Connect buds' 'off:Disconnect buds' 'clean:Disable bluetooth discover and scanner' 'status:Show information')"
 }
 
 ## History
@@ -99,6 +99,7 @@ alias restart_resolved='sudo systemctl restart systemd-resolved.service'
 alias wget="wget --hsts-file ~/.config/wget/wget-hsts"
 alias suspend='sudo systemctl suspend'
 alias svim='sudo -E nvim'
+alias bfg='java -jar ~/bin/java/bfg-1.13.0.jar'
 alias vim='nvim'
 alias bc='bc -l -q'
 alias k='kubectl'
@@ -115,7 +116,7 @@ alias vpndown='wg-quick down mullvad-nl1'
 
 ## Exports
 # tokens
-source /home/andrew/secrets/tokens
+source /home/andrew/misc/secrets/tokens
 # apps
 export BROWSER=chromium
 export EDITOR=nvim

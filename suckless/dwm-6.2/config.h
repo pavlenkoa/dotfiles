@@ -14,13 +14,14 @@ static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#d7d7d7";
 /*static const char col_gray3[]       = "#dbdbdb";*/
 static const char col_gray4[]       = "#eeeeee";
+static const char col_gray5[]       = "#35363A";
+static const char col_gray6[]       = "#3C4043";
 static const char col_cyan[]        = "#005577";
 static const char col_black[]       = "#000000";
 static const char col_red[]         = "#ff0000";
 static const char col_green[]       = "#0fff00";
 static const char col_green2[]      = "#1EC325";
 static const char col_yellow2[]     = "#FFEE20";
-static const char col_yellow3[]     = "#F2F413";
 static const char col_red2[]        = "#EC1317";
 /*static const char col_purple[]      = "#4B367B"; */
 static const char col_purple[]      = "#32376b";
@@ -29,12 +30,11 @@ static const char col_white[]       = "#ffffff";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
-	[SchemeSel]  = { col_gray4, col_purple,  col_purple },
+	[SchemeSel]  = { col_gray3, col_gray5,  col_purple },
 	[SchemeWarn] = { col_yellow2, col_gray1, col_gray2 },
 	[SchemeUrgent] = { col_red2, col_gray1,  col_gray2 },
 	[SchemeGreen] = { col_green2, col_gray1, col_gray2 },
 	[SchemeSep] =  { col_white, col_gray1,  col_gray2 },
-
 };
 
 /* tagging */
@@ -57,7 +57,7 @@ static const Rule rules[] = {
 	{ NULL,	      NULL,      "Discord",   1 << 5,       0,           -1 },
 	{ NULL,	      NULL,      "Steam",     1 << 4,       0,           -1 },
 	{ NULL,       NULL,      "Friends List", 1 << 4,     0,           -1 },
-	{ NULL,	      NULL,      "mpv",       0,            1,           -1 },
+	{ NULL,       NULL,      "mpv",       0,            1,           -1 },
 };
 
 /* layout(s) */
@@ -98,7 +98,7 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
 static const char *termcmd[]  = { "st", "-e", "tmux", NULL };
 static const char *pavucontrolcmd[]  = { "pavucontrol",  NULL };
 /*static const char *browsercmd[]  = { "chromium", "--disable-gpu", NULL };*/
-static const char *browsercmd[]  = { "chromium", NULL };
+static const char *browsercmd[]  = { "chromium", "--enable-features=WebUIDarkMode", "--force-dark-mode", NULL };
 /*static const char *browsercmd[]  = { "firefox", NULL };*/
 static const char *cmdbrightnessup[]  = { "xbacklight", "-inc", "4", NULL };
 static const char *cmdbrightnessdown[]  = { "xbacklight", "-dec", "4", NULL };
