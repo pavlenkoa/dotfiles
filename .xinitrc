@@ -11,6 +11,9 @@ fi
 # Automatic scaling
 xrandr --auto
 
+# X11 load defaults
+xrdb ~/.Xdefaults
+
 # Monitor setup
 ~/bin/monitors.sh
 

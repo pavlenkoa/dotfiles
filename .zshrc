@@ -106,7 +106,7 @@ alias k='kubectl'
 alias t='terraform'
 # goto
 alias godwm='cd ~/.dotfiles/suckless/dwm-6.2'
-alias gost='cd ~/.dotfiles/suckless/st-0.8.2'
+alias gost='cd ~/.dotfiles/suckless/st-0.8.3'
 alias gomov='cd /media/shared/movies'
 alias gotv='cd /media/shared/tv'
 
