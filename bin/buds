@@ -22,4 +22,10 @@ elif [ $input = "clean" ]; then
 scan off
 discoverable off
 EOF
+elif [ $input = "status" ]; then
+    bluetoothctl <<-EOF
+info 18:4E:16:6E:C7:9A
+scan off
+discoverable off
+EOF
 fi

@@ -5,7 +5,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char font[] = "Roboto Mono:style=Regular:pixelsize=16:antialias=true:autohint=true";
+static char font[] = "Roboto Mono:style=Regular:pixelsize=18:antialias=true:autohint=true";
 static int borderpx = 2;
 
 /*
@@ -115,7 +115,6 @@ static const char *colorname[] = {
 	"gray90",
 	"#eeeeee",
 };
-
 
 /*
  * Default colors (colorname index)

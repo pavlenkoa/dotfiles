@@ -102,8 +102,12 @@ alias svim='sudo -E nvim'
 alias bfg='java -jar ~/bin/java/bfg-1.13.0.jar'
 alias vim='nvim'
 alias bc='bc -l -q'
-alias k='kubectl'
+alias lint='helm lint'
+# terraform
 alias t='terraform'
+alias ta='terraform apply'
+# kubectl
+source ~/.dotfiles/etc/aliases/.kubectl_aliases
 # goto
 alias godwm='cd ~/.dotfiles/suckless/dwm-6.2'
 alias gost='cd ~/.dotfiles/suckless/st-0.8.3'
@@ -125,5 +129,6 @@ export TERM=xterm-256color
 export GOPATH=$HOME/bin/go
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:/opt/cisco/anyconnect/bin/
+export PATH=$PATH:$HOME/.cabal/bin/
 fpath+=${ZDOTDIR:-~}/.zsh_functions
 export PATH=$PATH:~/.local/bin

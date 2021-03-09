@@ -1,0 +1,9 @@
+#!/bin/zsh
+
+input=${1:-empty}
+
+if [ $input = "empty" ] || [ $input = "on" ]; then
+sudo xinput enable 'AT Translated Set 2 keyboard'
+elif [ $input = "off" ]; then
+sudo xinput disable 'AT Translated Set 2 keyboard'
+fi

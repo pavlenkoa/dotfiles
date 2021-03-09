@@ -33,10 +33,9 @@ xset fp rehash &
 xset -b
 
 # Autorun
-chromium --enable-features=WebUIDarkMode --force-dark-mode &
+google-chrome-stable --enable-features=WebUIDarkMode --force-dark-mode &
 thunderbird &
 pavucontrol &
-sleep 2s && telegram-desktop &
+#sleep 2s && telegram-desktop &
 
 exec dwm
-

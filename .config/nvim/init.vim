@@ -52,7 +52,7 @@ call plug#begin('~/.local/share/nvim/plugged/')
 "Plug 'MicahElliott/Rocannon'
 
 " JSON/YAML formatting
-Plug 'dense-analysis/ale'
+"Plug 'dense-analysis/ale'
 
 " YAML Highlightning
 Plug 'stephpy/vim-yaml'
