@@ -10,27 +10,23 @@ static const char dmenufont[]       = "Roboto Mono:style=Regular:pixelsize=18:an
 static const char col_gray1[]       = "#202125";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#d7d7d7";
-static const char col_gray4[]       = "#eeeeee";
-static const char col_gray5[]       = "#35363A";
-static const char col_gray6[]       = "#3C4043";
+static const char col_gray4[]       = "#35363a";
 static const char col_cyan[]        = "#005577";
 static const char col_black[]       = "#000000";
 static const char col_red[]         = "#ff0000";
-static const char col_green[]       = "#0fff00";
-static const char col_green2[]      = "#1EC325";
-static const char col_yellow2[]     = "#FFEE20";
-static const char col_red2[]        = "#EC1317";
-static const char col_red3[]        = "#ff0000";
+static const char col_red2[]        = "#ec1317";
+static const char col_green[]       = "#1ec325";
+static const char col_yellow[]      = "#ffee20";
 static const char col_purple[]      = "#32376b";
-static const char col_yellow[]      = "#ffff00";
 static const char col_white[]       = "#ffffff";
 static const char *colors[][3]      = {
 	/*                 fg           bg         border   */
 	[SchemeNorm]   = { col_gray3,   col_gray1, col_gray2 },
-	[SchemeSel]    = { col_gray3,   col_gray5, col_red3 },
-	[SchemeWarn]   = { col_yellow2, col_gray1, col_gray2 },
+/*	[SchemeSel]    = { col_gray3,   col_gray1, col_red }, */
+	[SchemeSel]    = { col_gray3,   col_gray4, col_red }, 
+	[SchemeWarn]   = { col_yellow, col_gray1, col_gray2 },
 	[SchemeUrgent] = { col_red2,    col_gray1, col_gray2 },
-	[SchemeGreen]  = { col_green2,  col_gray1, col_gray2 },
+	[SchemeOk]     = { col_green,   col_gray1, col_gray2 },
 	[SchemeSep]    = { col_white,   col_gray1, col_gray2 },
 };
 
@@ -59,8 +55,11 @@ static const int resizehints = 0;    /* 1 means respect size hints in tiled resi
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
-	{ "[]=",      tile },    /* first entry is default */
-	{ "><>",      NULL },    /* no layout function means floating behavior */
+/*	{ "tile",      tile },
+	{ "float",      NULL },
+	{ "monocle",      monocle }, */
+	{ "[]=",      tile },
+	{ "><>",      NULL },
 	{ "[M]",      monocle },
 };
 

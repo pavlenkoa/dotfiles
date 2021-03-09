@@ -1,7 +1,6 @@
-diff --git a/dwm.c b/dwm.c
-index 0362114..8807f54 100644
---- a/dwm.c
-+++ b/dwm.c
+diff --color -up /tmp/dwm-6.2/dwm.c dwm-6.2/dwm.c
+--- /tmp/dwm-6.2/dwm.c	2019-02-02 14:55:28.000000000 +0200
++++ dwm-6.2/dwm.c	2020-12-01 12:20:55.584639058 +0200
 @@ -36,6 +36,7 @@
  #include <X11/Xlib.h>
  #include <X11/Xproto.h>
@@ -18,15 +17,15 @@ index 0362114..8807f54 100644
  };
  
  typedef struct {
-@@ -804,6 +806,7 @@ focus(Client *c)
+@@ -792,6 +794,7 @@ focus(Client *c)
  			selmon = c->mon;
  		if (c->isurgent)
- 			clearurgent(c);
+ 			seturgent(c, 0);
 +		XkbLockGroup(dpy, XkbUseCoreKbd, c->kbdgrp);
  		detachstack(c);
  		attachstack(c);
  		grabbuttons(c, 1);
-@@ -1035,6 +1038,7 @@ manage(Window w, XWindowAttributes *wa)
+@@ -1020,6 +1023,7 @@ manage(Window w, XWindowAttributes *wa)
  	Client *c, *t = NULL;
  	Window trans = None;
  	XWindowChanges wc;
@@ -34,7 +33,7 @@ index 0362114..8807f54 100644
  
  	c = ecalloc(1, sizeof(Client));
  	c->win = w;
-@@ -1085,6 +1089,8 @@ manage(Window w, XWindowAttributes *wa)
+@@ -1071,6 +1075,8 @@ manage(Window w, XWindowAttributes *wa)
  	if (c->mon == selmon)
  		unfocus(selmon->sel, 0);
  	c->mon->sel = c;
@@ -43,7 +42,7 @@ index 0362114..8807f54 100644
  	arrange(c->mon);
  	XMapWindow(dpy, c->win);
  	focus(NULL);
-@@ -1742,6 +1748,7 @@ toggleview(const Arg *arg)
+@@ -1749,6 +1755,7 @@ toggleview(const Arg *arg)
  void
  unfocus(Client *c, int setfocus)
  {
@@ -51,7 +50,7 @@ index 0362114..8807f54 100644
  	if (!c)
  		return;
  	grabbuttons(c, 0);
-@@ -1750,6 +1757,8 @@ unfocus(Client *c, int setfocus)
+@@ -1757,6 +1764,8 @@ unfocus(Client *c, int setfocus)
  		XSetInputFocus(dpy, root, RevertToPointerRoot, CurrentTime);
  		XDeleteProperty(dpy, root, netatom[NetActiveWindow]);
  	}
