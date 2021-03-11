@@ -26,7 +26,7 @@ myWorkspaces = ["1","2","3","4","5","6","7","8","9"]
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- Launch
     [ ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
-    , ((modm,               xK_p     ), spawn "dmenu_run")
+    , ((modm,               xK_p     ), spawn "dmenu_run -fn 'Roboto Mono:style=Regular:pixelsize=18:antialias=true:autohint=true' -nb '#202125' -nf '#d7d7d7' -sb '#005577' -sf '#d7d7d7'")
     , ((modm .|. shiftMask, xK_b     ), spawn "google-chrome-stable --enable-features=WebUIDarkMode --force-dark-mode")
     -- Layout & windows & workspaces
     , ((modm,               xK_w     ), kill)
@@ -64,10 +64,15 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     ] ++
     -- mod-[1..9], Switch to workspace N
     -- mod-shift-[1..9], Move client to workspace N
-    [((m .|. modm, k), windows $ onCurrentScreen f i)
-        | (i, k) <- zip (workspaces' conf) [xK_1 .. xK_9]
+    {- lots of other keybindings -}
+    [((m .|. modm, k), windows $ f i)
+        | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9]
         , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]
     ] ++
+    -- [((m .|. modm, k), windows $ onCurrentScreen f i)
+    --     | (i, k) <- zip (workspaces' conf) [xK_1 .. xK_9]
+    --     , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]
+    -- ] ++
     -- mod-{w,e,r}, Switch to physical/Xinerama screens 1, 2, or 3
     -- mod-shift-{w,e,r}, Move client to screen 1, 2, or 3
     [((m .|. modm, key), screenWorkspace sc >>= flip whenJust (windows . f))
@@ -112,7 +117,7 @@ wsPP h = xmobarPP {
     -- , ppHiddenNoWindows = xmobarColor "#d7d7d7" ""
     , ppSep = "  "
     , ppTitle = xmobarColor "#d7d7d7" "" . shorten 60
-    -- , ppLayout = (\str -> "")
+    , ppLayout = (\str -> "")
     , ppOutput = hPutStrLn h}
     --, ppOrder  = \(w:_:_:s) -> w:s
 
@@ -127,7 +132,8 @@ main = do
         , modMask            = mod1Mask
         , normalBorderColor  = "#dddddd"
         , focusedBorderColor = "#ff0000"
-        , workspaces         = withScreens nScreens (workspaces def)
+        , workspaces         = myWorkspaces
+        -- , workspaces         = withScreens nScreens (workspaces def)
         , keys               = myKeys
         , mouseBindings      = myMouseBindings
         , layoutHook         = avoidStruts $ smartBorders $ myLayout

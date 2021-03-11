@@ -53,16 +53,16 @@ print_bat_status(){
 	capacity=$(cat /sys/class/power_supply/BAT0/capacity)
 	if [ $bat_status = "Unknown" ]; then
 		# use green color
-		echo "<fc=$normColor>Limit Reached</fc>"
+		echo "<fc=$normColor>Battery</fc>"
 	elif [ $bat_status = "Charging" ]; then
 		# use green color
-		echo "<fc=$normColor>$bat_status</fc>"
+		echo "<fc=$normColor>Battery</fc>"
 	elif (($capacity <= 15 && $capacity >= 6)); then
 		# use yellow color
-		echo "<fc=$warnColor>$bat_status</fc>"
+		echo "<fc=$warnColor>Battery</fc>"
 	elif (($capacity <= 5)); then
 		# use red color
-		echo "<fc=$urgentColor>$bat_status</fc>"
+		echo "<fc=$urgentColor>Battery</fc>"
 	else
 		echo "$bat_status"
 	fi

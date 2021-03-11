@@ -52,18 +52,18 @@ print_bat_status(){
 	bat_status=$(cat /sys/class/power_supply/BAT0/status)
 	capacity=$(cat /sys/class/power_supply/BAT0/capacity)
 	if [ $bat_status = "Unknown" ]; then
-		echo "Limit Reached"
+		echo "Battery"
 	elif [ $bat_status = "Charging" ]; then
 		# use green color
-		echo "$bat_status"
+		echo "Battery"
 	elif (($capacity <= 15 && $capacity >= 6)); then
 		# use yellow color
-		echo "$bat_status"
+		echo "Battery"
 	elif (($capacity <= 5)); then
 		# use red color
-		echo "$bat_status"
+		echo "Battery"
 	else
-		echo "$bat_status"
+		echo "Battery"
 	fi
 }
 
@@ -88,7 +88,7 @@ print_date(){
 
 while true
 do	
-	xsetroot -name " $(print_cpu_process) $(print_cpu_temp)  VOLUME:$(print_volume)  BATTERY:$(print_bat_status) $(print_bat_percentage)  $(print_layout)  $(print_date)"
+	xsetroot -name " $(print_cpu_process) $(print_cpu_temp)  Volume $(print_volume)  $(print_bat_status) $(print_bat_percentage)  $(print_layout)  $(print_date)"
 	sleep 1
 
 done

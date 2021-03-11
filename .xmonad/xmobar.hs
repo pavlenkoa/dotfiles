@@ -5,13 +5,13 @@ font = "xft:Roboto Mono:pixelsize=18:antialias=true"
 , bgColor = "#202125"
 , fgColor = "#d7d7d7"
 , position = Top
-, border = BottomB
+-- , border = BottomB
 , borderColor = "#444444"
 
 -- layout
 , sepChar = "%"   -- delineator between plugin names and straight text
 , alignSep = "}{"  -- separator between left-right alignment
-, template = "%StdinReader% }{ %cpu_process% %cpu_temp%  VOLUME:%volume%  BATTERY:%bat_status% %bat_percentage%  %kbd%  %date%"
+, template = "%StdinReader% }{ %cpu_process% %cpu_temp%  Volume %volume%  %bat_status% %bat_percentage%  %kbd%  %date%"
 
 -- general behavior
 , lowerOnStart = False    -- send to bottom of window stack on start
