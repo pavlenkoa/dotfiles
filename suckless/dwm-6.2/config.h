@@ -58,9 +58,9 @@ static const Layout layouts[] = {
 /*	{ "tile",      tile },
 	{ "float",      NULL },
 	{ "monocle",      monocle }, */
-	{ "—",      tile },
-	{ "~",      NULL },
-	{ "M",      monocle },
+	{ "~",      tile },
+	{ "float",      NULL },
+	{ "monocle",      monocle },
 };
 
 /* key definitions */
