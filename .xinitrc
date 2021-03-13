@@ -20,9 +20,6 @@ xrdb ~/.Xdefaults
 # Monitor setup
 ~/bin/monitors.sh
 
-# Disable internal keyboard if external is connected
-#~/bin/kb_auto.sh
-
 # DWM status
 #~/bin/dwm_status &
 

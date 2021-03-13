@@ -46,8 +46,8 @@ main = do
 myWorkspaces :: [String]
 myWorkspaces = ["1","2","3","4","5","6","7","8","9"]
 
-myLayout =  named "-" ( lessBorders Screen $ refocusLastLayoutHook $ avoidStruts $ tiled) |||
-    named "~" ( noBorders $ refocusLastLayoutHook $ avoidStruts Full)
+myLayout =  named "-" ( lessBorders Screen $ refocusLastLayoutHook $ avoidStruts $ tiled ) |||
+    named "monocle" ( noBorders $ refocusLastLayoutHook $ avoidStruts Full )
   where
      tiled   = Tall nmaster delta ratio
      nmaster = 1
@@ -109,6 +109,21 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm .|. shiftMask, xK_b),                     spawn "google-chrome-stable --enable-features=WebUIDarkMode --force-dark-mode")
     , ((modm,               xK_w),                     kill)
 
+    -- show notification with network info
+    , ((modm.|. shiftMask,  xK_n),                     spawn "notify-send \"Network\" \"`iwconfig wlp61s0 | head -6 && echo && ifconfig wlp61s0 | head -2 && echo && ifconfig enp0s31f6 | head -3 && echo && ifconfig mullvad-nl1 | head -2`\"")
+
+    -- send notification with clipboard
+    , ((modm,               xK_c),                     spawn "primary=$(xclip -o); clipboard=$(xclip -sel clip -o); notify-send \"Clipboards\" \"`echo PRIMARY: $primary && echo CLIPBOARD: $clipboard`\"")
+
+    -- color picker
+    , ((modm.|. shiftMask,  xK_c),                     spawn "notify-send \"Colorpicker\" \"`colorpicker --one-shot`\"")
+
+    -- screen locker
+    , ((0,                  xK_F12),                   spawn "slock")
+
+    -- printscreen
+    , ((0,                  xK_Print),                 spawn "maim -s | xclip -sel clip -t image/png")
+
     -- cycle layouts
     , ((modm,               xK_space),                 sendMessage NextLayout)
     , ((modm .|. shiftMask, xK_space),                 setLayout $ XMonad.layoutHook conf)
@@ -160,9 +175,6 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- display brightness controls
     , ((0,                  xF86XK_MonBrightnessUp),   spawn "xbacklight -inc 4")
     , ((0,                  xF86XK_MonBrightnessDown), spawn "xbacklight -dec 4")
-
-    -- printscreen
-    , ((0,                  xK_Print),                 spawn "maim -s | xclip -sel clip -t image/png")
 
     -- toggle the status bar gap
     , ((modm,               xK_b),                     sendMessage ToggleStruts)

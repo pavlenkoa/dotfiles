@@ -64,7 +64,7 @@ print_bat_status(){
 		# use red color
 		echo "<fc=$urgentColor>Battery</fc>"
 	else
-		echo "$bat_status"
+		echo "Battery"
 	fi
 }
 
