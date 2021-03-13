@@ -20,8 +20,11 @@ xrdb ~/.Xdefaults
 # Monitor setup
 ~/bin/monitors.sh
 
+# Disable internal keyboard if external is connected
+#~/bin/kb_auto.sh
+
 # DWM status
-~/bin/dwm_status &
+#~/bin/dwm_status &
 
 # Wallpaper
 feh --no-xinerama --no-fehbg --bg-scale "/home/andrew/misc/wallpapers/full_moon.jpg"
@@ -37,8 +40,8 @@ xset -b
 
 # Autorun
 google-chrome-stable --enable-features=WebUIDarkMode --force-dark-mode &
-thunderbird &
-pavucontrol &
+sleep 4 && thunderbird &
+sleep 4 && pavucontrol &
 #sleep 2s && telegram-desktop &
 
 exec xmonad
