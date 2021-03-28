@@ -3,7 +3,7 @@
 # Usage info
 show_help() {
 cat << EOF
-Usage: ${0##*/} [-hv] [-d date] [-j dist] [FILE]...
+Usage: ${0##*/} [-hv] [-d date] [-j dest] [FILE]...
 Do stuff with FILE and write the result to standard output. With no FILE
 or when FILE is -, read standard input.
 

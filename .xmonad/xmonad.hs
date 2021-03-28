@@ -58,7 +58,8 @@ myManageHook :: ManageHook
 myManageHook = composeOne
     [ title     =? "Open File"                 -?> doCenterFloat
     , title     =? "Open Files"                -?> doCenterFloat
-    , isDialog                                 -?> doFloat >> doF W.shiftMaster
+    , className =? "mpv"                       -?> doCenterFloat
+    , isDialog                                 -?> doFloat
     , title     =? "Volume Control"            -?> doShift (myWorkspaces !! 8)
     , title     =? "Telegram"                  -?> doShift (myWorkspaces !! 6)
     , title     =? "Discord"                   -?> doShift (myWorkspaces !! 5)
@@ -66,8 +67,7 @@ myManageHook = composeOne
     , className =? "Thunderbird"               -?> doShift (myWorkspaces !! 7)
     , className =? "Steam"                     -?> doShift (myWorkspaces !! 4)
     , className =? "Microsoft Teams - Preview" -?> doSideFloat SE
-    , className =? "mpv"                       -?> doFloat
-    , isFullscreen                             -?> doFullFloat >> doF W.shiftMaster
+    , isFullscreen                             -?> doFullFloat
     , return True                              -?> insertPosition Below Newer
     ]
 
@@ -114,10 +114,10 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm.|. shiftMask,  xK_n),                     spawn "notify-send \"Network\" \"`iwconfig wlp61s0 | head -6 && echo && ifconfig wlp61s0 | head -2 && echo && ifconfig enp0s31f6 | head -3 && echo && ifconfig mullvad-nl1 | head -2`\"")
 
     -- send notification with clipboard
-    , ((modm,               xK_c),                     spawn "primary=$(xclip -o); clipboard=$(xclip -sel clip -o); notify-send \"Clipboards\" \"`echo PRIMARY: $primary && echo CLIPBOARD: $clipboard`\"")
+    , ((modm.|. shiftMask,  xK_c),                     spawn "primary=$(xclip -o); clipboard=$(xclip -sel clip -o); notify-send \"Clipboards\" \"`echo PRIMARY: $primary && echo CLIPBOARD: $clipboard`\"")
 
-    -- color picker
-    , ((modm.|. shiftMask,  xK_c),                     spawn "notify-send \"Colorpicker\" \"`colorpicker --one-shot`\"")
+    -- clipmenu
+    , ((modm,               xK_c),                     spawn "clipmenu -fn 'Roboto Mono:style=Regular:pixelsize=18:antialias=true:autohint=true' -nb '#202124' -nf '#d7d7d7' -sb '#005577' -sf '#d7d7d7'")
 
     -- screen locker
     , ((0,                  xK_F12),                   spawn "slock")
@@ -127,10 +127,6 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     -- upload screenshot
     , ((modm,               xK_Print),                 spawn "screenshot")
-
-    -- upload screencast
-    , ((modm .|. shiftMask, xK_r),                     spawn "record")
-
 
     -- cycle layouts
     , ((modm,               xK_space),                 sendMessage NextLayout)
