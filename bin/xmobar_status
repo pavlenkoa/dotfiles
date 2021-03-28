@@ -53,33 +53,18 @@ print_bat_status(){
 	capacity=$(cat /sys/class/power_supply/BAT0/capacity)
 	if [ $bat_status = "Unknown" ]; then
 		# use green color
-		echo "<fc=$normColor>Battery</fc>"
+		echo "Battery <fc=$normColor>$capacity%</fc>"
 	elif [ $bat_status = "Charging" ]; then
 		# use green color
-		echo "<fc=$normColor>Battery</fc>"
+		echo "<fc=$normColor>Battery $capacity%</fc>"
 	elif (($capacity <= 15 && $capacity >= 6)); then
 		# use yellow color
-		echo "<fc=$warnColor>Battery</fc>"
+		echo "<fc=$warnColor>Battery $capacity%</fc>"
 	elif (($capacity <= 5)); then
 		# use red color
-		echo "<fc=$urgentColor>Battery</fc>"
+		echo "<fc=$urgentColor>Battery $capacity%</fc>"
 	else
-		echo "Battery"
-	fi
-}
-
-print_bat_percentage(){
-	bat_status=$(cat /sys/class/power_supply/BAT0/status)
-	capacity=$(cat /sys/class/power_supply/BAT0/capacity)
-	if (($capacity <= 15 && $capacity >= 6)); then
-		# use yellow color
-		echo "<fc=$warnColor>$capacity%</fc>"
-	elif (($capacity <= 5)); then
-		# use red color
-		echo "<fc=$urgentColor>$capacity%</fc>"
-	else
-		# use default color
-		echo "$capacity%"
+		echo "Battery $capacity%"
 	fi
 }
 

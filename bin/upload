@@ -1,0 +1,114 @@
+#!/bin/bash -e
+
+# Usage info
+show_help() {
+cat << EOF
+Usage: ${0##*/} [-hv] [-d date] [-j dist] [FILE]...
+Do stuff with FILE and write the result to standard output. With no FILE
+or when FILE is -, read standard input.
+
+    -h          display this help and exit
+    -d date     date other than today's date
+    -j dist     destinaton, can s3 or rpi
+    -v          verbose mode. Can be used multiple times for increased
+                verbosity.
+EOF
+}
+
+# Initialize our own variables:
+verbose=0
+date=$(date +%Y-%m-%d)
+
+OPTIND=1 # Reset is necessary if getopts was used previously in the script.  It is a good idea to make this local in a function.
+while getopts "rhvdj:" opt; do
+    case "$opt" in
+        h)
+            show_help
+            exit 0
+            ;;
+        v)  verbose=$((verbose+1))
+            ;;
+        d)  date=$(date -d "$OPTARG" +%Y-%m-%d)
+            ;;
+        j)  destination=$OPTARG
+            ;;
+        r)  date=$date-$(base64 /dev/urandom | tr -d '/+' | head -c 10) # remove /+ since that can choke URLs
+            ;;
+        '?')
+            show_help >&2
+            exit 1
+            ;;
+    esac
+done
+shift "$((OPTIND-1))" # Shift off the options and optional --.
+
+tmp=$(mktemp -u)
+mkdir -p "$tmp/$date"
+trap 'rm -rf "$tmp"' EXIT
+
+for src in "$@"
+do
+
+    if test -d "$src"
+    then
+        tar="$(basename $src).tar"
+        tar cvf "$tar" "$src"
+        src="$tar"
+    fi
+
+    if ! test -f "$src"
+    then
+        echo Missing filename "$src" >&2
+        continue
+    fi
+
+    chmod +r "$src"
+
+case $(file "$src") in
+    *JPEG*)
+        if hash cwebp
+        then
+            webptmp=$(mktemp --suffix=.webp)
+            cwebp "$src" -o $webptmp
+            echo "Squashing jpeg $(du -h "$src" "$webptmp")"
+            src=${src%.*}.webp
+            mv "$webptmp" "$src"
+        fi
+        ;;
+    *PNG*)
+        hash pngquant && pngquant --ext .png -f "$src"
+        ;;
+    *)
+        echo Not compressing $src
+        ;;
+esac
+
+    dst=$(basename "$src")
+
+    cp -v "$src" "$tmp/$date/$dst"
+
+    if [[ $destination == "s3" ]]; then
+        if aws --profile staticbucket s3 cp "$tmp/$date/$dst" "s3://s3.hotbun.co/$date/"
+        then
+            logger "https://s.hotbun.co/$date/$dst"
+            if hash pbcopy 2>/dev/null
+            then
+                echo -n "https://s3.hotbun.co/$date/$dst" | pbcopy
+            else
+                echo -n "https://s3.hotbun.co/$date/$dst" | xclip -sel clip
+            fi
+        fi
+    else
+        if rsync --relative "$tmp/./$date/$dst" "raspberrypi_ext:~/s.hotbun.co/"
+        then
+            logger "https://s.hotbun.co/$date/$dst"
+            if hash pbcopy 2>/dev/null
+            then
+                echo -n "https://s.hotbun.co/$date/$dst" | pbcopy
+            else
+                echo -n "https://s.hotbun.co/$date/$dst" | xclip -sel clip
+            fi
+        fi
+    fi
+
+done

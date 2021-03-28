@@ -1,0 +1,31 @@
+#!/bin/bash -e
+
+# Usage info
+show_help() {
+cat << EOF
+Usage: ${0##*/} [-d date]...
+    -d date     date other than today's date
+EOF
+}
+
+date=$(date +%Y-%m-%d)
+
+OPTIND=1
+while getopts "hd:" opt; do
+    case "$opt" in
+        h)
+            show_help
+            exit 0
+            ;;
+        d)  date=$(date -d "$OPTARG" +%Y-%m-%d)
+            ;;
+        '?')
+            show_help >&2
+            exit 1
+            ;;
+    esac
+done
+shift "$((OPTIND-1))" # Shift off the options and optional --.
+
+
+ssh raspberrypi_ext ls ~/s.hotbun.co/$date/* | sed 's/\/home\/andrew\//https:\/\//'

@@ -2,15 +2,17 @@ Config {
 
 -- appearance
 font = "xft:Roboto Mono:pixelsize=18:antialias=true"
-, bgColor = "#202125"
+, bgColor = "#202124"
 , fgColor = "#d7d7d7"
 , position = Top
+-- , alpha = 170
 , border = NoBorder
+
 
 -- layout
 , sepChar = "%"   -- delineator between plugin names and straight text
 , alignSep = "}{"  -- separator between left-right alignment
-, template = "%UnsafeStdinReader% }{ %cpu_process% %cpu_temp%  Volume %volume%  %bat_status% %bat_percentage%  %kbd%  %date%"
+, template = "%UnsafeStdinReader% }{ %cpu_process% %cpu_temp%  Volume %volume%  %bat_status%  %kbd%  %date%"
 
 -- general behavior
 , lowerOnStart = True     -- send to bottom of window stack on start

@@ -47,7 +47,7 @@ myWorkspaces :: [String]
 myWorkspaces = ["1","2","3","4","5","6","7","8","9"]
 
 myLayout =  named "-" ( lessBorders Screen $ refocusLastLayoutHook $ avoidStruts $ tiled ) |||
-    named "monocle" ( noBorders $ refocusLastLayoutHook $ avoidStruts Full )
+    named "+" ( noBorders $ refocusLastLayoutHook $ avoidStruts Full )
   where
      tiled   = Tall nmaster delta ratio
      nmaster = 1
@@ -56,7 +56,9 @@ myLayout =  named "-" ( lessBorders Screen $ refocusLastLayoutHook $ avoidStruts
 
 myManageHook :: ManageHook
 myManageHook = composeOne
-    [ isDialog                                 -?> doCenterFloat
+    [ title     =? "Open File"                 -?> doCenterFloat
+    , title     =? "Open Files"                -?> doCenterFloat
+    , isDialog                                 -?> doFloat >> doF W.shiftMaster
     , title     =? "Volume Control"            -?> doShift (myWorkspaces !! 8)
     , title     =? "Telegram"                  -?> doShift (myWorkspaces !! 6)
     , title     =? "Discord"                   -?> doShift (myWorkspaces !! 5)
@@ -65,7 +67,7 @@ myManageHook = composeOne
     , className =? "Steam"                     -?> doShift (myWorkspaces !! 4)
     , className =? "Microsoft Teams - Preview" -?> doSideFloat SE
     , className =? "mpv"                       -?> doFloat
-    , isFullscreen                             -?> doFullFloat
+    , isFullscreen                             -?> doFullFloat >> doF W.shiftMaster
     , return True                              -?> insertPosition Below Newer
     ]
 
@@ -86,15 +88,14 @@ urgentConfig = UrgencyConfig { suppressWhen = Focused, remindWhen = Dont }
 
 myPP = xmobarPP {
         ppCurrent = xmobarColor "#d7d7d7" "" . clickWorkspace "[" "]"
+        , ppVisible = xmobarColor "#d7d7d7" "" . clickWorkspace "˜" " "
+        -- alternative symbols: ˜ ¯ ` ' ‘
         , ppHidden = xmobarColor "#d7d7d7" "" . clickWorkspace " " " "
-        , ppUrgent = xmobarColor "#d7d7d7" "#35363a" . clickWorkspace " " "!"
-        , ppVisible = xmobarColor "#d7d7d7" "" . clickWorkspace " " " "
-        -- ppCurrent = xmobarColor "#d7d7d7" "#005577" . wrap " " " "
-        -- , ppHidden = xmobarColor "#d7d7d7" "#35363a" . wrap " " " "
-        -- , ppHiddenNoWindows = xmobarColor "#d7d7d7" "" . wrap " " " "
-        , ppSep = " "
+        -- , ppHiddenNoWindows = xmobarColor "#d7d7d7" "" . clickWorkspace " " " "
+        , ppUrgent = xmobarColor "#202125" "#d7d7d7" . clickWorkspace "˜" "!"
+        , ppSep = ""
         , ppWsSep = ""
-        , ppTitle = xmobarColor "#d7d7d7" "" . shorten 77
+        , ppTitle = xmobarColor "#d7d7d7" "" . wrap " " "" . shorten 77
     }
     where
         clickWorkspace a b ws = "<action=xdotool key alt+" ++ show(index) ++ ">" ++ a ++ ws ++ b ++ "</action>" where
@@ -105,7 +106,7 @@ myPP = xmobarPP {
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- launching and killing
     [ ((modm .|. shiftMask, xK_Return),                spawn $ XMonad.terminal conf)
-    , ((modm,               xK_p),                     spawn "dmenu_run -fn 'Roboto Mono:style=Regular:pixelsize=18:antialias=true:autohint=true' -nb '#202125' -nf '#d7d7d7' -sb '#005577' -sf '#d7d7d7'")
+    , ((modm,               xK_p),                     spawn "dmenu_run -fn 'Roboto Mono:style=Regular:pixelsize=18:antialias=true:autohint=true' -nb '#202124' -nf '#d7d7d7' -sb '#005577' -sf '#d7d7d7'")
     , ((modm .|. shiftMask, xK_b),                     spawn "google-chrome-stable --enable-features=WebUIDarkMode --force-dark-mode")
     , ((modm,               xK_w),                     kill)
 
@@ -121,8 +122,15 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- screen locker
     , ((0,                  xK_F12),                   spawn "slock")
 
-    -- printscreen
+    -- screenshot to clipboard
     , ((0,                  xK_Print),                 spawn "maim -s | xclip -sel clip -t image/png")
+
+    -- upload screenshot
+    , ((modm,               xK_Print),                 spawn "screenshot")
+
+    -- upload screencast
+    , ((modm .|. shiftMask, xK_r),                     spawn "record")
+
 
     -- cycle layouts
     , ((modm,               xK_space),                 sendMessage NextLayout)

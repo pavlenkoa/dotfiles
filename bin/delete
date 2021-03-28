@@ -1,0 +1,7 @@
+#!/bin/bash -e
+
+path="$(echo $@ | sed 's/\\ / /' | sed 's/%/ /' | sed 's/ /\\ /' | sed 's/https:\/\//~\//' )"
+
+echo "deleting $path"
+
+ssh raspberrypi_ext rm "$path"

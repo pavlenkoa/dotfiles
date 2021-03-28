@@ -1,0 +1,16 @@
+#!/bin/bash
+TMP=$(mktemp -p /tmp --suffix=.png $(date +%T%:::z-XXXX))
+mv -v "$TMP" $output
+maim -s > $TMP
+filename=$(dmenu -fn "Roboto Mono:style=Regular:pixelsize=18:antialias=true:autohint=true" -nb '#202124' -nf '#d7d7d7' -sb '#202124' -sf '#d7d7d7' -p "Screenshot filename:" < /dev/null)
+
+if [[ "$filename" == "c" || "$filename" == "cancel" || "$filename" == "d" || "$filename" == "discard" ]]; then
+    rm $TMP
+    exit 0;
+elif [[ "$filename" == "keep" || "$filename" == "k" || "$filename" == "preserve" || "$filename" == "p" ]]; then
+    upload "$TMP"
+elif test "$filename"; then
+    output="/tmp/$filename.png"
+    mv -v "$TMP" $output
+    upload "$output"
+fi

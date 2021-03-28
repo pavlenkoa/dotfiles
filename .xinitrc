@@ -36,9 +36,9 @@ xset fp rehash &
 xset -b
 
 # Autorun
-google-chrome-stable --enable-features=WebUIDarkMode --force-dark-mode &
-sleep 4 && thunderbird &
-sleep 4 && pavucontrol &
+sleep 1s && google-chrome-stable --enable-features=WebUIDarkMode --force-dark-mode &
+sleep 3s && thunderbird &
+#sleep 4s && pavucontrol &
 #sleep 2s && telegram-desktop &
 
 exec xmonad

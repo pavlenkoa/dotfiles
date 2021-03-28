@@ -1,8 +1,11 @@
 ## Prompt
 # Left
-#PROMPT='%{%F{#5fd7ff}%}% $USER%{%f%}@%{%F{#00af5f	}%}% $HOST%{%f%}:%{%F{yellow}%}%~%{%f%}$ ' $ Light blue, green
-#PROMPT='%{%F{yellow}%}%~%{%f%}$ ' # Yellow
-PROMPT='%{%F{#008080}%}%~%{%f%}$ ' # Dark green
+#PROMPT='%{%F{#5fd7ff}%}% $USER%{%f%}@%{%F{#00af5f	}%}% $HOST%{%f%}:%{%F{yellow}%}%~%{%f%}$ ' # Light blue, green
+#PROMPT='%{%F{#00af5f}%}%~%{%f%}$ ' # Light green
+#PROMPT='%{%F{#5fd7ff}%}%~%{%f%}$ ' # Light blue
+PROMPT='%{%F{yellow}%}%~%{%f%}$ ' # Yellow
+#PROMPT='%{%F{#008080}%}%~%{%f%}$ ' # Dark green
+
 # Right
 autoload -Uz vcs_info
 precmd () { vcs_info }
@@ -115,8 +118,12 @@ alias gomov='cd /media/shared/movies'
 alias gotv='cd /media/shared/tv'
 
 #wireguard vpn
-alias vpnup='wg-quick up mullvad-nl1'
-alias vpndown='wg-quick down mullvad-nl1'
+alias up='wg-quick up'
+alias down="wg-quick down $(sudo wg show | awk '/interface:/{print $2}')"
+compdef _up wg-quick
+function _up(){
+    _describe 'command' "('england-1' 'germany-1' 'germany-2' 'germany-3' 'netherlands-1' 'netherlands-2' 'poland-1' 'poland-2' 'switzerland-1' 'switzerland-2')"
+}
 
 ## Exports
 # tokens
