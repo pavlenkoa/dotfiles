@@ -1,0 +1,28 @@
+#!/bin/bash
+
+input=${1:-empty}
+
+if [ $input = "s3" ]; then
+    s3=$(echo "-j s3")
+fi
+
+mon_count=$(xrandr | grep -c " connected ")
+if [[ $mon_count -gt 1 ]]; then
+    size="1920x1200"
+    pos="0.0+0,325"
+    mic=$(pacmd list-sources | grep -B 1 "USB.*analog-stereo>" | head -n 1 | sed 's/.* //g')
+    audio="$(pacmd list-sources | grep -B 1 "analog.*monitor>" | head -n 1 | sed 's/.* //g')"
+else
+    size=$(xdpyinfo | grep dimensions | awk '{print $2;}')
+    pos=$DISPLAY
+    audio="$(pacmd list-sources | grep -B 1 "analog.*monitor>" | head -n 1 | sed 's/.* //g')"
+    mic="default"
+fi
+
+random=$(tr -dc A-Za-z0-9 </dev/urandom | head -c 4)
+
+output="/tmp/$(date +%T%:::z-$random).mp4"
+
+ffmpeg -y -f x11grab -video_size $size -framerate 60 -probesize 43M -thread_queue_size 512 -i :$pos -f pulse -ac 2 -i $audio -f pulse -i $mic -c:a aac -filter_complex amerge -c:v libx264 -preset ultrafast -crf 18 $output
+
+upload $s3 $output
