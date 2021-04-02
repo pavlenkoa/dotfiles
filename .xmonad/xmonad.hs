@@ -59,6 +59,7 @@ myManageHook = composeOne
     [ title     =? "Open File"                 -?> doCenterFloat
     , title     =? "Open Files"                -?> doCenterFloat
     , className =? "mpv"                       -?> doCenterFloat
+    , title =? "teams.miscrosoft.com is sharing your screen."                       -?> doCenterFloat
     , isDialog                                 -?> doFloat
     , title     =? "Volume Control"            -?> doShift (myWorkspaces !! 8)
     , title     =? "Telegram"                  -?> doShift (myWorkspaces !! 6)
@@ -147,6 +148,15 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm .|. shiftMask, xK_j),                     windows W.swapDown  )
     , ((modm .|. shiftMask, xK_k),                     windows W.swapUp    )
     , ((modm,               xK_Return),                dwmpromote)
+
+    -- keyboard remapping
+    , ((mod4Mask,           xK_k),                     spawn "xdotool keyup k key --clearmodifiers Up")
+    , ((mod4Mask,           xK_j),                     spawn "xdotool keyup j key --clearmodifiers Down")
+    , ((mod4Mask,           xK_h),                     spawn "xdotool keyup h key --clearmodifiers Left")
+    , ((mod4Mask,           xK_l),                     spawn "xdotool keyup l key --clearmodifiers Right")
+    , ((mod4Mask,           xK_n),                     spawn "xdotool keyup n key --clearmodifiers Home")
+    , ((mod4Mask,           xK_e),                     spawn "xdotool keyup e key --clearmodifiers End")
+    , ((mod4Mask,           xK_i),                     spawn "xdotool keyup i key --clearmodifiers Insert")
 
     -- increase or decrease number of windows in the master area
     , ((modm,               xK_i),                     sendMessage (IncMasterN 1))

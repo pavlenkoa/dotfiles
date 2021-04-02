@@ -106,6 +106,7 @@ alias bfg='java -jar ~/bin/java/bfg-1.13.0.jar'
 alias vim='nvim'
 alias bc='bc -l -q'
 alias lint='helm lint'
+alias dcommit='docker commit `docker ps -q -l` commited && docker run -it -u0 --network=host --entrypoint=bash commited'
 # terraform
 alias t='terraform'
 alias ta='terraform apply'

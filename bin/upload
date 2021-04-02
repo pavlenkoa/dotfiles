@@ -90,7 +90,7 @@ esac
     if [[ $destination == "s3" ]]; then
         if aws --profile staticbucket s3 cp "$tmp/$date/$dst" "s3://s3.hotbun.co/$date/"
         then
-            logger "https://s.hotbun.co/$date/$dst"
+            logger "https://s3.hotbun.co/$date/$dst"
             if hash pbcopy 2>/dev/null
             then
                 echo -n "https://s3.hotbun.co/$date/$dst" | pbcopy

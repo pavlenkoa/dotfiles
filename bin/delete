@@ -1,7 +1,8 @@
 #!/bin/bash -e
 
-path="$(echo $@ | sed 's/\\ / /' | sed 's/%/ /' | sed 's/ /\\ /' | sed 's/https:\/\//~\//' )"
+for i in $@; do
+    path="$(echo $i | sed 's/\\ / /' | sed 's/%/ /' | sed 's/ /\\ /' | sed 's/https:\/\//~\//' )"
+    echo "deleting $path"
+    ssh raspberrypi_ext rm "$path"
+done
 
-echo "deleting $path"
-
-ssh raspberrypi_ext rm "$path"
