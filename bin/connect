@@ -1,17 +1,10 @@
-#!/usr/bin/expect
+#!/bin/bash
 
-send_user "workDB.kdbx Password: "
-stty -echo
-expect_user -timeout -1 -re "(.*)\n" { set dbpassword $expect_out(1,string) }
-send_user "\n"
-stty echo
+token=$(bw unlock --raw)
+bw sync --session "$token"
 
-set login [exec echo "$dbpassword" | keepassxc-cli show -s -q "/home/andrew/misc/creds/workDB.kdbx" AWS | awk "FNR == 2 {print \$2}"]
-set password [exec echo "$dbpassword" | keepassxc-cli show -s -q "/home/andrew/misc/creds/workDB.kdbx" AWS | awk "FNR == 3 {print \$2}"]
+login=$(bw get username "1e2d7621-7d03-4845-8ff1-acec017b5081" --session "$token")
+password=$(bw get password "1e2d7621-7d03-4845-8ff1-acec017b5081" --session "$token")
 
-send_user "Connect-AWS logging in...\n"
-log_user 0
-spawn pwsh -Command Connect-AWS -UserName "$login" -Password \"$password\"
-log_user 1
-
-interact
+echo "Connect-AWS logging in..."
+pwsh -Command Connect-AWS -UserName "$login" -Password "$password"

@@ -59,7 +59,7 @@ myManageHook = composeOne
     [ title     =? "Open File"                 -?> doCenterFloat
     , title     =? "Open Files"                -?> doCenterFloat
     , className =? "mpv"                       -?> doCenterFloat
-    , title =? "teams.miscrosoft.com is sharing your screen."                       -?> doCenterFloat
+    , title =? "teams.miscrosoft.com is sharing your screen."                       -?> doFloat
     , isDialog                                 -?> doFloat
     , title     =? "Volume Control"            -?> doShift (myWorkspaces !! 8)
     , title     =? "Telegram"                  -?> doShift (myWorkspaces !! 6)
@@ -79,7 +79,7 @@ myEventHook = handleEventHook def
 
 myStartupHook = dynStatusBarStartup barCreate barDestroy
 
-barCreate (S sid) = spawnPipe $ "xmobar -x " ++ show sid ++ " /home/andrew/.xmonad/xmobar.hs"
+barCreate (S sid) = spawnPipe $ "xmobar -x " ++ show sid ++ " /home/andrii/.xmonad/xmobar.hs"
 
 barDestroy = return ()
 

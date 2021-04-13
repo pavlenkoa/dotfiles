@@ -8,6 +8,9 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
  unset f
 fi
 
+# Keyboard layout
+setxkbmap -layout "us,ru,ua" -variant "colemak,," -option "grp:win_space_toggle,grp_led:scroll,caps:escape"
+
 # Set pointer to left arrow
 xsetroot -cursor_name left_ptr
 
@@ -24,8 +27,8 @@ xrdb ~/.Xdefaults
 #~/bin/dwm_status &
 
 # Wallpaper
-feh --no-xinerama --no-fehbg --bg-scale "/home/andrew/misc/wallpapers/full_moon.jpg"
-#feh --no-fehbg --bg-fill "/home/andrew/misc/wallpapers/anime-landscape-waterfall-cloud-5k-mq-1920x1080.jpg"
+feh --no-xinerama --no-fehbg --bg-scale "/home/andrii/misc/wallpapers/full_moon.jpg"
+#feh --no-fehbg --bg-fill "/home/andrii/misc/wallpapers/anime-landscape-waterfall-cloud-5k-mq-1920x1080.jpg"
 
 # Key bindings
 xmodmap ~/.Xmodmap

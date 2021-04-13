@@ -4,6 +4,7 @@
 #PROMPT='%{%F{#00af5f}%}%~%{%f%}$ ' # Light green
 #PROMPT='%{%F{#5fd7ff}%}%~%{%f%}$ ' # Light blue
 PROMPT='%{%F{yellow}%}%~%{%f%}$ ' # Yellow
+#PROMPT='%{%F{#00af5f    }%}% $HOST%{%f%}:%{%F{yellow}%}%~%{%f%}$ ' # Light blue, green
 #PROMPT='%{%F{#008080}%}%~%{%f%}$ ' # Dark green
 
 # Right
@@ -96,7 +97,7 @@ alias nfsumount='sudo umount -f /media/shared/'
 alias bucketmount='s3fs fortnest-bucket /media/bucket/ -o endpoint="eu-central-1"'
 alias bucketumount='sudo umount -f /media/bucket/'
 # various
-alias background_set='feh --no-xinerama --no-fehbg --bg-scale "/home/andrew/misc/wallpapers/full_moon.jpg"'
+alias background_set='feh --no-xinerama --no-fehbg --bg-scale "/home/andrii/misc/wallpapers/full_moon.jpg"'
 alias restart_wifi='sudo systemctl restart wpa_supplicant@wlp61s0.service'
 alias restart_resolved='sudo systemctl restart systemd-resolved.service'
 alias wget="wget --hsts-file ~/.config/wget/wget-hsts"
@@ -128,9 +129,9 @@ function _up(){
 
 ## Exports
 # tokens
-source /home/andrew/misc/secrets/tokens
+source $HOME/misc/secrets/tokens
 # apps
-export BROWSER=chromium
+export BROWSER=google-chrome-stable
 export EDITOR=nvim
 export TERM=xterm-256color
 # paths

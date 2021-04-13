@@ -1,0 +1,10 @@
+#!/bin/bash
+
+token=$(bw unlock --raw)
+bw sync --session "$token"
+
+login=$(bw get username "0d1dfc96-90ac-4dfa-b484-aced000505b9" --session "$token")
+password=$(bw get password "0d1dfc96-90ac-4dfa-b484-aced000505b9" --session "$token")
+
+echo "Connect-AWS logging in..."
+pwsh -Command Connect-AWS -UserName "$login" -Password "$password"
