@@ -1,16 +1,20 @@
 #!/bin/bash
-TMP=$(mktemp -p /tmp --suffix=.png $(date +%T%:::z-XXXX))
-mv -v "$TMP" $output
-maim -s > $TMP
-filename=$(dmenu -fn "Roboto Mono:style=Regular:pixelsize=18:antialias=true:autohint=true" -nb '#202124' -nf '#d7d7d7' -sb '#202124' -sf '#d7d7d7' -p "Screenshot filename:" < /dev/null)
+
+tmp=$(gmktemp -p /tmp --suffix=.png $(date +%T%:::z-XXXX))
+
+mv -v "$tmp" $output
+
+screencapture -i $tmp
+
+filename=$(osascript -e 'set T to text returned of (display dialog "ScreenCapture Filename" default answer "")')
 
 if [[ "$filename" == "c" || "$filename" == "cancel" || "$filename" == "d" || "$filename" == "discard" ]]; then
-    rm $TMP
+    rm $tmp
     exit 0;
 elif [[ "$filename" == "keep" || "$filename" == "k" || "$filename" == "preserve" || "$filename" == "p" ]]; then
-    upload "$TMP"
+    upload "$tmp"
 elif test "$filename"; then
     output="/tmp/$filename.png"
-    mv -v "$TMP" $output
+    mv -v "$tmp" $output
     upload "$output"
 fi

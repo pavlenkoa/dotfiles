@@ -15,6 +15,7 @@ set shiftwidth=4
 set list listchars=nbsp:¬,tab:»·,trail:·,extends:>,precedes:<
 set showbreak=↳
 set wrap
+set mouse=a
 
 set encoding=utf-8
 
@@ -25,6 +26,7 @@ set laststatus=0
 set undofile
 
 colorscheme fortnest
+"colorscheme peachpuff
 
 nnoremap <space><space> :noh<cr>
 "map <F11> :w <CR> :!gcc % -o %< && ./%< <CR>

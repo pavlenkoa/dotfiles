@@ -1,4 +1,0 @@
-#!/bin/zsh
-primary=$(xclip -o)
-clipboard=$(xclip -sel clip -o)
-xsetroot -name "PRIMARY:$primary  CLIPBOARD:$clipboard"

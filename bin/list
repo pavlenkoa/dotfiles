@@ -31,7 +31,7 @@ shift "$((OPTIND-1))" # Shift off the options and optional --.
 
 
 if [ $input = "empty" ]; then
-    ssh raspberrypi_ext ls -l --block-size=M ~/s.hotbun.co/$date/* | sed 's/\/home\/andrew\//https:\/\//' | awk '{print $5, $9}'
+    ssh raspberrypi_ext ls -l --block-size=M /home/andrew/s.hotbun.co/$date/* | sed 's/\/home\/andrew\//https:\/\//' | awk '{print $5, $9}'
 elif [ $input = "s3" ]; then
     aws --profile staticbucket s3 ls --human-readable s3://s3.hotbun.co/$date/ | awk '{$5=$5 "c"}' | awk '{print $3, $4, $5}'
 fi
