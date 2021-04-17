@@ -1,4 +1,4 @@
-## Prompt
+# Prompt
 # Left
 PROMPT='%{%F{yellow}%}%~%{%f%}$ ' # Yellow
 # Right
@@ -6,7 +6,9 @@ autoload -Uz vcs_info
 precmd () { vcs_info }
 setopt prompt_subst
 RPROMPT="\$vcs_info_msg_0_"
-zstyle ':vcs_info:git*' formats "* %{%F{#1EC325}%}% %b%{%f%}"
+#zstyle ':vcs_info:git*' formats "* %{%F{#1EC325}%}% %b%{%f%}"
+zstyle ':vcs_info:git*' formats "* %{%F{green}%}% %b%{%f%}"
+
 
 ## Shell settings
 #setopt correct_all # Correct misspelled commands
@@ -72,6 +74,7 @@ alias l='gls -CF --group-directories-first --color=auto'
 alias grep='ggrep --color=auto'
 # openvpn
 #source ~/misc/openvpn/creds/aliases
+alias h="history -100"
 alias wget="wget --hsts-file ~/.config/wget/wget-hsts"
 alias svim='sudo -E nvim'
 alias vim='nvim'
@@ -83,10 +86,14 @@ alias t='terraform'
 alias ta='terraform apply'
 # kubectl
 source ~/.dotfiles/.config/aliases/.kubectl_aliases
+# nfs mounting
+alias showmounted='df -aTh'
+alias nfsmount='sudo mount -t nfs4 -o proto=tcp,port=2049 192.168.1.2:/ /private/nfs/'
+alias nfsumount='sudo umount -f /private/nfs/'
 
 ## Exports
 # tokens
-#source /home/andrew/misc/secrets/tokens
+source ~/misc/secrets/tokens
 # terminal color support
 export CLICOLOR=1
 # apps

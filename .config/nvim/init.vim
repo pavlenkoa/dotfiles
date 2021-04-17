@@ -20,13 +20,12 @@ set mouse=a
 set encoding=utf-8
 
 set termguicolors
-
 set laststatus=0
 
 set undofile
 
-colorscheme fortnest
-"colorscheme peachpuff
+colorscheme dunno
+hi Normal guibg=NONE ctermbg=NONE
 
 nnoremap <space><space> :noh<cr>
 "map <F11> :w <CR> :!gcc % -o %< && ./%< <CR>
@@ -38,7 +37,7 @@ map <F11> :w <CR> :!make %< && ./%< <CR>
 "nnoremap <F10> <C-w>j :q<cr>
 
 " F5 to clear white spaces
-nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
+nnoremap <silent> <F5> :%s/\s\+$//e
 
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
@@ -46,7 +45,6 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 noremap <F4> :syntax sync fromstart<CR>
 "set laststatus=0
-"set background=dark
 
 call plug#begin('~/.local/share/nvim/plugged/')
 

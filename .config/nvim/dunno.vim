@@ -41,7 +41,7 @@ fun! s:register_default_theme()
         \       'color01' : ['#af0000', '124'],
         \       'color02' : ['#008700', '28'],
         \       'color03' : ['#5f8700', '64'],
-        \       'color04' : ['#0087af', '31'], 
+        \       'color04' : ['#0087af', '31'],
         \       'color05' : ['#878787', '102'],
         \       'color06' : ['#005f87', '24'],
         \       'color07' : ['#444444', '238'],
@@ -129,8 +129,8 @@ fun! s:register_default_theme()
 "        \       'cursorcolumn' : ['#303030', '236'],
 "        \       'cursorlinenr_fg' : ['#ffff00', '226'],
 "        \       'cursorlinenr_bg' : ['#1c1c1c', '234'],
-"  	     \       'search_fg' : ['#000000', '16'],
-"		     \       'search_bg' : ['#bcbcbc', '250'],
+"        \       'search_fg' : ['#000000', '16'],
+"            \       'search_bg' : ['#bcbcbc', '250'],
 
 
   let s:themes['default'].dark = {
@@ -140,20 +140,20 @@ fun! s:register_default_theme()
         \       'color00' : ['#1c1c1c', '234'],
         \       'color01' : ['#af0000', '124'],
         \       'color02' : ['#008700', '28'],
-        \       'color03' : ['#d75f00', '166'],
-        \       'color04' : ['#5fd7d7', '80'],
-        \       'color05' : ['#875fd7', '98'],
-        \       'color06' : ['#005f87', '24'],
-        \       'color07' : ['#5fd7d7', '80'],
+        \       'color03' : ['#f57b1b', '166'],
+        \       'color04' : ['#65e0e0', '80'],
+        \       'color05' : ['#a076f5', '98'],
+        \       'color06' : ['#0985ba', '24'],
+        \       'color07' : ['#65e0e0', '80'],
         \       'color08' : ['#dadada', '253'],
-        \       'color09' : ['#d700d7', '164'],
-        \       'color10' : ['#d70087', '184'],
-        \       'color11' : ['#d70087', '184'],
-        \       'color12' : ['#d75f00', '166'],
-        \       'color13' : ['#d75f00', '166'],
+        \       'color09' : ['#f556b0', '184'],
+        \       'color10' : ['#f556b0', '184'],
+        \       'color11' : ['#f556b0', '184'],
+        \       'color12' : ['#f57b1b', '166'],
+        \       'color13' : ['#f57b1b', '166'],
         \       'color14' : ['#dadada', '253'],
-        \       'color15' : ['#005f87', '24'],
-        \       'color16' : ['#5fd7d7', '80'],
+        \       'color15' : ['#0985ba', '24'],
+        \       'color16' : ['#65e0e0', '80'],
         \       'color17' : ['#008700', '28'],
         \       'cursor_fg' : ['#1c1c1c', '234'],
         \       'cursor_bg' : ['#c6c6c6', '251'],
@@ -163,7 +163,7 @@ fun! s:register_default_theme()
         \       'cursorlinenr_bg' : ['#1c1c1c', '234'],
         \       'popupmenu_fg' : ['#c6c6c6', '251'],
         \       'popupmenu_bg' : ['#303030', '236'],
-  			\       'search_fg' : ['#444444', '238'],
+        \       'search_fg' : ['#444444', '238'],
         \       'search_bg' : ['#ffff5f', '227'],
         \       'linenumber_fg' : ['#585858', '240'],
         \       'linenumber_bg' : ['#1c1c1c', '234'],
@@ -217,7 +217,7 @@ endfun
 
 " Acquire Theme Data: {{{
 
-" Brief: 
+" Brief:
 "   Function to get theme information and store in variables for other
 "   functions to use
 "
@@ -229,13 +229,13 @@ endfun
 "   g:PaperColor_Theme_Options            <dictionary>  user options
 "
 " Expose:
-"   s:theme_name       <string>     the name of the selected theme 
+"   s:theme_name       <string>     the name of the selected theme
 "   s:selected_theme   <dictionary> the selected theme object (contains palette, etc.)
 "   s:selected_variant <string>     'light' or 'dark'
 "   s:palette          <dictionary> the palette of selected theme
 "   s:options          <dictionary> user options
 fun! s:acquire_theme_data()
-  
+
   " Get theme name: {{{
   let s:theme_name = 'default'
 
@@ -353,8 +353,8 @@ endfun
 fun! s:generate_theme_option_variables()
   " 0. All possible theme option names must be registered here
   let l:available_theme_options = [
-        \ 'allow_bold', 
-        \ 'allow_italic', 
+        \ 'allow_bold',
+        \ 'allow_italic',
         \ 'transparent_background',
         \ ]
 
@@ -392,7 +392,7 @@ fun! s:generate_theme_option_variables()
   if has_key(s:options, 'theme')
     let s:theme_options = s:options['theme']
   endif
-  
+
   " 3.1 In case user sets for a theme without specifying which variant
   if has_key(s:theme_options, s:theme_name)
     let l:theme_options = s:theme_options[s:theme_name]
@@ -404,7 +404,7 @@ fun! s:generate_theme_option_variables()
 
 
   " 3.2 In case user sets for a specific variant of a theme
-  
+
   " Create the string that the user might have set for this theme variant
   " for example, 'default.dark'
   let l:specific_theme_variant = s:theme_name . '.' . s:selected_variant
@@ -466,7 +466,7 @@ fun! s:set_overriding_colors()
       if !empty(s:themeOpt_override)
         call s:load_GUI_to_256_converter()
       endif
- 
+
       for l:color in keys(s:themeOpt_override)
         let l:value = s:themeOpt_override[l:color]
         if l:value[1] == ''
@@ -502,7 +502,7 @@ endfun
 " Expose:
 "   s:langOpt_[LANGUAGE]__[OPTION]  <any>   variables for language options
 "
-" Example: 
+" Example:
 "     g:PaperColor_Theme_Options has something like this:
 "       'language': {
 "       \   'python': {
@@ -528,10 +528,10 @@ fun! s:generate_language_option_variables()
   " Part of user-config options
   if has_key(s:options, 'language')
     let l:language_options = s:options['language']
-    " echo l:language_options 
+    " echo l:language_options
     for l:lang in keys(l:language_options)
       let l:options = l:language_options[l:lang]
-      " echo l:lang 
+      " echo l:lang
       " echo l:options
       for l:option in keys(l:options)
         let s:{'langOpt_' . l:lang . '__' . l:option} = l:options[l:option]
@@ -1144,8 +1144,8 @@ fun! s:apply_syntax_highlightings()
       set background=light
     endif
 
-    exec 'hi NonText' . s:fg_nontext  
-    exec 'hi LineNr' . s:fg_linenumber_fg 
+    exec 'hi NonText' . s:fg_nontext
+    exec 'hi LineNr' . s:fg_linenumber_fg
     exec 'hi Conceal' . s:fg_linenumber_fg . s:bg_linenumber_bg
     exec 'hi VertSplit' . s:fg_vertsplit_bg . s:bg_vertsplit_fg
     exec 'hi FoldColumn' . s:fg_folded_fg . s:bg_background . s:ft_none
@@ -1169,7 +1169,7 @@ fun! s:apply_syntax_highlightings()
   if version >= 700
     exec 'hi CursorLine'  . s:bg_cursorline . s:ft_none
     if s:mode == s:MODE_16_COLOR
-      exec 'hi CursorLineNr' . s:fg_cursorlinenr_fg  
+      exec 'hi CursorLineNr' . s:fg_cursorlinenr_fg
     else
       exec 'hi CursorLineNr' . s:fg_cursorlinenr_fg . s:ft_none
     endif
@@ -1628,7 +1628,7 @@ fun! s:apply_syntax_highlightings()
   exec 'hi jsonNumber' . s:fg_orange
   exec 'hi jsonNull' . s:fg_purple . s:ft_bold
   exec 'hi jsonBoolean' . s:fg_green . s:ft_bold
-  exec 'hi jsonCommentError' . s:fg_pink . s:bg_background 
+  exec 'hi jsonCommentError' . s:fg_pink . s:bg_background
 
   " Go Highlighting
   exec 'hi goDirective' . s:fg_red
@@ -2026,11 +2026,11 @@ fun! s:apply_syntax_highlightings()
   exec 'hi awkSpecialPrintf' . s:fg_olive . s:ft_bold
 
   " Elm highlighting
-  exec 'hi elmImport' . s:fg_navy 
+  exec 'hi elmImport' . s:fg_navy
   exec 'hi elmAlias' . s:fg_aqua
   exec 'hi elmType' . s:fg_pink
   exec 'hi elmOperator' . s:fg_aqua . s:ft_bold
-  exec 'hi elmBraces' . s:fg_aqua . s:ft_bold 
+  exec 'hi elmBraces' . s:fg_aqua . s:ft_bold
   exec 'hi elmTypedef' . s:fg_blue .  s:ft_bold
   exec 'hi elmTopLevelDecl' . s:fg_green . s:ft_bold
 

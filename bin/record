@@ -15,6 +15,6 @@ elif [[ "$filename" == "keep" || "$filename" == "k" || "$filename" == "preserve"
     upload "$tmp"
 elif test "$filename"; then
     output="/tmp/$filename.mp4"
-    mv -v "$tmp" $output
+    gmv -v "$tmp" $output
     upload $s3 $output
 fi
