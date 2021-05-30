@@ -3,9 +3,9 @@
 #PROMPT='%{%F{#5fd7ff}%}% $USER%{%f%}@%{%F{#00af5f	}%}% $HOST%{%f%}:%{%F{yellow}%}%~%{%f%}$ ' # Light blue, green
 #PROMPT='%{%F{#00af5f}%}%~%{%f%}$ ' # Light green
 #PROMPT='%{%F{#5fd7ff}%}%~%{%f%}$ ' # Light blue
-PROMPT='%{%F{yellow}%}%~%{%f%}$ ' # Yellow
-#PROMPT='%{%F{#00af5f    }%}% $HOST%{%f%}:%{%F{yellow}%}%~%{%f%}$ ' # Light blue, green
-#PROMPT='%{%F{#008080}%}%~%{%f%}$ ' # Dark green
+#PROMPT='%{%F{yellow}%}%~%{%f%}$ ' # Yellow
+#PROMPT='%{%F{#00af5f    }%}% $USER%{%f%}:%{%F{yellow}%}%~%{%f%}$ ' # Light blue, green
+PROMPT='%{%F{#008080}%}%~%{%f%}$ ' # Dark green
 
 # Right
 autoload -Uz vcs_info

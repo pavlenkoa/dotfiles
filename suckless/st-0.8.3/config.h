@@ -5,7 +5,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char font[] = "Roboto Mono:style=Regular:pixelsize=18:antialias=true:autohint=true";
+static char font[] = "Roboto Mono:pixelsize=19:antialias=true:autohint=true";
 static int borderpx = 2;
 
 /*
@@ -112,10 +112,10 @@ static const char *colorname[] = {
 	"#cccccc",
 	"#555555",
 	"#202124",
-	"gray90",
-	"#eeeeee",
+	"#dadada",
 };
 
+//	"#eeeeee",
 //	"#323437",
 //	"#202026",
 
@@ -189,8 +189,10 @@ static Shortcut shortcuts[] = {
 	{ TERMMOD,              XK_Prior,       zoom,           {.f = +1} },
 	{ TERMMOD,              XK_Next,        zoom,           {.f = -1} },
 	{ TERMMOD,              XK_Home,        zoomreset,      {.f =  0} },
-	{ CTRLSHIFT,            XK_C,           clipcopy,       {.i =  0} },
-	{ CTRLSHIFT,            XK_V,           clippaste,      {.i =  0} },
+/*	{ CTRLSHIFT,            XK_C,           clipcopy,       {.i =  0} },
+	{ CTRLSHIFT,            XK_V,           clippaste,      {.i =  0} }, */
+	{ MODKEY,               XK_c,           clipcopy,       {.i =  0} },
+	{ MODKEY,               XK_v,           clippaste,      {.i =  0} },
 	{ TERMMOD,              XK_Y,           selpaste,       {.i =  0} },
 	{ ShiftMask,            XK_Insert,      selpaste,       {.i =  0} },
 	{ TERMMOD,              XK_Num_Lock,    numlock,        {.i =  0} },

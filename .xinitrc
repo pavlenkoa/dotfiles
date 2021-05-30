@@ -39,7 +39,7 @@ xset fp rehash &
 xset -b
 
 # Autorun
-sleep 1s && google-chrome-stable --enable-features=WebUIDarkMode --force-dark-mode &
+sleep 1s && google-chrome-stable --enable-features=WebUIDarkMode --force-dark-mode --force-device-scale-factor=1.07 &
 sleep 3s && thunderbird &
 #sleep 4s && pavucontrol &
 #sleep 2s && telegram-desktop &

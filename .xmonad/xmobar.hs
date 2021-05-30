@@ -2,8 +2,10 @@ Config {
 
 -- appearance
 font = "xft:Roboto Mono:pixelsize=18:antialias=true"
+--font = "xft:SF Mono:pixelsize=18:antialias=true"
 , bgColor = "#202124"
-, fgColor = "#d7d7d7"
+--, bgColor = "#000000"
+, fgColor = "#ffffff"
 , position = Top
 -- , alpha = 170
 , border = NoBorder
@@ -12,7 +14,7 @@ font = "xft:Roboto Mono:pixelsize=18:antialias=true"
 -- layout
 , sepChar = "%"   -- delineator between plugin names and straight text
 , alignSep = "}{"  -- separator between left-right alignment
-, template = "%UnsafeStdinReader% }{ %cpu_process% %cpu_temp%  Volume %volume%  %bat_status%  %kbd%  %date%"
+, template = "%UnsafeStdinReader% }{ %cpu_process% %cpu_temp%  Volume %volume%  %bat_status%  %kbd%  %date% "
 
 -- general behavior
 , lowerOnStart = True     -- send to bottom of window stack on start
@@ -24,7 +26,7 @@ font = "xft:Roboto Mono:pixelsize=18:antialias=true"
 
 -- plugins
 , commands = [
-        Run Date "%a %b %d %I:%M%P" "date" 10
+        Run Date "%a %b %d %I:%M %p" "date" 10
         , Run Com "/home/andrii/bin/xmobar_status" ["print_bat_status"] "bat_status" 10
         , Run Com "/home/andrii/bin/xmobar_status" ["print_bat_percentage"] "bat_percentage" 10
         , Run Com "/home/andrii/bin/xmobar_status" ["print_cpu_process"] "cpu_process" 10

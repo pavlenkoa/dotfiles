@@ -111,8 +111,8 @@ static Key keys[] = {
 	{ 0,                            XK_Print,                  spawn,          SHCMD("maim -s | xclip -sel clip -t image/png") },
 	{ MODKEY,                       XK_n,                      togglescratch,  {.v = scratchpadcmd } },
 	{ MODKEY,                       XK_F12,                    spawn,          {.v = cmdlock } },
-	{ MODKEY,                       XK_c,                      spawn,          SHCMD("show_clipboard") },
-	{ MODKEY|ShiftMask,             XK_c,                      spawn,          SHCMD("notify-send \"`colorpicker --one-shot`\"") },
+/*	{ MODKEY,                       XK_c,                      spawn,          SHCMD("show_clipboard") }, */
+/*	{ MODKEY|ShiftMask,             XK_c,                      spawn,          SHCMD("notify-send \"`colorpicker --one-shot`\"") }, */
 	{ MODKEY|ShiftMask,             XK_m,                      spawn,          {.v = thunderbirdcmd} },
 	{ MODKEY|ShiftMask,             XK_b,                      spawn,          {.v = browsercmd} },
 	{ MODKEY|ShiftMask,             XK_a,                      spawn,          {.v = pavucontrolcmd} },

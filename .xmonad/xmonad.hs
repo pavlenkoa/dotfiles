@@ -88,15 +88,15 @@ myLogHook = multiPP myPP myPP
 urgentConfig = UrgencyConfig { suppressWhen = Focused, remindWhen = Dont }
 
 myPP = xmobarPP {
-        ppCurrent = xmobarColor "#d7d7d7" "" . clickWorkspace "[" "]"
-        , ppVisible = xmobarColor "#d7d7d7" "" . clickWorkspace "˜" " "
+        ppCurrent = xmobarColor "#ffffff" "" . clickWorkspace "[" "]"
+        , ppVisible = xmobarColor "#ffffff" "" . clickWorkspace "˜" " "
         -- alternative symbols: ˜ ¯ ` ' ‘
-        , ppHidden = xmobarColor "#d7d7d7" "" . clickWorkspace " " " "
+        , ppHidden = xmobarColor "#ffffff" "" . clickWorkspace " " " "
         -- , ppHiddenNoWindows = xmobarColor "#d7d7d7" "" . clickWorkspace " " " "
-        , ppUrgent = xmobarColor "#202125" "#d7d7d7" . clickWorkspace "˜" "!"
+        , ppUrgent = xmobarColor "#202125" "#ffffff" . clickWorkspace "˜" "!"
         , ppSep = ""
         , ppWsSep = ""
-        , ppTitle = xmobarColor "#d7d7d7" "" . wrap " " "" . shorten 77
+        , ppTitle = xmobarColor "#ffffff" "" . wrap " " "" . shorten 77
     }
     where
         clickWorkspace a b ws = "<action=xdotool key alt+" ++ show(index) ++ ">" ++ a ++ ws ++ b ++ "</action>" where
@@ -107,18 +107,18 @@ myPP = xmobarPP {
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- launching and killing
     [ ((modm .|. shiftMask, xK_Return),                spawn $ XMonad.terminal conf)
-    , ((modm,               xK_p),                     spawn "dmenu_run -fn 'Roboto Mono:style=Regular:pixelsize=18:antialias=true:autohint=true' -nb '#202124' -nf '#d7d7d7' -sb '#005577' -sf '#d7d7d7'")
-    , ((modm .|. shiftMask, xK_b),                     spawn "google-chrome-stable --enable-features=WebUIDarkMode --force-dark-mode")
+    , ((modm,               xK_p),                     spawn "dmenu_run -fn 'Roboto Mono:style=Regular:pixelsize=19:antialias=true:autohint=true' -nb '#202124' -nf '#d7d7d7' -sb '#005577' -sf '#d7d7d7'")
+    , ((modm .|. shiftMask, xK_b),                     spawn "google-chrome-stable --enable-features=WebUIDarkMode --force-dark-mode --force-device-scale-factor=1.07")
     , ((modm,               xK_w),                     kill)
 
     -- show notification with network info
     , ((modm.|. shiftMask,  xK_n),                     spawn "notify-send \"Network\" \"`iwconfig wlp61s0 | head -6 && echo && ifconfig wlp61s0 | head -2 && echo && ifconfig enp0s31f6 | head -3 && echo && ifconfig mullvad-nl1 | head -2`\"")
 
     -- send notification with clipboard
-    , ((modm.|. shiftMask,  xK_c),                     spawn "primary=$(xclip -o); clipboard=$(xclip -sel clip -o); notify-send \"Clipboards\" \"`echo PRIMARY: $primary && echo CLIPBOARD: $clipboard`\"")
+--    , ((modm.|. shiftMask,  xK_c),                     spawn "primary=$(xclip -o); clipboard=$(xclip -sel clip -o); notify-send \"Clipboards\" \"`echo PRIMARY: $primary && echo CLIPBOARD: $clipboard`\"")
 
     -- clipmenu
-    , ((modm,               xK_c),                     spawn "clipmenu -fn 'Roboto Mono:style=Regular:pixelsize=18:antialias=true:autohint=true' -nb '#202124' -nf '#d7d7d7' -sb '#005577' -sf '#d7d7d7'")
+--    , ((modm,               xK_c),                     spawn "clipmenu -fn 'Roboto Mono:style=Regular:pixelsize=18:antialias=true:autohint=true' -nb '#202124' -nf '#d7d7d7' -sb '#005577' -sf '#d7d7d7'")
 
     -- screen locker
     , ((0,                  xK_F12),                   spawn "slock")
