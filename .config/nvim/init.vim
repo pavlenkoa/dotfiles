@@ -61,6 +61,9 @@ Plug 'stephpy/vim-yaml'
 " Jenkinsfile Highlitning
 Plug 'martinda/Jenkinsfile-vim-syntax'
 
+" Jenkinsfile Highlitning
+"Plug 'nvim-treesitter/nvim-treesitter'
+
 " Displays the indention levels with thin vertical lines
 "Plug 'thaerkh/vim-indentguides'
 "Plug 'nathanaelkane/vim-indent-guides'

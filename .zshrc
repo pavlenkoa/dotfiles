@@ -90,6 +90,8 @@ source ~/.dotfiles/.config/aliases/.kubectl_aliases
 alias showmounted='df -aTh'
 alias nfsmount='sudo mount -t nfs4 -o proto=tcp,port=2049 192.168.1.2:/ /private/nfs/'
 alias nfsumount='sudo umount -f /private/nfs/'
+alias pip='python -m pip'
+alias pip3='python -m pip'
 
 ## Exports
 # tokens

@@ -2,13 +2,16 @@ env:
   TERM: xterm-256color
 window:
   padding:
-    x: 3
-  dynamic_padding: true
+    x: 4
+  dynamic_padding: false
   decorations: full
   title: tmux
   dynamic_title: true
 scrolling:
-  history: 0
+  history: 10000
+  multiplier: 1
+  #faux_multiplier: 0
+  auto_scroll: false
 font:
   normal:
     family: SF Mono
@@ -18,7 +21,7 @@ font:
     style: Semibold
   size: 15
   offset:
-    y: 1
+    y: 4
   use_thin_strokes: true
 draw_bold_text_with_bright_colors: false
 colors:
@@ -46,6 +49,9 @@ colors:
     white:   '0xffffff'
 selection:
   save_to_clipboard: true
+mouse:
+  url:
+    modifiers: Control
 shell:
   program: /bin/zsh
   args:
