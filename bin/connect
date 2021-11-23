@@ -1,5 +1,6 @@
 #!/bin/bash
 
+date
 token=$(bw unlock --raw)
 bw sync --session "$token"
 

@@ -24,6 +24,8 @@ set laststatus=0
 
 set undofile
 
+set completeopt=menuone,noselect
+
 colorscheme dunno
 hi Normal guibg=NONE ctermbg=NONE
 
@@ -39,11 +41,15 @@ map <F11> :w <CR> :!make %< && ./%< <CR>
 " F5 to clear white spaces
 nnoremap <silent> <F5> :%s/\s\+$//e
 
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
+"nnoremap <D-j> :m+ <CR>
+"nnoremap <D-k> :m- <CR>
+""inoremap <C-j> <Esc>:m +1<CR>==gi
+""inoremap <C-k> <Esc>:m -2<CR>==gi
+"vnoremap <C-j> :m '>+1<CR>gv=gv
+"vnoremap <C-k> :m '<-2<CR>gv=gv
+
 noremap <F4> :syntax sync fromstart<CR>
+
 "set laststatus=0
 
 call plug#begin('~/.local/share/nvim/plugged/')
@@ -58,11 +64,14 @@ call plug#begin('~/.local/share/nvim/plugged/')
 Plug 'stephpy/vim-yaml'
 "Plug 'chase/vim-ansible-yaml'
 
+" Git thingie
+Plug 'tpope/vim-fugitive'
+
 " Jenkinsfile Highlitning
 Plug 'martinda/Jenkinsfile-vim-syntax'
 
-" Jenkinsfile Highlitning
-"Plug 'nvim-treesitter/nvim-treesitter'
+" Better Highlitning
+Plug 'nvim-treesitter/nvim-treesitter'
 
 " Displays the indention levels with thin vertical lines
 "Plug 'thaerkh/vim-indentguides'

@@ -49,9 +49,6 @@ colors:
     white:   '0xffffff'
 selection:
   save_to_clipboard: true
-mouse:
-  url:
-    modifiers: Control
 shell:
   program: /bin/zsh
   args:

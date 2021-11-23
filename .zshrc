@@ -80,7 +80,7 @@ alias svim='sudo -E nvim'
 alias vim='nvim'
 alias bc='bc -l -q'
 alias lint='helm lint'
-alias dcommit='docker commit `docker ps -q -l` commited && docker run -it -u0 --network=host --entrypoint=bash commited'
+alias dcommit='docker commit `docker ps -q -l` commited && docker run -it -u0 --network=host --entrypoint=sh commited'
 # terraform
 alias t='terraform'
 alias ta='terraform apply'
@@ -88,8 +88,8 @@ alias ta='terraform apply'
 source ~/.dotfiles/.config/aliases/.kubectl_aliases
 # nfs mounting
 alias showmounted='df -aTh'
-alias nfsmount='sudo mount -t nfs4 -o proto=tcp,port=2049 192.168.1.2:/ /private/nfs/'
-alias nfsumount='sudo umount -f /private/nfs/'
+alias nfsmount='sudo mount -o resvport -t nfs 192.168.1.2:/media/shared /private/nfs'
+alias nfsumount='sudo umount -f /Volumes/nfs/'
 alias pip='python -m pip'
 alias pip3='python -m pip'
 
@@ -100,6 +100,7 @@ source ~/misc/secrets/tokens
 export CLICOLOR=1
 # apps
 export EDITOR=nvim
+export VISUAL="$EDITOR"
 export TERM=xterm-256color
 # paths
 #fpath+=${ZDOTDIR:-~}/.zsh_functions
