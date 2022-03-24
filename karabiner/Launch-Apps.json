@@ -2,7 +2,7 @@
   "title": "Launch Apps",
   "rules": [
     {
-      "description": "Launch Alacritty, Chrome, Teams, Outlook",
+      "description": "Launch Terminal, Google Chrome, Outlook",
       "manipulators": [
         {
           "type": "basic",
@@ -20,7 +20,7 @@
           },
           "to": [
             {
-              "shell_command": "open -aalacritty"
+              "shell_command": "open -aterminal"
             }
           ]
         },
@@ -41,26 +41,6 @@
           "to": [
             {
               "shell_command": "open -a'Google Chrome'"
-            }
-          ]
-        },
-        {
-          "type": "basic",
-          "from": {
-            "key_code": "f",
-            "modifiers": {
-              "mandatory": [
-                "option",
-                "shift"
-              ],
-              "optional": [
-                "any"
-              ]
-            }
-          },
-          "to": [
-            {
-              "shell_command": "open -a'Microsoft Teams'"
             }
           ]
         },

@@ -8,7 +8,6 @@ set ai
 set hlsearch
 set ignorecase
 set bs=2
-
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
@@ -16,6 +15,8 @@ set list listchars=nbsp:¬,tab:»·,trail:·,extends:>,precedes:<
 set showbreak=↳
 set wrap
 set mouse=a
+au BufNewFile,BufRead *.yml.j2,*.yaml.j2 set syntax=yaml
+au BufNewFile,BufRead *.tf.j2,*.tfvars.j2,*.hcl.j2 set syntax=terraform
 
 set encoding=utf-8
 
@@ -25,6 +26,13 @@ set laststatus=0
 set undofile
 
 set completeopt=menuone,noselect
+
+"set nosmartindent
+"set cindent
+"filetype plugin indent on
+"set cinkeys-=0#
+"set indentkeys-=0#
+"autocmd FileType * set cindent
 
 colorscheme dunno
 hi Normal guibg=NONE ctermbg=NONE
@@ -60,14 +68,20 @@ call plug#begin('~/.local/share/nvim/plugged/')
 " JSON/YAML formatting
 "Plug 'dense-analysis/ale'
 
-" YAML Highlightning
+" YAML
 Plug 'stephpy/vim-yaml'
 "Plug 'chase/vim-ansible-yaml'
+
+" Terraform
+Plug 'hashivim/vim-terraform'
+
+" Terragrunt
+Plug 'yorinasub17/vim-terragrunt'
 
 " Git thingie
 Plug 'tpope/vim-fugitive'
 
-" Jenkinsfile Highlitning
+" Jenkinsfile
 Plug 'martinda/Jenkinsfile-vim-syntax'
 
 " Better Highlitning
