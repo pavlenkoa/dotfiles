@@ -6,8 +6,8 @@ autoload -Uz vcs_info
 precmd () { vcs_info }
 setopt prompt_subst
 RPROMPT="\$vcs_info_msg_0_"
-#zstyle ':vcs_info:git*' formats "* %{%F{#1EC325}%}% %b%{%f%}"
-zstyle ':vcs_info:git*' formats "* %{%F{green}%}% %b%{%f%}"
+zstyle ':vcs_info:git*' formats "* %{%F{#1EC325}%}% %b%{%f%}"
+#zstyle ':vcs_info:git*' formats "* %{%F{green}%}% %b%{%f%}"
 
 ## Shell settings
 #setopt correct_all # Correct misspelled commands
@@ -26,7 +26,7 @@ bindkey '^R' history-incremental-search-backward
 # Yank to the system clipboard
 function vi-yank-xclip {
     zle vi-yank
-   echo "$CUTBUFFER" | pbcopy -i
+   echo "$CUTBUFFER" | clip.exe
 }
 
 zle -N vi-yank-xclip
@@ -34,7 +34,7 @@ bindkey -M vicmd 'y' vi-yank-xclip
 
 ## Execute when changing work dir
 chpwd() {
-    gls -a --group-directories-first --color=auto
+    ls -a --group-directories-first --color=auto
 }
 
 ### Autocompletion
@@ -66,16 +66,20 @@ export LESSHISTFILE=/dev/null # Disabling less history
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 ## Aliases
-# GNU grep and ls, color support
-alias dir='gdir --color=auto'
-alias vdir='gvdir --color=auto'
-alias ls='gls --group-directories-first --color=auto'
-alias la='gls -a --group-directories-first --color=auto'
-alias ll='gls -alh --group-directories-first --color=auto'
-alias l='gls -CF --group-directories-first --color=auto'
-alias grep='ggrep --color=auto'
-# openvpn
-#source ~/misc/openvpn/creds/aliases
+# color support
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias dir='dir --color=auto'
+    alias vdir='vdir --color=auto'
+    alias ls='ls --group-directories-first --color=auto'
+    alias la='ls -a --group-directories-first --color=auto'
+    alias ll='ls -alh --group-directories-first --color=auto'
+    alias l='ls -CF --group-directories-first --color=auto'
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+# various
 alias h="history -100"
 alias wget="wget --hsts-file ~/.config/wget/wget-hsts"
 alias svim='sudo -E nvim'
@@ -94,10 +98,7 @@ alias tgal='terragrunt run-all'
 alias a='argocd'
 # kubectl
 source ~/.config/aliases/.kubectl_aliases
-# nfs mounting
-alias showmounted='df -aTh'
-alias nfsmount='sudo mount -o resvport -t nfs 192.168.1.2:/media/shared /private/nfs'
-alias nfsumount='sudo umount -f /private/nfs/'
+# python 
 alias pip='python3 -m pip'
 alias pip3='python3 -m pip'
 alias python='python3'
@@ -110,17 +111,10 @@ export EDITOR=nvim
 export VISUAL="$EDITOR"
 export TERM=xterm-256color
 # paths
-export PATH=$PATH:/Library/Frameworks/Python.framework/Versions/3.7/bin
 export PATH=$PATH:~/.local/bin
-export PATH=$PATH:~/Library/Python/3.9/bin
 export PATH=$PATH:~/bin
-export PATH=$PATH:/opt/homebrew/bin
-export PATH=$PATH:~/go/bin
 # gpg
 export GPG_TTY=$(tty)
 # plugin
 export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 
-#export NVM_DIR="$HOME/.nvm"
-#[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-#[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

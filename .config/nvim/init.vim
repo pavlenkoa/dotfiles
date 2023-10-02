@@ -3,6 +3,10 @@ syntax sync fromstart
 syntax sync minlines=1000
 set rnu
 set clipboard=unnamedplus
+augroup Yank
+    autocmd!
+    autocmd TextYankPost * :call system('/mnt/c/windows/system32/clip.exe ',@")
+    augroup END
 set expandtab
 set ai
 set hlsearch
@@ -85,7 +89,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'martinda/Jenkinsfile-vim-syntax'
 
 " Better Highlitning
-Plug 'nvim-treesitter/nvim-treesitter'
+"Plug 'nvim-treesitter/nvim-treesitter'
 
 " Displays the indention levels with thin vertical lines
 "Plug 'thaerkh/vim-indentguides'
