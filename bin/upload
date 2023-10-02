@@ -9,7 +9,7 @@ or when FILE is -, read standard input.
 
     -h          display this help and exit
     -d date     date other than today's date
-    -j dist     destinaton, can s3 or rpi
+    -j dest     destinaton, can s3 or rpi
     -v          verbose mode. Can be used multiple times for increased
                 verbosity.
 EOF
@@ -41,6 +41,11 @@ while getopts "rhvdj:" opt; do
     esac
 done
 shift "$((OPTIND-1))" # Shift off the options and optional --.
+
+if [ ! -z $destination ]; then
+  user=$(aws sts get-caller-identity --query "Arn" --output text)
+  user=${user#*:user/}
+fi
 
 tmp=$(mktemp -u)
 mkdir -p "$tmp/$date"
@@ -87,7 +92,7 @@ esac
 
     cp -v "$src" "$tmp/$date/$dst"
 
-    if [[ $destination == "s3" ]]; then
+    if [[ $destination == "personal" ]]; then
         if aws --profile staticbucket s3 cp "$tmp/$date/$dst" "s3://s3.hotbun.co/$date/"
         then
             logger "https://s3.hotbun.co/$date/$dst"
@@ -96,6 +101,17 @@ esac
                 echo -n "https://s3.hotbun.co/$date/$dst" | pbcopy
             else
                 echo -n "https://s3.hotbun.co/$date/$dst" | xclip -sel clip
+            fi
+        fi
+    elif [[ $destination == "work" ]]; then
+        if aws --profile default s3 cp --acl public-read "$tmp/$date/$dst" "s3://prtn-temp/$user/$date/"
+        then
+            logger "https://s3.eu-west-1.amazonaws.com/prtn-temp/$user/$date/$dst"
+            if hash pbcopy 2>/dev/null
+            then
+                echo -n "https://s3.eu-west-1.amazonaws.com/prtn-temp/$user/$date/$dst" | pbcopy
+            else
+                echo -n "https://s3.eu-west-1.amazonaws.com/prtn-temp/$user/$date/$dst" | xclip -sel clip
             fi
         fi
     else

@@ -1,8 +1,50 @@
 #!/bin/bash -e
 
+# Usage info
+show_help() {
+cat << EOF
+Usage: ${0##*/} [-h] [-j dest] [FILE]...
+    -h          display this help and exit
+    -j dest     destinaton, can s3 or rpi
+EOF
+}
+
+OPTIND=1 # Reset is necessary if getopts was used previously in the script.  It is a good idea to make this local in a function.
+while getopts "hj:" opt; do
+    case "$opt" in
+        h)
+            show_help
+            exit 0
+            ;;
+        j)  destination=$OPTARG
+            ;;
+        '?')
+            show_help >&2
+            exit 1
+            ;;
+    esac
+done
+shift "$((OPTIND-1))" # Shift off the options and optional --.
+
+if [ ! -z $destination ]; then
+  user=$(aws sts get-caller-identity --query "Arn" --output text)
+  user=${user#*:user/}
+fi
+
+
 for i in $@; do
-    path="$(echo $i | sed 's/\\ / /' | sed 's/%/ /' | sed 's/ /\\ /' | sed 's/https:\/\//\/home\/andrew\//' )"
-    echo "deleting $path"
-    ssh raspberrypi_ext rm "$path"
+    if [[ $destination == "personal" ]]; then
+        path="$(echo $i | sed 's/\\ / /' | sed 's/%/ /' | sed 's/ /\\ /' | sed 's/https:\/\/s3\.eu-west-1\.amazonaws\.com\//s3:\/\//' )"
+        echo "deleting $path"
+        aws --profile default s3 rm $path
+    elif [[ $destination == "work" ]]; then
+        path="$(echo $i | sed 's/\\ / /' | sed 's/%/ /' | sed 's/ /\\ /' | sed 's/https:\/\/s3\.eu-west-1\.amazonaws\.com\//s3:\/\//' )"
+        echo "deleting $path"
+        aws --profile default s3 rm $path
+    else
+        path="$(echo $i | sed 's/\\ / /' | sed 's/%/ /' | sed 's/ /\\ /' | sed 's/https:\/\//\/home\/andrii\//' )"
+        echo "deleting $path"
+        ssh raspberrypi_ext rm "$path"
+    fi
 done
 

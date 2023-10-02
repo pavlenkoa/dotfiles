@@ -11,6 +11,10 @@ EOF
 }
 
 date=$(date +%Y-%m-%d)
+if [ ! -z $1 ]; then
+  user=$(aws sts get-caller-identity --query "Arn" --output text)
+  user=${user#*:user/}
+fi
 
 OPTIND=1
 while getopts "hd:" opt; do
@@ -31,8 +35,10 @@ shift "$((OPTIND-1))" # Shift off the options and optional --.
 
 
 if [ $input = "empty" ]; then
-    ssh raspberrypi_ext ls -l --block-size=M /home/andrew/s.hotbun.co/$date/* | sed 's/\/home\/andrew\//https:\/\//' | awk '{print $5, $9}'
-elif [ $input = "s3" ]; then
+    ssh raspberrypi_ext ls -l --block-size=M /home/andrii/s.hotbun.co/$date/* | sed 's/\/home\/andrii\//https:\/\//' | awk '{print $5, $9}'
+elif [ $input = "personal" ]; then
     aws --profile staticbucket s3 ls --human-readable s3://s3.hotbun.co/$date/ | awk '{$5=$5 "c"}' | awk '{print $3, $4, $5}'
+elif [ $input = "work" ]; then
+    aws --profile default s3 ls s3://prtn-temp/$user/$date/ | awk -v prefix="https://s3.eu-west-1.amazonaws.com/prtn-temp/${user}/${date}/" '{print prefix $NF}'
 fi
 

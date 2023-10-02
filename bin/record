@@ -1,5 +1,36 @@
 #!/bin/bash
 
+# Usage info
+show_help() {
+cat << EOF
+Usage: ${0##*/} [-h] [-j dest]
+    -h          show help
+    -j dest     destinaton, personal, work or empty(raspberrypi)
+EOF
+}
+
+# Initialize our own variables:
+verbose=0
+date=$(date +%Y-%m-%d)
+
+OPTIND=1 # Reset is necessary if getopts was used previously in the script.  It is a good idea to make this local in a function.
+while getopts "hj:" opt; do
+    case "$opt" in
+        h)
+            show_help
+            exit 0
+            ;;
+        j)  destination="-j $OPTARG"
+            ;;
+        '?')
+            show_help >&2
+            exit 1
+            ;;
+    esac
+done
+shift "$((OPTIND-1))" # Shift off the options and optional --.
+
+
 random=$(gtr -dc A-Za-z0-9 </dev/urandom | head -c 4)
 
 tmp="/tmp/$(gdate +%T%:::z-$random).mp4"
@@ -16,5 +47,5 @@ elif [[ "$filename" == "keep" || "$filename" == "k" || "$filename" == "preserve"
 elif test "$filename"; then
     output="/tmp/$filename.mp4"
     gmv -v "$tmp" $output
-    upload $s3 $output
+    upload $destination $output
 fi

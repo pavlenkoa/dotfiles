@@ -20,6 +20,8 @@ setopt noautomenu
 setopt nomenucomplete
 # vi mode
 bindkey -v
+# reverse search
+bindkey '^R' history-incremental-search-backward
 
 # Yank to the system clipboard
 function vi-yank-xclip {
@@ -46,16 +48,12 @@ if [ $commands[kubectl] ]; then source <(kubectl completion zsh); fi
 ## helm
 if [ $commands[helm] ]; then source <(helm completion zsh); fi
 ## gcloud
-#if [ $commands[gcloud] ]; then source ~/.dotfiles/.config/autocompletion/gcloud.plugin.zsh; fi# The next line enables shell command completion for gcloud.
-if [ -f '/Users/andrii/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/andrii/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/andrii/bin/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/andrii/bin/google-cloud-sdk/path.zsh.inc'; fi
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/andrii/bin/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/andrii/bin/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f '/Users/andrii/git/dotfiles/bin/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/andrii/git/dotfiles/bin/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f '/Users/andrii/git/dotfiles/bin/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/andrii/git/dotfiles/bin/google-cloud-sdk/completion.zsh.inc'; fi
 ## aws
-if [ $commands[aws] ]; then source ~/.dotfiles/.config/autocompletion/aws.plugin.zsh; fi
+if [ $commands[aws] ]; then source ~/git/dotfiles/.config/autocompletion/aws.plugin.zsh; fi
 ## ansible
-if [ $commands[ansible] ]; then source ~/.dotfiles/.config/autocompletion/ansible.plugin.zsh; fi
+if [ $commands[ansible] ]; then source ~/git/dotfiles/.config/autocompletion/ansible.plugin.zsh; fi
 
 ## History
 HISTCONTROL=ignoreboth
@@ -95,7 +93,7 @@ alias tgal='terragrunt run-all'
 #argocd
 alias a='argocd'
 # kubectl
-source ~/.dotfiles/.config/aliases/.kubectl_aliases
+source ~/.config/aliases/.kubectl_aliases
 # nfs mounting
 alias showmounted='df -aTh'
 alias nfsmount='sudo mount -o resvport -t nfs 192.168.1.2:/media/shared /private/nfs'
@@ -114,4 +112,15 @@ export TERM=xterm-256color
 # paths
 export PATH=$PATH:/Library/Frameworks/Python.framework/Versions/3.7/bin
 export PATH=$PATH:~/.local/bin
+export PATH=$PATH:~/Library/Python/3.9/bin
 export PATH=$PATH:~/bin
+export PATH=$PATH:/opt/homebrew/bin
+export PATH=$PATH:~/go/bin
+# gpg
+export GPG_TTY=$(tty)
+# plugin
+export USE_GKE_GCLOUD_AUTH_PLUGIN=True
+
+#export NVM_DIR="$HOME/.nvm"
+#[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+#[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
