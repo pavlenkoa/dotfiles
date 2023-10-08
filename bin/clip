@@ -1,3 +1,3 @@
 #!/bin/zsh
 input_file=${1?Error: no file given}
-cat $input_file | pbcopy
+cat $input_file | xclip -sel clipboard
