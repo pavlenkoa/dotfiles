@@ -15,14 +15,14 @@ scrolling:
 font:
   normal:
     family: SF Mono
-    style: Regular
+    style: Semibold
   bold:
     family: SF Mono
-    style: Semibold
-  size: 15
-  offset:
-    y: 4
-  use_thin_strokes: true
+    style: Bold
+  size: 13
+    #offset:
+    #  y: 4
+    #use_thin_strokes: true
 draw_bold_text_with_bright_colors: false
 colors:
   primary:
@@ -55,3 +55,9 @@ shell:
     - -l
     - -c
     - "tmux"
+key_bindings:
+  - { key: V, mods: Alt, action: Paste }
+  - { key: C, mods: Alt, action: Copy }
+  - { key: Equals, mods: Alt, action: IncreaseFontSize }
+  - { key: Minus, mods: Alt, action: DecreaseFontSize }
+  - { key: Minus, mods: Alt|Shift, action: ResetFontSize }

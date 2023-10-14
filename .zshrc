@@ -1,6 +1,6 @@
 # Prompt
 # Left
-PROMPT='%{%F{yellow}%}%~%{%f%}$ ' # Yellow
+PROMPT='%m %{%F{yellow}%}%~%{%f%}$ ' # Yellow
 # Right
 autoload -Uz vcs_info
 precmd () { vcs_info }
