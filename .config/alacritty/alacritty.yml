@@ -10,7 +10,6 @@ window:
 scrolling:
   history: 10000
   multiplier: 1
-  #faux_multiplier: 0
   auto_scroll: false
 font:
   normal:
@@ -20,9 +19,8 @@ font:
     family: SF Mono
     style: Bold
   size: 13
-    #offset:
-    #  y: 4
-    #use_thin_strokes: true
+  offset:
+    y: -1
 draw_bold_text_with_bright_colors: false
 colors:
   primary:
@@ -56,8 +54,7 @@ shell:
     - -c
     - "tmux"
 key_bindings:
-  - { key: V, mods: Alt, action: Paste }
-  - { key: C, mods: Alt, action: Copy }
+  - { key: V, mods: Control, action: Paste }
   - { key: Equals, mods: Alt, action: IncreaseFontSize }
   - { key: Minus, mods: Alt, action: DecreaseFontSize }
   - { key: Minus, mods: Alt|Shift, action: ResetFontSize }
