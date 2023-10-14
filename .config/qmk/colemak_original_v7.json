@@ -3,7 +3,7 @@
   "notes": "",
   "documentation": "\"This file is a QMK Configurator export. You can import this at <https://config.qmk.fm>. It can also be used directly with QMK's source code.\n\nTo setup your QMK environment check out the tutorial: <https://docs.qmk.fm/#/newbs>\n\nYou can convert this file to a keymap.c using this command: `qmk json2c {keymap}`\n\nYou can compile this keymap using this command: `qmk compile {keymap}`\"\n",
   "keyboard": "dz60",
-  "keymap": "colemak_original_v6",
+  "keymap": "colemak_original_v7",
   "layout": "LAYOUT_60_ansi",
   "layers": [
     [
@@ -426,7 +426,7 @@
       "LALT(KC_SCLN)",
       "LALT(KC_QUOT)",
       "LALT(KC_ENT)",
-      "LALT(KC_LSFT)",
+      "KC_LSFT",
       "LALT(KC_Z)",
       "LCTL(KC_X)",
       "LCTL(KC_C)",
