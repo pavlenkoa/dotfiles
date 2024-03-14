@@ -36,8 +36,9 @@ chpwd() {
 
 ### Autocompletion
 ## General
+export ZDOTDIR=~/.local/
 autoload -Uz compinit
-for dump in ~/.zcompdump(N.mh+24); do
+for dump in ~/.local/.zcompdump(N.mh+24); do
   compinit
 done
 compinit -C
@@ -65,6 +66,7 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 
 ## Secrets
 source ~/.local/grafana-cloud
+source ~/.local/vault
 
 ## Aliases
 # GNU grep and ls, color support
@@ -106,11 +108,10 @@ export EDITOR=nvim
 export VISUAL="$EDITOR"
 export TERM=xterm-256color
 # paths
-export PATH=$PATH:/Library/Frameworks/Python.framework/Versions/3.7/bin
-export PATH=$PATH:~/.local/bin
-export PATH=$PATH:~/Library/Python/3.9/bin
-export PATH=$PATH:~/bin
 export PATH=$PATH:/opt/homebrew/bin
+export PATH=$PATH:~/bin
+export PATH=$PATH:~/bin/google-cloud-sdk/bin
+export PATH=$PATH:~/.local/bin
 export PATH=$PATH:~/go/bin
 # gpg
 export GPG_TTY=$(tty)
