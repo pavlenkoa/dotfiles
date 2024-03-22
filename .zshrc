@@ -8,6 +8,25 @@ setopt prompt_subst
 RPROMPT="\$vcs_info_msg_0_"
 zstyle ':vcs_info:git*' formats "* %{%F{green}%}% %b%{%f%}"
 
+## Exports
+export K9S_CONFIG_DIR=~/.config/k9s
+# terminal color support
+export CLICOLOR=1
+# apps
+export EDITOR=nvim
+export VISUAL="$EDITOR"
+export TERM=xterm-256color
+# paths
+export PATH=$PATH:/opt/homebrew/bin
+export PATH=$PATH:~/bin
+export PATH=$PATH:~/bin/google-cloud-sdk/bin
+export PATH=$PATH:~/.local/bin
+export PATH=$PATH:~/go/bin
+# gpg
+export GPG_TTY=$(tty)
+# plugins
+export USE_GKE_GCLOUD_AUTH_PLUGIN=True
+
 ## Shell settings
 setopt hist_ignore_dups # Prevents the current line from being saved in the history if it is the same as the previous one
 setopt ignore_eof # Forces the user to type exit or logout, instead of just pressing ^D
@@ -36,9 +55,9 @@ chpwd() {
 
 ### Autocompletion
 ## General
-export ZDOTDIR=~/.local/
+#export ZDOTDIR=~/.local/
 autoload -Uz compinit
-for dump in ~/.local/.zcompdump(N.mh+24); do
+for dump in ~/.zcompdump(N.mh+24); do
   compinit
 done
 compinit -C
@@ -100,20 +119,3 @@ alias pip='python3 -m pip'
 alias pip3='python3 -m pip'
 alias python='python3'
 
-## Exports
-# terminal color support
-export CLICOLOR=1
-# apps
-export EDITOR=nvim
-export VISUAL="$EDITOR"
-export TERM=xterm-256color
-# paths
-export PATH=$PATH:/opt/homebrew/bin
-export PATH=$PATH:~/bin
-export PATH=$PATH:~/bin/google-cloud-sdk/bin
-export PATH=$PATH:~/.local/bin
-export PATH=$PATH:~/go/bin
-# gpg
-export GPG_TTY=$(tty)
-# plugin
-export USE_GKE_GCLOUD_AUTH_PLUGIN=True
