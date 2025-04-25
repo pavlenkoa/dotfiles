@@ -1,0 +1,189 @@
+# Amethyst Window Manager Configuration
+# Move this file to: `~/.config/amethyst/amethyst.yml`
+# Restart Amethyst to apply changes
+
+# Active layouts in order of cycling
+layouts:
+  - tall
+  - wide
+  - column
+  - floating
+
+# Modifier keys
+mod1:
+  - command
+mod2:
+  - command
+  - shift
+mod3:
+  - shift
+
+# Layout controls
+cycle-layout:
+  mod: mod1
+  key: space
+cycle-layout-backward:
+  mod: mod2
+  key: space
+shrink-main:
+  mod: mod3
+  key: left
+expand-main:
+  mod: mod3
+  key: right
+increase-main:
+  key: 'null'
+decrease-main:
+  key: 'null'
+
+# Window focus
+focus-ccw:
+  mod: mod3
+  key: down
+focus-cw:
+  mod: mod3
+  key: up
+focus-main:
+  key: 'null'
+
+# Screen focus and window movement
+focus-screen-ccw:
+  mod: mod1
+  key: '.'
+focus-screen-cw:
+  mod: mod1
+  key: ','
+swap-screen-ccw:
+  mod: mod2
+  key: '.'
+swap-screen-cw:
+  mod: mod2
+  key: ','
+swap-ccw:
+  key: 'null'
+swap-cw:
+  key: 'null'
+swap-main:
+  mod: mod1
+  key: enter
+
+# Screen focus shortcuts
+focus-screen-1:
+  key: 'null'
+focus-screen-2:
+  key: 'null'
+focus-screen-3:
+  key: 'null'
+focus-screen-4:
+  key: 'null'
+focus-screen-5:
+  key: 'null'
+
+# Move window to screen
+throw-screen-1:
+  key: 'null'
+throw-screen-2:
+  key: 'null'
+throw-screen-3:
+  key: 'null'
+throw-screen-4:
+  key: 'null'
+throw-screen-5:
+  key: 'null'
+
+# Move window to space
+throw-space-1:
+  mod: mod2
+  key: '1'
+throw-space-2:
+  mod: mod2
+  key: '2'
+throw-space-3:
+  mod: mod2
+  key: '3'
+throw-space-4:
+  mod: mod2
+  key: '4'
+throw-space-5:
+  mod: mod2
+  key: '5'
+throw-space-6:
+  mod: mod2
+  key: '6'
+throw-space-7:
+  mod: mod2
+  key: '7'
+throw-space-8:
+  mod: mod2
+  key: '8'
+throw-space-9:
+  mod: mod2
+  key: '9'
+
+# Layout selection shortcuts
+select-tall-layout:
+  key: 'null'
+select-wide-layout:
+  key: 'null'
+select-fullscreen-layout:
+  key: 'null'
+select-column-layout:
+  key: 'null'
+
+# Space movement
+throw-space-left:
+  key: 'null'
+throw-space-right:
+  key: 'null'
+
+# Miscellaneous commands
+toggle-float:
+  key: 'null'
+display-current-layout:
+  key: 'null'
+toggle-tiling:
+  key: 'null'
+reevaluate-windows:
+  key: 'null'
+toggle-focus-follows-mouse:
+  key: 'null'
+relaunch-amethyst:
+  key: 'null'
+
+# Window appearance settings
+disable-padding-on-builtin-display: false
+window-margins: false
+smart-window-margins: false
+window-margin-size: 0
+window-max-count: 0
+window-minimum-height: 0
+window-minimum-width: 0
+
+# Application handling
+floating: ["com.amethyst.Amethyst","com.apple.systempreferences","com.lwouis.alt-tab-macos","org.pqrs.Karabiner-Elements.Settings","com.apple.FaceTime","org.openvpn.client.app","com.valvesoftware.steam","com.microsoft.teams","ru.keepcoder.Telegram"]
+floating-is-blacklist: true
+
+# Behavior settings
+ignore-menu-bar: false
+hide-menu-bar-icon: false
+float-small-windows: true
+mouse-follows-focus: false
+focus-follows-mouse: false
+mouse-swaps-windows: false
+mouse-resizes-windows: false
+enables-layout-hud: true
+enables-layout-hud-on-space-change: false
+use-canary-build: false
+new-windows-to-main: false
+follow-space-thrown-windows: true
+window-resize-step: 5
+
+# Screen padding
+screen-padding-left: 0
+screen-padding-right: 0
+screen-padding-top: 0
+screen-padding-bottom: 0
+
+# Other settings
+restore-layouts-on-launch: true
+debug-layout-info: false

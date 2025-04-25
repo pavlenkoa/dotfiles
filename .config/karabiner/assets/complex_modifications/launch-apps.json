@@ -1,0 +1,38 @@
+{
+    "description": "Launch Terminal, Safari, Mail",
+    "manipulators": [
+        {
+            "from": {
+                "key_code": "return_or_enter",
+                "modifiers": {
+                    "mandatory": ["command", "shift"],
+                    "optional": ["any"]
+                }
+            },
+            "to": [{ "shell_command": "open -aterminal" }],
+            "type": "basic"
+        },
+        {
+            "from": {
+                "key_code": "b",
+                "modifiers": {
+                    "mandatory": ["option", "shift"],
+                    "optional": ["any"]
+                }
+            },
+            "to": [{ "shell_command": "open -asafari'" }],
+            "type": "basic"
+        },
+        {
+            "from": {
+                "key_code": "m",
+                "modifiers": {
+                    "mandatory": ["option", "shift"],
+                    "optional": ["any"]
+                }
+            },
+            "to": [{ "shell_command": "open -amail'" }],
+            "type": "basic"
+        }
+    ]
+}

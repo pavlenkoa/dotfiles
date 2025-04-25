@@ -1,102 +1,92 @@
-# Prompt
-# Left
-PROMPT='%{%F{yellow}%}%~%{%f%}$ '
-# Right
-autoload -Uz vcs_info
-precmd () { vcs_info }
-setopt prompt_subst
-RPROMPT="\$vcs_info_msg_0_"
-zstyle ':vcs_info:git*' formats "* %{%F{green}%}% %b%{%f%}"
+# paths and exports
+eval "$(/opt/homebrew/bin/brew shellenv)"       # initialize homebrew
+export PATH=$PATH:~/bin                         # add user binaries to path
 
-## Exports
-export K9S_CONFIG_DIR=~/.config/k9s
-# terminal color support
-export CLICOLOR=1
-# apps
-export EDITOR=nvim
-export VISUAL="$EDITOR"
-export TERM=xterm-256color
-# paths
-export PATH=$PATH:/opt/homebrew/bin
-export PATH=$PATH:~/bin
-export PATH=$PATH:~/bin/google-cloud-sdk/bin
-export PATH=$PATH:~/.local/bin
-export PATH=$PATH:~/go/bin
-export PATH=$PATH:~/Library/Python/3.11/bin
-export PATH=$PATH:$HOME/Library/Python/3.9/bin
-export PATH=$PATH:/usr/local/opt/openssl/bin
-export PATH=$PATH:/opt/homebrew/Cellar/openjdk@17/17.0.12/bin
-export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+# environment variables
+## editor and terminal
+export EDITOR=nvim                              # set neovim as default editor
+export VISUAL="$EDITOR"                         # use same editor for visual editing
+export TERM=xterm-256color                      # enable 256 color support
 
-# gpg
-export GPG_TTY=$(tty)
-# plugins
-export USE_GKE_GCLOUD_AUTH_PLUGIN=True
+## application settings
+export K9S_CONFIG_DIR=~/.config/k9s             # k9s configuration directory
+export GPG_TTY=$(tty)                           # fix for gpg
+export USE_GKE_GCLOUD_AUTH_PLUGIN=True          # enable gcloud auth plugin
+export CLICOLOR=1                               # enable color support in terminal
 
-## Shell settings
-setopt hist_ignore_dups # Prevents the current line from being saved in the history if it is the same as the previous one
-setopt ignore_eof # Forces the user to type exit or logout, instead of just pressing ^D
-setopt NO_BEEP # NO BEEP
-# menu like in bash
-setopt noautomenu
-setopt nomenucomplete
-# vi mode
-bindkey -v
-# reverse search
-bindkey '^R' history-incremental-search-backward
+## output formatting
+export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'  # colored gcc warnings
+export LESSHISTFILE=/dev/null                   # disable less history
 
-# Yank to the system clipboard
-function vi-yank-xclip {
+# history settings
+HISTCONTROL=ignoreboth                          # ignore duplicates and commands starting with space
+HISTFILE=~/.zsh_history                         # history file location
+HISTSIZE=2000                                   # history size in memory
+SAVEHIST=2000                                   # history size on disk
+setopt hist_ignore_dups                         # ignore duplicate commands
+
+# shell behavior
+## general options
+setopt ignore_eof                               # prevent accidental exits with ctrl-d
+setopt NO_BEEP                                  # disable terminal bell
+
+## menu behavior
+setopt noautomenu                               # disable auto menu completion
+setopt nomenucomplete                           # disable menu completion
+setopt prompt_subst                             # enable prompt substitution
+
+# input controls
+## key bindings
+bindkey -v                                      # enable vi mode
+bindkey '^R' history-incremental-search-backward # reverse history search
+
+## clipboard integration
+function vi-yank-xclip {                        # copy to system clipboard in vi mode
     zle vi-yank
-   echo "$CUTBUFFER" | pbcopy -i
+    echo "$CUTBUFFER" | pbcopy -i
 }
-
 zle -N vi-yank-xclip
 bindkey -M vicmd 'y' vi-yank-xclip
 
-## Execute when changing work dir
-chpwd() {
+# directory navigation
+chpwd() {                                       # run after changing directory
     gls -a --group-directories-first --color=auto
 }
 
-### Autocompletion
-## General
-#export ZDOTDIR=~/.local/
+# completion system
+## initialization
 autoload -Uz compinit
-for dump in ~/.zcompdump(N.mh+24); do
+for dump in ~/.zcompdump(N.mh+24); do           # update completion dump once a day
   compinit
 done
-compinit -C
-## kubectl
+compinit -C                                     # load completions
+
+## tool-specific completions
 if [ $commands[kubectl] ]; then source <(kubectl completion zsh); fi
-## helm
 if [ $commands[helm] ]; then source <(helm completion zsh); fi
-## gcloud
-#if [ -f '/Users/andrii/git/dotfiles/bin/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/andrii/git/dotfiles/bin/google-cloud-sdk/path.zsh.inc'; fi
-#if [ -f '/Users/andrii/git/dotfiles/bin/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/andrii/git/dotfiles/bin/google-cloud-sdk/completion.zsh.inc'; fi
-## aws
-#if [ $commands[aws] ]; then source ~/git/dotfiles/.config/autocompletion/aws.plugin.zsh; fi
-## ansible
-#if [ $commands[ansible] ]; then source ~/git/dotfiles/.config/autocompletion/ansible.plugin.zsh; fi
 
-## History
-HISTCONTROL=ignoreboth
-HISTFILE=~/.zsh_history
-HISTSIZE=2000
-SAVEHIST=2000
-export LESSHISTFILE=/dev/null # Disabling less history
+# prompt configuration
+## left prompt
+PROMPT='%{%F{yellow}%}%~%{%f%}$ '               # show current directory in yellow
 
-## Colored GCC warnings and errors
-export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+## right prompt (git info)
+autoload -Uz vcs_info
+precmd () { vcs_info }
+RPROMPT="\$vcs_info_msg_0_"
+zstyle ':vcs_info:git*' formats "* %{%F{green}%}% %b%{%f%}"
 
-## Secrets
+# external sources
+## secrets
 source ~/.local/grafana-cloud
 source ~/.local/vault
 source ~/.local/alicloud
-#source ~/.local/aws
+source ~/.local/aws
 
-## Aliases
-# GNU grep and ls, color support
+## tool configurations
+source ~/.config/aliases/.kubectl_aliases
+
+# aliases
+## file operations
 alias dir='gdir --color=auto'
 alias vdir='gvdir --color=auto'
 alias ls='gls --group-directories-first --color=auto'
@@ -105,28 +95,24 @@ alias ll='gls -alh --group-directories-first --color=auto'
 alias l='gls -CF --group-directories-first --color=auto'
 alias grep='ggrep --color=auto'
 alias base64='gbase64'
-# various
-alias h="history -100"
+
+## general utilities
+alias h="history -100"                          # show last 100 commands
 alias wget="wget --hsts-file ~/.config/wget/wget-hsts"
-alias svim='sudo -E nvim'
-alias vim='nvim'
-alias bc='bc -l -q'
+alias svim='sudo -E nvim'                       # sudo vim with current user config
+alias vim='nvim'                                # use neovim
+alias bc='bc -l -q'                             # calculator with math library
+
+## container operations
 alias dcommit='docker commit `docker ps -q -l` commited && docker run -it -u0 --network=host --entrypoint=sh commited'
-# terraform
+alias docker='podman'                           # use podman instead of docker
+
+## devops tools
 alias t='terraform'
-# terragrunt
 alias tg='terragrunt'
-# argocd
 alias a='argocd'
-# alibaba
 alias ac='aliyun'
-# docker
-alias docker='podman'
-# kubectl
-source ~/.config/aliases/.kubectl_aliases
-# python
+
+## python
 alias pip='python3 -m pip'
 alias pip3='python3 -m pip'
-alias python='python3'
-
-export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
