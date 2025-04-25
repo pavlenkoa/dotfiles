@@ -22,6 +22,12 @@ export PATH=$PATH:~/bin
 export PATH=$PATH:~/bin/google-cloud-sdk/bin
 export PATH=$PATH:~/.local/bin
 export PATH=$PATH:~/go/bin
+export PATH=$PATH:~/Library/Python/3.11/bin
+export PATH=$PATH:$HOME/Library/Python/3.9/bin
+export PATH=$PATH:/usr/local/opt/openssl/bin
+export PATH=$PATH:/opt/homebrew/Cellar/openjdk@17/17.0.12/bin
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+
 # gpg
 export GPG_TTY=$(tty)
 # plugins
@@ -86,6 +92,8 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 ## Secrets
 source ~/.local/grafana-cloud
 source ~/.local/vault
+source ~/.local/alicloud
+#source ~/.local/aws
 
 ## Aliases
 # GNU grep and ls, color support
@@ -112,6 +120,8 @@ alias tg='terragrunt'
 alias a='argocd'
 # alibaba
 alias ac='aliyun'
+# docker
+alias docker='podman'
 # kubectl
 source ~/.config/aliases/.kubectl_aliases
 # python
@@ -119,3 +129,4 @@ alias pip='python3 -m pip'
 alias pip3='python3 -m pip'
 alias python='python3'
 
+export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"

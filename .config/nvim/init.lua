@@ -94,3 +94,6 @@ vim.opt.wildmenu = true
 -- ALE configuration
 vim.g.ale_sign_column_alwayus = 1
 
+-- Set undofile
+vim.opt.undofile = true
+

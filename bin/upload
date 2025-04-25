@@ -3,24 +3,25 @@
 # Usage info
 show_help() {
 cat << EOF
-Usage: ${0##*/} [-hv] [-d date] [-j dest] [FILE]...
+Usage: ${0##*/} [-hv] [-d DATE] [-j DEST] [-r] [FILE]...
 Do stuff with FILE and write the result to standard output. With no FILE
 or when FILE is -, read standard input.
-
     -h          display this help and exit
-    -d date     date other than today's date
-    -j dest     destinaton, can s3 or rpi
+    -d DATE     date other than today's date
+    -j DEST     destination, can be 'personal', 'work', or 'rpi' (default)
     -v          verbose mode. Can be used multiple times for increased
                 verbosity.
+    -r          append random string to date
 EOF
 }
 
 # Initialize our own variables:
 verbose=0
 date=$(date +%Y-%m-%d)
+destination="rpi"
 
-OPTIND=1 # Reset is necessary if getopts was used previously in the script.  It is a good idea to make this local in a function.
-while getopts "rhvdj:" opt; do
+OPTIND=1 # Reset is necessary if getopts was used previously in the script.
+while getopts "hrvd:j:" opt; do
     case "$opt" in
         h)
             show_help
@@ -28,13 +29,16 @@ while getopts "rhvdj:" opt; do
             ;;
         v)  verbose=$((verbose+1))
             ;;
-        d)  date=$(date -d "$OPTARG" +%Y-%m-%d)
+        d)  date=$(date -d "$OPTARG" +%Y-%m-%d) || { echo "Invalid date: $OPTARG" >&2; exit 1; }
             ;;
-        j)  destination=$OPTARG
+        j)  case "$OPTARG" in
+                personal|work|rpi) destination=$OPTARG ;;
+                *) echo "Invalid destination: $OPTARG. Use 'personal', 'work', or 'rpi'." >&2; exit 1 ;;
+            esac
             ;;
-        r)  date=$date-$(base64 /dev/urandom | tr -d '/+' | head -c 10) # remove /+ since that can choke URLs
+        r)  date="${date}-$(head -c 10 /dev/urandom | base64 | tr -dc 'a-zA-Z0-9')"
             ;;
-        '?')
+        *)
             show_help >&2
             exit 1
             ;;
@@ -42,89 +46,94 @@ while getopts "rhvdj:" opt; do
 done
 shift "$((OPTIND-1))" # Shift off the options and optional --.
 
-if [ ! -z $destination ]; then
-  user=$(aws sts get-caller-identity --query "Arn" --output text)
-  user=${user#*:user/}
+# Check for required tools
+for cmd in aws rsync file; do
+    command -v "$cmd" >/dev/null 2>&1 || { echo >&2 "This script requires $cmd but it's not installed. Aborting."; exit 1; }
+done
+
+if [ "$destination" != "rpi" ]; then
+    user=$(aws sts get-caller-identity --query "Arn" --output text)
+    user=${user#*:user/}
 fi
 
-tmp=$(mktemp -u)
+tmp=$(mktemp -d) || { echo "Failed to create temp directory" >&2; exit 1; }
 mkdir -p "$tmp/$date"
 trap 'rm -rf "$tmp"' EXIT
 
-for src in "$@"
-do
-
-    if test -d "$src"
-    then
-        tar="$(basename $src).tar"
-        tar cvf "$tar" "$src"
-        src="$tar"
+upload_and_copy() {
+    local url="$1"
+    if command -v pbcopy >/dev/null 2>&1; then
+        echo -n "$url" | pbcopy
+    elif command -v xclip >/dev/null 2>&1; then
+        echo -n "$url" | xclip -sel clip
+    else
+        echo "Could not copy to clipboard: neither pbcopy nor xclip is available"
     fi
+    logger "$url"
+    echo "$url"
+}
 
-    if ! test -f "$src"
-    then
-        echo Missing filename "$src" >&2
+for src in "$@"; do
+    if [ -d "$src" ]; then
+        tar="$(basename "$src").tar"
+        tar cvf "$tar" "$src" && src="$tar"
+    fi
+    
+    if [ ! -f "$src" ]; then
+        echo "Missing filename: $src" >&2
         continue
     fi
-
+    
     chmod +r "$src"
-
-case $(file "$src") in
-    *JPEG*)
-        if hash cwebp
-        then
-            webptmp=$(mktemp --suffix=.webp)
-            cwebp "$src" -o $webptmp
-            echo "Squashing jpeg $(du -h "$src" "$webptmp")"
-            src=${src%.*}.webp
-            mv "$webptmp" "$src"
-        fi
-        ;;
-    *PNG*)
-        hash pngquant && pngquant --ext .png -f "$src"
-        ;;
-    *)
-        echo Not compressing $src
-        ;;
-esac
-
+    
+    case $(file -b --mime-type "$src") in
+        image/jpeg)
+            if command -v cwebp >/dev/null 2>&1; then
+                webptmp=$(mktemp --suffix=.webp)
+                if cwebp "$src" -o "$webptmp"; then
+                    echo "Squashing jpeg $(du -h "$src" "$webptmp")"
+                    src="${src%.*}.webp"
+                    mv "$webptmp" "$src"
+                else
+                    echo "WebP conversion failed for $src" >&2
+                    rm -f "$webptmp"
+                fi
+            fi
+            ;;
+        image/png)
+            if command -v pngquant >/dev/null 2>&1; then
+                pngquant --ext .png -f "$src" || echo "PNG compression failed for $src" >&2
+            fi
+            ;;
+        *)
+            echo "Not compressing $src"
+            ;;
+    esac
+    
     dst=$(basename "$src")
-
     cp -v "$src" "$tmp/$date/$dst"
-
-    if [[ $destination == "personal" ]]; then
-        if aws --profile staticbucket s3 cp "$tmp/$date/$dst" "s3://s3.hotbun.co/$date/"
-        then
-            logger "https://s3.hotbun.co/$date/$dst"
-            if hash pbcopy 2>/dev/null
-            then
-                echo -n "https://s3.hotbun.co/$date/$dst" | pbcopy
+    
+    case "$destination" in
+        personal)
+            if aws --profile staticbucket s3 cp "$tmp/$date/$dst" "s3://s3.pavlenko.sh/$date/"; then
+                upload_and_copy "https://s3.pavlenko.sh/$date/$dst"
             else
-                echo -n "https://s3.hotbun.co/$date/$dst" | xclip -sel clip
+                echo "Failed to upload to personal S3 bucket" >&2
             fi
-        fi
-    elif [[ $destination == "work" ]]; then
-        if aws --profile default s3 cp --acl public-read "$tmp/$date/$dst" "s3://prtn-temp/$user/$date/"
-        then
-            logger "https://s3.eu-west-1.amazonaws.com/prtn-temp/$user/$date/$dst"
-            if hash pbcopy 2>/dev/null
-            then
-                echo -n "https://s3.eu-west-1.amazonaws.com/prtn-temp/$user/$date/$dst" | pbcopy
+            ;;
+        work)
+            if aws --profile default s3 cp --acl public-read "$tmp/$date/$dst" "s3://prtn-temp/$user/$date/"; then
+                upload_and_copy "https://s3.eu-west-1.amazonaws.com/prtn-temp/$user/$date/$dst"
             else
-                echo -n "https://s3.eu-west-1.amazonaws.com/prtn-temp/$user/$date/$dst" | xclip -sel clip
+                echo "Failed to upload to work S3 bucket" >&2
             fi
-        fi
-    else
-        if rsync --relative "$tmp/./$date/$dst" "raspberrypi_ext:~/s.hotbun.co/"
-        then
-            logger "https://s.hotbun.co/$date/$dst"
-            if hash pbcopy 2>/dev/null
-            then
-                echo -n "https://s.hotbun.co/$date/$dst" | pbcopy
+            ;;
+        rpi)
+            if rsync -avz "$tmp/$date/$dst" "raspberrypi_ext:~/s.pavlenko.sh/$date/"; then
+                upload_and_copy "https://s.pavlenko.sh/$date/$dst"
             else
-                echo -n "https://s.hotbun.co/$date/$dst" | xclip -sel clip
+                echo "Failed to upload to Raspberry Pi" >&2
             fi
-        fi
-    fi
-
+            ;;
+    esac
 done

@@ -5,7 +5,7 @@ show_help() {
 cat << EOF
 Usage: ${0##*/} [-h] [-j dest]
     -h          show help
-    -j dest     destinaton, personal, work or empty(raspberrypi)
+    -j dest     destination: personal, work, local, or empty(raspberrypi)
 EOF
 }
 
@@ -47,5 +47,10 @@ elif [[ "$filename" == "keep" || "$filename" == "k" || "$filename" == "preserve"
 elif test "$filename"; then
     output="/tmp/$filename.mp4"
     gmv -v "$tmp" $output
-    upload $destination $output
+    if [[ "$destination" == "-j local" ]]; then
+        gmv -v "$output" "$HOME/$filename.mp4"
+        echo "Saved to $HOME/$filename.mp4"
+    else
+        upload $destination $output
+    fi
 fi
