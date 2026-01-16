@@ -47,7 +47,7 @@ else
 
   -- Set colorscheme
   vim.opt.termguicolors = true
-  vim.cmd('colorscheme dunno')
+  vim.cmd('colorscheme terminal')
   vim.cmd('hi Normal guibg=NONE ctermbg=NONE')
   
   -- Disable statusline
