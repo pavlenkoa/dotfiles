@@ -1,6 +1,15 @@
 # paths and exports
 eval "$(/opt/homebrew/bin/brew shellenv)"       # initialize homebrew
 export PATH=$PATH:~/bin                         # add user binaries to path
+export PATH=$PATH:~/bin/google-cloud-sdk/bin
+export PATH=$PATH:~/.local/bin
+export PATH=$PATH:~/go/bin
+export PATH=$PATH:~/Library/Python/3.11/bin
+export PATH=$PATH:$HOME/Library/Python/3.9/bin
+export PATH=$PATH:/usr/local/opt/openssl/bin
+export PATH=$PATH:/opt/homebrew/Cellar/openjdk@17/17.0.12/bin
+export PATH=$PATH:/opt/homebrew/Cellar/mysql-client/9.3.0/bin
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
 # environment variables
 ## editor and terminal
@@ -43,7 +52,7 @@ bindkey '^R' history-incremental-search-backward # reverse history search
 ## clipboard integration
 function vi-yank-xclip {                        # copy to system clipboard in vi mode
     zle vi-yank
-    echo "$CUTBUFFER" | pbcopy -i
+    echo "$CUTBUFFER" | pbcopy
 }
 zle -N vi-yank-xclip
 bindkey -M vicmd 'y' vi-yank-xclip
@@ -63,7 +72,6 @@ compinit -C                                     # load completions
 
 ## tool-specific completions
 if [ $commands[kubectl] ]; then source <(kubectl completion zsh); fi
-if [ $commands[helm] ]; then source <(helm completion zsh); fi
 
 # prompt configuration
 ## left prompt
@@ -80,7 +88,6 @@ zstyle ':vcs_info:git*' formats "* %{%F{green}%}% %b%{%f%}"
 source ~/.local/grafana-cloud
 source ~/.local/vault
 source ~/.local/alicloud
-source ~/.local/aws
 
 ## tool configurations
 source ~/.config/aliases/.kubectl_aliases
@@ -101,6 +108,7 @@ alias h="history -100"                          # show last 100 commands
 alias wget="wget --hsts-file ~/.config/wget/wget-hsts"
 alias svim='sudo -E nvim'                       # sudo vim with current user config
 alias vim='nvim'                                # use neovim
+alias cur='cursor -r'                           # use cursor
 alias bc='bc -l -q'                             # calculator with math library
 
 ## container operations

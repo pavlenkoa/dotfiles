@@ -1,0 +1,412 @@
+{
+  // VIM CONFIGURATION
+  "vim.highlightedyank.enable": true,
+  "vim.smartRelativeLine": true,
+  "vim.useSystemClipboard": true,
+  "vim.neovimUseConfigFile": true,
+  "vim.enableNeovim": true,
+
+  // EDITOR APPEARANCE
+  "editor.fontSize": 14,
+  "editor.fontFamily": "SF Mono Regular",
+  "debug.console.fontSize": 14,
+  "editor.codeLensFontFamily": "SF Mono Regular",
+  "scm.inputFontSize": 14,
+  "chat.editor.fontSize": 14,
+  "markdown.preview.fontSize": 14,
+  "workbench.preferredDarkColorTheme": "MacOS Modern Dark - Ventura Xcode",
+  "editor.dropIntoEditor.preferences": [],
+
+  // EDITOR BEHAVIOR
+  "yaml.extension.recommendations": true,
+  "yaml.completion": false,
+  "explorer.confirmDragAndDrop": false,
+  "explorer.confirmDelete": false,
+  "chat.editing.alwaysSaveWithGeneratedChanges": true,
+  "redhat.telemetry.enabled": false,
+  "diffEditor.hideUnchangedRegions.enabled": true,
+  "diffEditor.renderSideBySide": false,
+  "git.openRepositoryInParentFolders": "never",
+
+  // TERMINAL CONFIGURATION
+  // Terminal general
+  "terminal.explorerKind": "integrated",
+  "terminal.sourceControlRepositoriesKind": "integrated",
+  "terminal.integrated.defaultProfile.osx": "tmux",
+  "terminal.external.osxExec": "Terminal.app",
+
+  // Terminal font settings
+  "terminal.integrated.fontFamily": "SF Mono",
+  "terminal.integrated.fontSize": 14,
+  "terminal.integrated.fontWeight": "normal",
+  "terminal.integrated.fontWeightBold": "bold",
+  "terminal.integrated.letterSpacing": 1.004,
+  "terminal.integrated.lineHeight": 1.004,
+  
+  // Terminal cursor settings
+  "terminal.integrated.cursorStyle": "block",
+  "terminal.integrated.cursorBlinking": false,
+  
+  // Terminal appearance settings
+  "terminal.integrated.minimumContrastRatio": 1,
+  "terminal.integrated.gpuAcceleration": "on",
+  "terminal.integrated.drawBoldTextInBrightColors": false,
+  
+  // Terminal behavior settings
+  "terminal.integrated.scrollback": 10000,
+  "terminal.integrated.copyOnSelection": true,
+  "terminal.integrated.shellIntegration.enabled": true,
+  "terminal.integrated.tabs.enabled": true,
+  "terminal.integrated.persistentSessionReviveProcess": true,
+
+  "workbench.colorCustomizations": {
+    // Editor cursor settings
+    "editorCursor.foreground": "#e6e6e6",      // Color of the editor cursor
+    "editorCursor.background": "#000000",      // Background color of a block cursor (when using block cursor style)
+
+    "editorBracketMatch.background": "#3a3a3a",  // Subtle dark gray background
+    "editorBracketMatch.border": "#808080",      // Medium gray border
+
+    // Sidebar text colors (matching editor)
+    "sideBar.foreground": "#ffffff",
+    "sideBarTitle.foreground": "#ffffff",
+    "sideBarSectionHeader.foreground": "#ffffff",
+    "list.activeSelectionForeground": "#ffffff",
+    "list.inactiveSelectionForeground": "#e6e6e6",
+    "list.hoverForeground": "#ffffff",
+    "list.focusForeground": "#ffffff",
+
+    // Git decoration colors (matching editor palette)
+    "gitDecoration.modifiedResourceForeground": "#ff9d45",
+    "gitDecoration.untrackedResourceForeground": "#1aa8e0",
+    "gitDecoration.deletedResourceForeground": "#ff5ebd",
+    "gitDecoration.conflictingResourceForeground": "#ff5ebd",
+    "gitDecoration.ignoredResourceForeground": "#808080"
+  },
+
+  // SYNTAX HIGHLIGHTING
+  "editor.tokenColorCustomizations": {
+    "textMateRules": [
+      {
+        "scope": [
+          "comment", 
+          "comment.line", 
+          "comment.line.number-sign.yaml",
+          "comment.line.number-sign",
+          "meta.comment.yaml",
+          "punctuation.definition.comment.yaml",
+          "punctuation.definition.comment"
+        ],
+        "settings": {
+          "foreground": "#c090ff",  // Bright purple for all comments
+          "fontStyle": ""           // No styling to match terminal
+        }
+      },
+      {
+        "scope": [
+          "entity.name.tag.yaml", 
+          "entity.name.tag", 
+          "keyword.key.yaml",
+          "meta.mapping.key.yaml",
+          "meta.property-name",
+          "variable.other.property"
+        ],
+        "settings": {
+          "foreground": "#1aa8e0",  // Blue for YAML keys
+          "fontStyle": ""
+        }
+      },
+      {
+        "scope": [
+          "string.unquoted.plain.out.yaml",
+          "string.unquoted.yaml",
+          "string.unquoted",
+        ],
+        "settings": {
+          "foreground": "#ffffff"  // White for unquoted strings
+        }
+      },
+      {
+        "scope": [
+          "string.unquoted.block.yaml"
+        ],
+        "settings": {
+          "foreground": "#ff9d45"  // Orange for unquoted block strings
+        }
+      },
+      {
+        "scope": [
+          "string.quoted.single", 
+          "string.quoted.single.yaml",
+          "string.quoted.double", 
+          "string.quoted.double.yaml"
+        ],
+        "settings": {
+          "foreground": "#ff9d45"  // Orange for quoted strings
+        }
+      },
+      {
+        "scope": [
+          "punctuation.definition.string.begin",
+          "punctuation.definition.string.end"
+        ],
+        "settings": {
+          "foreground": "#ff9d45"  // Same orange as your strings
+        }
+      },
+      {
+        "scope": [
+          "constant.language.boolean.yaml", 
+          "constant.language.failure.yaml",
+          "constant.language.success.yaml",
+          "constant.language",
+          "constant.numeric.integer.shell"
+        ],
+        "settings": {
+          "foreground": "#24bd27"  // Green for constants like true/false
+        }
+      },
+      {
+        "scope": [
+          "constant.language.terraform"
+        ],
+        "settings": {
+          "foreground": "#42e5e5"  // Cyan for constants in terraform
+        }
+      },
+      {
+        "scope": [
+          "keyword",
+          "storage.type", 
+          "storage.modifier",
+          "keyword.control",
+          "keyword.operator.logical",
+          "keyword.other"
+        ],
+        "settings": {
+          "foreground": "#ff5ebd",  // Pink for keywords
+          "fontStyle": ""
+        }
+      },
+      {
+        "scope": [
+          "keyword.control.flow.block-scalar.literal.yaml"
+        ],
+        "settings": {
+          "foreground": "#65e0e0",  // Cyan for pipes
+          "fontStyle": ""
+        }
+      },
+      {
+        "scope": [
+          "punctuation.separator.key-value", 
+          "punctuation.separator.key-value.mapping.yaml",
+          "punctuation.separator.key-value.yaml",
+          "punctuation.separator"
+        ],
+        "settings": {
+          "foreground": "#ffffff"  // White for colons
+        }
+      },
+      {
+        "scope": [
+          "punctuation.definition.block.sequence.item",
+          "punctuation.definition.block.sequence.item.yaml"
+        ],
+        "settings": {
+          "foreground": "#ffffff"  // White for dashes
+        }
+      },
+      {
+        // Expression syntax: [ ... ]
+        "scope": [
+          "punctuation.definition.sequence.begin.yaml",
+          "punctuation.definition.sequence.end.yaml",
+        ],
+        "settings": {
+          "foreground": "#65e0e0"  // Cyan for GitHub Actions expression punctuation
+        }
+      },
+      {
+        // Dollar sign for variables
+        "scope": [
+          "punctuation.definition.variable",
+          "punctuation.definition.variable.shell",
+          "punctuation.definition.variable.begin"
+        ],
+        "settings": {
+          "foreground": "#65e0e0"  // Cyan for dollar signs
+        }
+      },
+      {
+        // Variables themselves
+        "scope": [
+          "variable.other",
+          "variable.other.readwrite", 
+          "variable.other.normal",
+          "variable.parameter"
+        ],
+        "settings": {
+          "foreground": "#ffffff"  // White for variables
+        }
+      },
+      {
+        // Object properties in expressions
+        "scope": [
+          "support.variable.property",
+          "variable.other.property",
+          "variable.other.object.property"
+        ],
+        "settings": {
+          "foreground": "#1aa8e0"  // Blue for property names
+        }
+      },
+      {
+        // Functions
+        "scope": [
+          "entity.name.function",
+          "support.function"
+        ],
+        "settings": {
+          "foreground": "#42e5e5",  // Cyan for functions
+          "fontStyle": ""
+        }
+      }
+    ],
+    // These top-level settings apply to simpler syntax elements
+    "comments": "#c090ff",    // Bright purple
+    "strings": "#ff9d45",     // Orange
+    "keywords": "#ff5ebd",    // Pink
+    "numbers": "#ff9d45",     // Orange
+    "functions": "#42e5e5",   // Cyan
+    "variables": "#ffffff",   // White
+    "types": "#1aa8e0"        // Blue
+  },
+
+  // HIGHLIGHT CONFIGURATION
+  "highlight.regexes": {
+    // GitHub Actions expressions - not in comments
+    "(\\$?\\{\\{)(.+?)(\\}\\})(?![^\\n]*(?:^|\\n)\\s*#)": {
+      "filterFileRegex": ".*\\.ya?ml$",
+      "decorations": [
+        { "color": "#65e0e0" },  // Cyan for opening delimiters
+        { "color": "#ffffff" },  // White for content inside
+        { "color": "#65e0e0" }   // Cyan for closing delimiters
+      ]
+    },
+
+    // GitHub Actions conditional functions - not in comments
+    "(!?\\b(?:success|failure|cancelled|always)\\s*\\(\\s*\\))(?![^\\n]*(?:^|\\n)\\s*#)": {
+      "filterFileRegex": ".*\\.ya?ml$",
+      "decorations": [
+        { "color": "#ff5ebd" }  // Pink for entire expression
+      ]
+    },
+  
+    // GitHub Actions functions with parameters - not in comments
+    "(\\b(?:contains|startsWith|endsWith|format|join|toJSON|fromJSON|hashFiles))(\\s*\\()(.+?)(\\))(?![^\\n]*(?:^|\\n)\\s*#)": {
+      "filterFileRegex": ".*\\.ya?ml$",
+      "decorations": [
+        { "color": "#42e5e5" },  // Cyan for function names
+        { "color": "#42e5e5" },  // Cyan for opening parenthesis
+        { "color": "#ffffff" },  // White for parameters inside
+        { "color": "#42e5e5" }   // Cyan for closing parenthesis
+      ]
+    },
+    // Make sure comment lines are purple - with higher specificity
+    "(^[ \\t]*)(#.*)": {
+      "filterFileRegex": ".*\\.ya?ml$",
+      "decorations": [
+        { "color": null },       // Keep indentation color
+        { "color": "#c090ff" }   // Purple for comment text
+      ]
+    },
+    // TODO highlights
+    "((?:<!-- *)?(?:#|// @|//|./\\*+|<!--|--|\\* @|{!|{{!--|{{!) *TODO(?:\\s*\\([^)]+\\))?:?)((?!\\w)(?: *-->| *\\*/| *!}| *--}}| *}}|(?= *(?:[^:]//|/\\*+|<!--|@|--|{!|{{!--|{{!))|(?: +[^\\n@]*?)(?= *(?:[^:]//|/\\*+|<!--|@|--(?!>)|{!|{{!--|{{!))|(?: +[^@\\n]+)?))": {
+      "filterFileRegex": ".*(?<!CHANGELOG.md)$",
+      "decorations": [
+        {
+          "overviewRulerColor": "#ffcc00",
+          "backgroundColor": "#ffcc00",
+          "color": "#1f1f1f",
+          "fontWeight": "bold"
+        },
+        {
+          "backgroundColor": "#ffcc00",
+          "color": "#1f1f1f"
+        }
+      ]
+    },
+    // FIXME/FIX/BUG/UGLY/DEBUG/HACK highlights
+    "((?:<!-- *)?(?:#|// @|//|./\\*+|<!--|--|\\* @|{!|{{!--|{{!) *(?:FIXME|FIX|BUG|UGLY|DEBUG|HACK)(?:\\s*\\([^)]+\\))?:?)((?!\\w)(?: *-->| *\\*/| *!}| *--}}| *}}|(?= *(?:[^:]//|/\\*+|<!--|@|--|{!|{{!--|{{!))|(?: +[^\\n@]*?)(?= *(?:[^:]//|/\\*+|<!--|@|--(?!>)|{!|{{!--|{{!))|(?: +[^@\\n]+)?))": {
+      "filterFileRegex": ".*(?<!CHANGELOG.md)$",
+      "decorations": [
+        {
+          "overviewRulerColor": "#cc0000",
+          "backgroundColor": "#cc0000",
+          "color": "#1f1f1f",
+          "fontWeight": "bold"
+        },
+        {
+          "backgroundColor": "#cc0000",
+          "color": "#1f1f1f"
+        }
+      ]
+    },
+    // REVIEW/OPTIMIZE/TSC highlights
+    "((?:<!-- *)?(?:#|// @|//|./\\*+|<!--|--|\\* @|{!|{{!--|{{!) *(?:REVIEW|OPTIMIZE|TSC)(?:\\s*\\([^)]+\\))?:?)((?!\\w)(?: *-->| *\\*/| *!}| *--}}| *}}|(?= *(?:[^:]//|/\\*+|<!--|@|--|{!|{{!--|{{!))|(?: +[^\\n@]*?)(?= *(?:[^:]//|/\\*+|<!--|@|--(?!>)|{!|{{!--|{{!))|(?: +[^@\\n]+)?))": {
+      "filterFileRegex": ".*(?<!CHANGELOG.md)$",
+      "decorations": [
+        {
+          "overviewRulerColor": "#00ccff",
+          "backgroundColor": "#00ccff",
+          "color": "#1f1f1f",
+          "fontWeight": "bold"
+        },
+        {
+          "backgroundColor": "#00ccff",
+          "color": "#1f1f1f"
+        }
+      ]
+    },
+    // IDEA highlights
+    "((?:<!-- *)?(?:#|// @|//|./\\*+|<!--|--|\\* @|{!|{{!--|{{!) *(?:IDEA)(?:\\s*\\([^)]+\\))?:?)((?!\\w)(?: *-->| *\\*/| *!}| *--}}| *}}|(?= *(?:[^:]//|/\\*+|<!--|@|--|{!|{{!--|{{!))|(?: +[^\\n@]*?)(?= *(?:[^:]//|/\\*+|<!--|@|--(?!>)|{!|{{!--|{{!))|(?: +[^@\\n]+)?))": {
+      "filterFileRegex": ".*(?<!CHANGELOG.md)$",
+      "decorations": [
+        {
+          "overviewRulerColor": "#cc00cc",
+          "backgroundColor": "#cc00cc",
+          "color": "#1f1f1f",
+          "fontWeight": "bold"
+        },
+        {
+          "backgroundColor": "#cc00cc",
+          "color": "#1f1f1f"
+        }
+      ]
+    }
+  },
+  "accessibility.signals.terminalBell": {
+    "sound": "off"
+  },
+  "terminal.integrated.enableVisualBell": false,
+  "workbench.panel.defaultLocation": "right",
+  "editor.wordWrap": "on",
+  "editor.bracketPairColorization.enabled": false,
+  "extensions.ignoreRecommendations": true,
+  "github.gitProtocol": "ssh",
+  "database-client.autoSync": true,
+  "editor.guides.indentation": true,
+  "editor.renderWhitespace": "trailing",
+  "vim.shell": "/bin/zsh",
+  "workbench.secondarySideBar.showLabels": false,
+
+  // Editor
+  "editor.minimap.enabled": false,
+
+  // Search exclusions
+  "search.exclude": {
+    "**/.git": true,
+    "**/node_modules": true
+  }
+}

@@ -1,6 +1,6 @@
 -- Install Lazy.vim package manager
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
+if not vim.uv.fs_stat(lazypath) then
   vim.fn.system({
     "git",
     "clone",
@@ -12,30 +12,54 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require('lazy').setup({
-	'stephpy/vim-yaml',
-	'hashivim/vim-terraform',
-	'yorinasub17/vim-terragrunt',
-	'martinda/Jenkinsfile-vim-syntax',
-	'nvim-treesitter/nvim-treesitter',
-	'tpope/vim-fugitive',
-	'tpope/vim-rhubarb',
-	'github/copilot.vim',
-	{
-		"nvim-telescope/telescope.nvim",
-		dependencies = { "nvim-lua/plenary.nvim" },
-		keys = {
-			{ "<C-p>", "<cmd>Telescope find_files<cr>", desc = "Find Files" },
-		},
-	}
-})
+-- Shared plugins (VSCode and regular Neovim)
+local shared_plugins = {
+  'tpope/vim-fugitive',
+  'tpope/vim-rhubarb',
+}
 
--- Enable syntax highlighting
-vim.cmd('syntax on')
-vim.cmd('syntax sync fromstart')
-vim.cmd('syntax sync minlines=1000')
+-- Check if running inside VSCode
+if vim.g.vscode then
+  require('lazy').setup(shared_plugins)
+else
+  -- Regular Neovim plugins
+  local plugins = vim.list_extend(vim.deepcopy(shared_plugins), {
+    'stephpy/vim-yaml',
+    'hashivim/vim-terraform',
+    'yorinasub17/vim-terragrunt',
+    'martinda/Jenkinsfile-vim-syntax',
+    'nvim-treesitter/nvim-treesitter',
+    'github/copilot.vim',
+    {
+      "nvim-telescope/telescope.nvim",
+      dependencies = { "nvim-lua/plenary.nvim" },
+      keys = {
+        { "<C-p>", "<cmd>Telescope find_files<cr>", desc = "Find Files" },
+      },
+    }
+  })
+  require('lazy').setup(plugins)
 
--- Enable relative line numbers
+  -- Enable syntax highlighting
+  vim.cmd('syntax on')
+  vim.cmd('syntax sync fromstart')
+  vim.cmd('syntax sync minlines=1000')
+
+  -- Set colorscheme
+  vim.opt.termguicolors = true
+  vim.cmd('colorscheme dunno')
+  vim.cmd('hi Normal guibg=NONE ctermbg=NONE')
+  
+  -- Disable statusline
+  vim.opt.laststatus = 0
+  
+  -- Set file type specific settings for Jinja templates
+  vim.cmd('autocmd BufNewFile,BufRead *.yml.j2,*.yaml.j2 set syntax=yaml')
+  vim.cmd('autocmd BufNewFile,BufRead *.tf.j2,*.tfvars.j2,*.hcl.j2 set syntax=terraform')
+end
+
+-- Settings that apply to both VSCode and regular Neovim
+-- Enable relative line numbers (VSCode will handle this)
 vim.opt.rnu = true
 
 -- Set clipboard to use unnamedplus
@@ -52,8 +76,8 @@ vim.opt.shiftwidth = 4
 vim.opt.hlsearch = true
 
 -- Case insensitive searching UNLESS /C or capital in search
-vim.o.ignorecase = true
-vim.o.smartcase = true
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
 
 -- Set backspace behavior
 vim.opt.backspace = 'indent,eol,start'
@@ -71,29 +95,12 @@ vim.opt.wrap = true
 -- Enable mouse support
 vim.opt.mouse = 'a'
 
--- Set file type specific settings
-vim.cmd('autocmd BufNewFile,BufRead *.yml.j2,*.yaml.j2 set syntax=yaml')
-vim.cmd('autocmd BufNewFile,BufRead *.tf.j2,*.tfvars.j2,*.hcl.j2 set syntax=terraform')
-
 -- Set encoding
 vim.opt.encoding = 'utf-8'
 
--- Set colorscheme
-vim.o.termguicolors = true
-vim.cmd('colorscheme dunno')
-vim.cmd('hi Normal guibg=NONE ctermbg=NONE')
-
--- Disable statusline
-vim.opt.laststatus = 0
-
 -- Set completion options
--- vim.opt.completeopt = { 'menuone', 'noselect' }
 vim.opt.wildmode = "longest,list,full"
 vim.opt.wildmenu = true
 
--- ALE configuration
-vim.g.ale_sign_column_alwayus = 1
-
 -- Set undofile
 vim.opt.undofile = true
-
