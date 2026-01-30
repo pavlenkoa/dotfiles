@@ -1,0 +1,79 @@
+# Ghostty config - migrated from Terminal.app "Basic 1" profile
+#
+# Docs: https://ghostty.org/docs/config
+
+# Font settings
+font-family = SF Mono Terminal
+font-size = 16
+font-thicken = true
+
+# Color rendering - try srgb to match Terminal.app
+window-colorspace = srgb
+
+# Shell command (runs tmux on startup like Terminal.app)
+command = /opt/homebrew/bin/tmux
+
+# Bell settings (no audio, visual attention only)
+bell-features = no-audio,attention
+
+# Cursor
+cursor-style-blink = false
+
+# Colors (from nvim terminal.vim colorscheme)
+foreground = e0e0e0
+background = 1e1e1e
+
+# macOS titlebar
+macos-titlebar-style = native
+title = tmux
+
+# ANSI Color Palette (from terminal.vim - dunno's palette)
+# purple:  #a076f5 (comments)
+# orange:  #f57b1b (strings, constants)
+# pink:    #f556b0 (statements, types)
+# cyan:    #65e0e0 (functions, special)
+# blue:    #0985ba (identifiers)
+# white:   #dadada (text)
+# green:   #008700 (boolean)
+
+# Black
+palette = 0=1e1e1e
+palette = 8=585858
+
+# Red
+palette = 1=d6492e
+palette = 9=d6492e
+
+# Green
+palette = 2=41c732
+palette = 10=41c732
+
+# Yellow
+palette = 3=b8b72f
+palette = 11=b8b72f
+
+# Blue (directories - from Terminal.app color picker)
+palette = 4=6a42f6
+palette = 12=6a42f6
+
+# Magenta (purple - comments)
+palette = 5=a076f5
+palette = 13=a076f5
+
+# Cyan (functions/special)
+palette = 6=65e0e0
+palette = 14=65e0e0
+
+# White
+palette = 7=eeeeee
+palette = 15=ffffff
+
+# Window padding (adjust to match Terminal.app)
+# x = left,right  y = top,bottom
+window-padding-x = 10,5
+window-padding-y = 5,2
+window-padding-balance = false
+
+# Line spacing - reduce to match Terminal.app's tight 1.004 spacing
+adjust-cell-height = 3
+adjust-font-baseline = -2
