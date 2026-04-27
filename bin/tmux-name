@@ -1,0 +1,109 @@
+#!/bin/sh
+[ -z "$TMUX" ] && exit 0
+
+ACTION="$1"
+STATE_FILE="/tmp/claude-tmux-${TMUX_PANE}"
+SPINNER_PID_FILE="/tmp/claude-spinner-${TMUX_PANE}"
+DIR_NAME=$(basename "$PWD")
+PANE_ID="$TMUX_PANE"
+
+set_format() {
+  COLOR="$1"
+  SYMBOL="$2"
+  WINDOW_ID="$3"
+  tmux set-option -w -t "$WINDOW_ID" window-status-current-format \
+    " #[fg=${COLOR}]${SYMBOL} #[fg=colour255]#I#[fg=colour250]:#[fg=colour255]#W#[fg=colour1]#F " 2>/dev/null
+  tmux set-option -w -t "$WINDOW_ID" window-status-format \
+    " #[fg=${COLOR}]${SYMBOL} #[fg=colour250]#I#[fg=colour237]:#[fg=colour250]#W#[fg=colour244]#F " 2>/dev/null
+}
+
+stop_spinner() {
+  if [ -f "$SPINNER_PID_FILE" ]; then
+    PID=$(cat "$SPINNER_PID_FILE")
+    kill "$PID" 2>/dev/null
+    wait "$PID" 2>/dev/null
+    rm -f "$SPINNER_PID_FILE"
+  fi
+}
+
+start_spinner() {
+  WINDOW_ID="$1"
+  stop_spinner
+  (
+    sf() {
+      set_format "$1" "$2" "$WINDOW_ID"
+      tmux refresh-client -S 2>/dev/null
+      sleep 0.1
+    }
+    while tmux display-message -t "$PANE_ID" -p '#{pane_id}' >/dev/null 2>&1 \
+          && [ "$(tail -1 "$STATE_FILE" 2>/dev/null)" = "busy" ]; do
+      sf "#f57b1b" "✽"
+      sf "#e8681e" "✻"
+      sf "#d95a1a" "✶"
+      sf "#cc4e18" "✳"
+      sf "#bf4215" "✢"
+      sf "#b33812" "·"
+      sf "#bf4215" "✢"
+      sf "#cc4e18" "✳"
+      sf "#d95a1a" "✶"
+      sf "#e8681e" "✻"
+    done
+    rm -f "$SPINNER_PID_FILE"
+  ) > /dev/null 2>&1 &
+  echo $! > "$SPINNER_PID_FILE"
+}
+
+read_window_id() {
+  [ -f "$STATE_FILE" ] || return 1
+  head -1 "$STATE_FILE"
+}
+
+read_current_state() {
+  [ -f "$STATE_FILE" ] || return 1
+  tail -1 "$STATE_FILE"
+}
+
+write_state() {
+  printf '%s\n%s\n' "$1" "$2" > "$STATE_FILE"
+}
+
+case "$ACTION" in
+  start)
+    WINDOW_ID=$(tmux display-message -p '#{window_id}')
+    write_state "$WINDOW_ID" "done"
+    tmux rename-window -t "$WINDOW_ID" "claude:${DIR_NAME}"
+    tmux set-option -w -t "$WINDOW_ID" window-status-current-format \
+      " #[fg=colour255]✻ #[fg=colour255]#I#[fg=colour250]:#[fg=colour255]#W#[fg=colour1]#F " 2>/dev/null
+    tmux set-option -w -t "$WINDOW_ID" window-status-format \
+      " #[fg=colour250]✻ #[fg=colour250]#I#[fg=colour237]:#[fg=colour250]#W#[fg=colour244]#F " 2>/dev/null
+    ;;
+  busy)
+    WINDOW_ID=$(read_window_id) || exit 0
+    [ "$(read_current_state)" = "busy" ] && exit 0
+    write_state "$WINDOW_ID" "busy"
+    start_spinner "$WINDOW_ID"
+    ;;
+  done)
+    WINDOW_ID=$(read_window_id) || exit 0
+    stop_spinner
+    write_state "$WINDOW_ID" "done"
+    tmux set-option -w -t "$WINDOW_ID" window-status-current-format \
+      " #[fg=colour255]✻ #[fg=colour255]#I#[fg=colour250]:#[fg=colour255]#W#[fg=colour1]#F " 2>/dev/null
+    tmux set-option -w -t "$WINDOW_ID" window-status-format \
+      " #[fg=colour250]✻ #[fg=colour250]#I#[fg=colour237]:#[fg=colour250]#W#[fg=colour244]#F " 2>/dev/null
+    ;;
+  blocked)
+    WINDOW_ID=$(read_window_id) || exit 0
+    stop_spinner
+    write_state "$WINDOW_ID" "blocked"
+    set_format "#ffd700" "✻" "$WINDOW_ID"
+    ;;
+  end)
+    WINDOW_ID=$(read_window_id) || exit 0
+    stop_spinner
+    tmux set-option -wu -t "$WINDOW_ID" window-status-current-format 2>/dev/null
+    tmux set-option -wu -t "$WINDOW_ID" window-status-format 2>/dev/null
+    tmux set-option -w -t "$WINDOW_ID" automatic-rename on 2>/dev/null
+    rm -f "$STATE_FILE"
+    ;;
+esac
