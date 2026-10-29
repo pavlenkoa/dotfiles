@@ -1,0 +1,5 @@
+#!/bin/sh
+# Tells Karabiner the selected Ghostty tab's ` digit (1-9, 0 = 10th); run by Karabiner after tab-changing keys.
+sleep 0.15
+i=$(/usr/bin/osascript -e 'tell application "Ghostty" to return (index of selected tab of front window) mod 10') || exit 1
+exec "/Library/Application Support/org.pqrs/Karabiner-Elements/bin/karabiner_cli" --set-variables "{\"ghostty_cur\":$i}"

@@ -1,9 +1,2612 @@
 {
-    "global": { "show_in_menu_bar": false },
+    "global": {
+        "show_in_menu_bar": false
+    },
     "profiles": [
         {
             "complex_modifications": {
                 "rules": [
+                    {
+                        "description": "Ghostty: ` ` jumps to the last used tab (Karabiner tracks tab switches)",
+                        "manipulators": [
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "grave_accent_and_tilde",
+                                    "modifiers": {
+                                        "optional": [
+                                            "caps_lock"
+                                        ]
+                                    }
+                                },
+                                "conditions": [
+                                    {
+                                        "type": "frontmost_application_if",
+                                        "bundle_identifiers": [
+                                            "^com\\.mitchellh\\.ghostty$"
+                                        ]
+                                    },
+                                    {
+                                        "type": "expression_if",
+                                        "expression": "ghostty_prefix_until > system.now.milliseconds"
+                                    },
+                                    {
+                                        "type": "variable_if",
+                                        "name": "ghostty_last",
+                                        "value": 0
+                                    }
+                                ],
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_prefix_until",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "key_code": "0"
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_last",
+                                            "expression": "ghostty_cur"
+                                        }
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_cur",
+                                            "value": 0
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "grave_accent_and_tilde",
+                                    "modifiers": {
+                                        "optional": [
+                                            "caps_lock"
+                                        ]
+                                    }
+                                },
+                                "conditions": [
+                                    {
+                                        "type": "frontmost_application_if",
+                                        "bundle_identifiers": [
+                                            "^com\\.mitchellh\\.ghostty$"
+                                        ]
+                                    },
+                                    {
+                                        "type": "expression_if",
+                                        "expression": "ghostty_prefix_until > system.now.milliseconds"
+                                    },
+                                    {
+                                        "type": "variable_if",
+                                        "name": "ghostty_last",
+                                        "value": 1
+                                    }
+                                ],
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_prefix_until",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "key_code": "1"
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_last",
+                                            "expression": "ghostty_cur"
+                                        }
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_cur",
+                                            "value": 1
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "grave_accent_and_tilde",
+                                    "modifiers": {
+                                        "optional": [
+                                            "caps_lock"
+                                        ]
+                                    }
+                                },
+                                "conditions": [
+                                    {
+                                        "type": "frontmost_application_if",
+                                        "bundle_identifiers": [
+                                            "^com\\.mitchellh\\.ghostty$"
+                                        ]
+                                    },
+                                    {
+                                        "type": "expression_if",
+                                        "expression": "ghostty_prefix_until > system.now.milliseconds"
+                                    },
+                                    {
+                                        "type": "variable_if",
+                                        "name": "ghostty_last",
+                                        "value": 2
+                                    }
+                                ],
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_prefix_until",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "key_code": "2"
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_last",
+                                            "expression": "ghostty_cur"
+                                        }
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_cur",
+                                            "value": 2
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "grave_accent_and_tilde",
+                                    "modifiers": {
+                                        "optional": [
+                                            "caps_lock"
+                                        ]
+                                    }
+                                },
+                                "conditions": [
+                                    {
+                                        "type": "frontmost_application_if",
+                                        "bundle_identifiers": [
+                                            "^com\\.mitchellh\\.ghostty$"
+                                        ]
+                                    },
+                                    {
+                                        "type": "expression_if",
+                                        "expression": "ghostty_prefix_until > system.now.milliseconds"
+                                    },
+                                    {
+                                        "type": "variable_if",
+                                        "name": "ghostty_last",
+                                        "value": 3
+                                    }
+                                ],
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_prefix_until",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "key_code": "3"
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_last",
+                                            "expression": "ghostty_cur"
+                                        }
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_cur",
+                                            "value": 3
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "grave_accent_and_tilde",
+                                    "modifiers": {
+                                        "optional": [
+                                            "caps_lock"
+                                        ]
+                                    }
+                                },
+                                "conditions": [
+                                    {
+                                        "type": "frontmost_application_if",
+                                        "bundle_identifiers": [
+                                            "^com\\.mitchellh\\.ghostty$"
+                                        ]
+                                    },
+                                    {
+                                        "type": "expression_if",
+                                        "expression": "ghostty_prefix_until > system.now.milliseconds"
+                                    },
+                                    {
+                                        "type": "variable_if",
+                                        "name": "ghostty_last",
+                                        "value": 4
+                                    }
+                                ],
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_prefix_until",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "key_code": "4"
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_last",
+                                            "expression": "ghostty_cur"
+                                        }
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_cur",
+                                            "value": 4
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "grave_accent_and_tilde",
+                                    "modifiers": {
+                                        "optional": [
+                                            "caps_lock"
+                                        ]
+                                    }
+                                },
+                                "conditions": [
+                                    {
+                                        "type": "frontmost_application_if",
+                                        "bundle_identifiers": [
+                                            "^com\\.mitchellh\\.ghostty$"
+                                        ]
+                                    },
+                                    {
+                                        "type": "expression_if",
+                                        "expression": "ghostty_prefix_until > system.now.milliseconds"
+                                    },
+                                    {
+                                        "type": "variable_if",
+                                        "name": "ghostty_last",
+                                        "value": 5
+                                    }
+                                ],
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_prefix_until",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "key_code": "5"
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_last",
+                                            "expression": "ghostty_cur"
+                                        }
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_cur",
+                                            "value": 5
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "grave_accent_and_tilde",
+                                    "modifiers": {
+                                        "optional": [
+                                            "caps_lock"
+                                        ]
+                                    }
+                                },
+                                "conditions": [
+                                    {
+                                        "type": "frontmost_application_if",
+                                        "bundle_identifiers": [
+                                            "^com\\.mitchellh\\.ghostty$"
+                                        ]
+                                    },
+                                    {
+                                        "type": "expression_if",
+                                        "expression": "ghostty_prefix_until > system.now.milliseconds"
+                                    },
+                                    {
+                                        "type": "variable_if",
+                                        "name": "ghostty_last",
+                                        "value": 6
+                                    }
+                                ],
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_prefix_until",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "key_code": "6"
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_last",
+                                            "expression": "ghostty_cur"
+                                        }
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_cur",
+                                            "value": 6
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "grave_accent_and_tilde",
+                                    "modifiers": {
+                                        "optional": [
+                                            "caps_lock"
+                                        ]
+                                    }
+                                },
+                                "conditions": [
+                                    {
+                                        "type": "frontmost_application_if",
+                                        "bundle_identifiers": [
+                                            "^com\\.mitchellh\\.ghostty$"
+                                        ]
+                                    },
+                                    {
+                                        "type": "expression_if",
+                                        "expression": "ghostty_prefix_until > system.now.milliseconds"
+                                    },
+                                    {
+                                        "type": "variable_if",
+                                        "name": "ghostty_last",
+                                        "value": 7
+                                    }
+                                ],
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_prefix_until",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "key_code": "7"
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_last",
+                                            "expression": "ghostty_cur"
+                                        }
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_cur",
+                                            "value": 7
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "grave_accent_and_tilde",
+                                    "modifiers": {
+                                        "optional": [
+                                            "caps_lock"
+                                        ]
+                                    }
+                                },
+                                "conditions": [
+                                    {
+                                        "type": "frontmost_application_if",
+                                        "bundle_identifiers": [
+                                            "^com\\.mitchellh\\.ghostty$"
+                                        ]
+                                    },
+                                    {
+                                        "type": "expression_if",
+                                        "expression": "ghostty_prefix_until > system.now.milliseconds"
+                                    },
+                                    {
+                                        "type": "variable_if",
+                                        "name": "ghostty_last",
+                                        "value": 8
+                                    }
+                                ],
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_prefix_until",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "key_code": "8"
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_last",
+                                            "expression": "ghostty_cur"
+                                        }
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_cur",
+                                            "value": 8
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "grave_accent_and_tilde",
+                                    "modifiers": {
+                                        "optional": [
+                                            "caps_lock"
+                                        ]
+                                    }
+                                },
+                                "conditions": [
+                                    {
+                                        "type": "frontmost_application_if",
+                                        "bundle_identifiers": [
+                                            "^com\\.mitchellh\\.ghostty$"
+                                        ]
+                                    },
+                                    {
+                                        "type": "expression_if",
+                                        "expression": "ghostty_prefix_until > system.now.milliseconds"
+                                    },
+                                    {
+                                        "type": "variable_if",
+                                        "name": "ghostty_last",
+                                        "value": 9
+                                    }
+                                ],
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_prefix_until",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "key_code": "9"
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_last",
+                                            "expression": "ghostty_cur"
+                                        }
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_cur",
+                                            "value": 9
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "grave_accent_and_tilde",
+                                    "modifiers": {
+                                        "optional": [
+                                            "caps_lock"
+                                        ]
+                                    }
+                                },
+                                "conditions": [
+                                    {
+                                        "type": "frontmost_application_if",
+                                        "bundle_identifiers": [
+                                            "^com\\.mitchellh\\.ghostty$"
+                                        ]
+                                    },
+                                    {
+                                        "type": "expression_if",
+                                        "expression": "ghostty_prefix_until > system.now.milliseconds"
+                                    }
+                                ],
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_prefix_until",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "key_code": "grave_accent_and_tilde"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "0",
+                                    "modifiers": {
+                                        "optional": [
+                                            "caps_lock"
+                                        ]
+                                    }
+                                },
+                                "conditions": [
+                                    {
+                                        "type": "frontmost_application_if",
+                                        "bundle_identifiers": [
+                                            "^com\\.mitchellh\\.ghostty$"
+                                        ]
+                                    },
+                                    {
+                                        "type": "expression_if",
+                                        "expression": "ghostty_prefix_until > system.now.milliseconds"
+                                    }
+                                ],
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_prefix_until",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_last",
+                                            "expression": "ghostty_cur != 0 ? ghostty_cur : ghostty_last"
+                                        }
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_cur",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "key_code": "0"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "1",
+                                    "modifiers": {
+                                        "optional": [
+                                            "caps_lock"
+                                        ]
+                                    }
+                                },
+                                "conditions": [
+                                    {
+                                        "type": "frontmost_application_if",
+                                        "bundle_identifiers": [
+                                            "^com\\.mitchellh\\.ghostty$"
+                                        ]
+                                    },
+                                    {
+                                        "type": "expression_if",
+                                        "expression": "ghostty_prefix_until > system.now.milliseconds"
+                                    }
+                                ],
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_prefix_until",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_last",
+                                            "expression": "ghostty_cur != 1 ? ghostty_cur : ghostty_last"
+                                        }
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_cur",
+                                            "value": 1
+                                        }
+                                    },
+                                    {
+                                        "key_code": "1"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "2",
+                                    "modifiers": {
+                                        "optional": [
+                                            "caps_lock"
+                                        ]
+                                    }
+                                },
+                                "conditions": [
+                                    {
+                                        "type": "frontmost_application_if",
+                                        "bundle_identifiers": [
+                                            "^com\\.mitchellh\\.ghostty$"
+                                        ]
+                                    },
+                                    {
+                                        "type": "expression_if",
+                                        "expression": "ghostty_prefix_until > system.now.milliseconds"
+                                    }
+                                ],
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_prefix_until",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_last",
+                                            "expression": "ghostty_cur != 2 ? ghostty_cur : ghostty_last"
+                                        }
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_cur",
+                                            "value": 2
+                                        }
+                                    },
+                                    {
+                                        "key_code": "2"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "3",
+                                    "modifiers": {
+                                        "optional": [
+                                            "caps_lock"
+                                        ]
+                                    }
+                                },
+                                "conditions": [
+                                    {
+                                        "type": "frontmost_application_if",
+                                        "bundle_identifiers": [
+                                            "^com\\.mitchellh\\.ghostty$"
+                                        ]
+                                    },
+                                    {
+                                        "type": "expression_if",
+                                        "expression": "ghostty_prefix_until > system.now.milliseconds"
+                                    }
+                                ],
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_prefix_until",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_last",
+                                            "expression": "ghostty_cur != 3 ? ghostty_cur : ghostty_last"
+                                        }
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_cur",
+                                            "value": 3
+                                        }
+                                    },
+                                    {
+                                        "key_code": "3"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "4",
+                                    "modifiers": {
+                                        "optional": [
+                                            "caps_lock"
+                                        ]
+                                    }
+                                },
+                                "conditions": [
+                                    {
+                                        "type": "frontmost_application_if",
+                                        "bundle_identifiers": [
+                                            "^com\\.mitchellh\\.ghostty$"
+                                        ]
+                                    },
+                                    {
+                                        "type": "expression_if",
+                                        "expression": "ghostty_prefix_until > system.now.milliseconds"
+                                    }
+                                ],
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_prefix_until",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_last",
+                                            "expression": "ghostty_cur != 4 ? ghostty_cur : ghostty_last"
+                                        }
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_cur",
+                                            "value": 4
+                                        }
+                                    },
+                                    {
+                                        "key_code": "4"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "5",
+                                    "modifiers": {
+                                        "optional": [
+                                            "caps_lock"
+                                        ]
+                                    }
+                                },
+                                "conditions": [
+                                    {
+                                        "type": "frontmost_application_if",
+                                        "bundle_identifiers": [
+                                            "^com\\.mitchellh\\.ghostty$"
+                                        ]
+                                    },
+                                    {
+                                        "type": "expression_if",
+                                        "expression": "ghostty_prefix_until > system.now.milliseconds"
+                                    }
+                                ],
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_prefix_until",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_last",
+                                            "expression": "ghostty_cur != 5 ? ghostty_cur : ghostty_last"
+                                        }
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_cur",
+                                            "value": 5
+                                        }
+                                    },
+                                    {
+                                        "key_code": "5"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "6",
+                                    "modifiers": {
+                                        "optional": [
+                                            "caps_lock"
+                                        ]
+                                    }
+                                },
+                                "conditions": [
+                                    {
+                                        "type": "frontmost_application_if",
+                                        "bundle_identifiers": [
+                                            "^com\\.mitchellh\\.ghostty$"
+                                        ]
+                                    },
+                                    {
+                                        "type": "expression_if",
+                                        "expression": "ghostty_prefix_until > system.now.milliseconds"
+                                    }
+                                ],
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_prefix_until",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_last",
+                                            "expression": "ghostty_cur != 6 ? ghostty_cur : ghostty_last"
+                                        }
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_cur",
+                                            "value": 6
+                                        }
+                                    },
+                                    {
+                                        "key_code": "6"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "7",
+                                    "modifiers": {
+                                        "optional": [
+                                            "caps_lock"
+                                        ]
+                                    }
+                                },
+                                "conditions": [
+                                    {
+                                        "type": "frontmost_application_if",
+                                        "bundle_identifiers": [
+                                            "^com\\.mitchellh\\.ghostty$"
+                                        ]
+                                    },
+                                    {
+                                        "type": "expression_if",
+                                        "expression": "ghostty_prefix_until > system.now.milliseconds"
+                                    }
+                                ],
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_prefix_until",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_last",
+                                            "expression": "ghostty_cur != 7 ? ghostty_cur : ghostty_last"
+                                        }
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_cur",
+                                            "value": 7
+                                        }
+                                    },
+                                    {
+                                        "key_code": "7"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "8",
+                                    "modifiers": {
+                                        "optional": [
+                                            "caps_lock"
+                                        ]
+                                    }
+                                },
+                                "conditions": [
+                                    {
+                                        "type": "frontmost_application_if",
+                                        "bundle_identifiers": [
+                                            "^com\\.mitchellh\\.ghostty$"
+                                        ]
+                                    },
+                                    {
+                                        "type": "expression_if",
+                                        "expression": "ghostty_prefix_until > system.now.milliseconds"
+                                    }
+                                ],
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_prefix_until",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_last",
+                                            "expression": "ghostty_cur != 8 ? ghostty_cur : ghostty_last"
+                                        }
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_cur",
+                                            "value": 8
+                                        }
+                                    },
+                                    {
+                                        "key_code": "8"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "9",
+                                    "modifiers": {
+                                        "optional": [
+                                            "caps_lock"
+                                        ]
+                                    }
+                                },
+                                "conditions": [
+                                    {
+                                        "type": "frontmost_application_if",
+                                        "bundle_identifiers": [
+                                            "^com\\.mitchellh\\.ghostty$"
+                                        ]
+                                    },
+                                    {
+                                        "type": "expression_if",
+                                        "expression": "ghostty_prefix_until > system.now.milliseconds"
+                                    }
+                                ],
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_prefix_until",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_last",
+                                            "expression": "ghostty_cur != 9 ? ghostty_cur : ghostty_last"
+                                        }
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_cur",
+                                            "value": 9
+                                        }
+                                    },
+                                    {
+                                        "key_code": "9"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "c",
+                                    "modifiers": {
+                                        "optional": [
+                                            "caps_lock"
+                                        ]
+                                    }
+                                },
+                                "conditions": [
+                                    {
+                                        "type": "frontmost_application_if",
+                                        "bundle_identifiers": [
+                                            "^com\\.mitchellh\\.ghostty$"
+                                        ]
+                                    },
+                                    {
+                                        "type": "expression_if",
+                                        "expression": "ghostty_prefix_until > system.now.milliseconds"
+                                    }
+                                ],
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_prefix_until",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_last",
+                                            "expression": "ghostty_cur"
+                                        }
+                                    },
+                                    {
+                                        "key_code": "c"
+                                    },
+                                    {
+                                        "shell_command": "/bin/sh \"$HOME/.local/bin/ghostty-new-tab-home\""
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "x",
+                                    "modifiers": {
+                                        "optional": [
+                                            "caps_lock"
+                                        ]
+                                    }
+                                },
+                                "conditions": [
+                                    {
+                                        "type": "frontmost_application_if",
+                                        "bundle_identifiers": [
+                                            "^com\\.mitchellh\\.ghostty$"
+                                        ]
+                                    },
+                                    {
+                                        "type": "expression_if",
+                                        "expression": "ghostty_prefix_until > system.now.milliseconds"
+                                    }
+                                ],
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_prefix_until",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_last",
+                                            "expression": "ghostty_cur"
+                                        }
+                                    },
+                                    {
+                                        "key_code": "x"
+                                    },
+                                    {
+                                        "shell_command": "/bin/sh \"$HOME/.local/bin/ghostty-tab-sync\""
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "grave_accent_and_tilde",
+                                    "modifiers": {
+                                        "optional": [
+                                            "caps_lock"
+                                        ]
+                                    }
+                                },
+                                "conditions": [
+                                    {
+                                        "type": "frontmost_application_if",
+                                        "bundle_identifiers": [
+                                            "^com\\.mitchellh\\.ghostty$"
+                                        ]
+                                    }
+                                ],
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_prefix_until",
+                                            "expression": "system.now.milliseconds + 1000"
+                                        }
+                                    },
+                                    {
+                                        "key_code": "grave_accent_and_tilde"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "left_arrow",
+                                    "modifiers": {
+                                        "optional": [
+                                            "caps_lock"
+                                        ],
+                                        "mandatory": [
+                                            "shift"
+                                        ]
+                                    }
+                                },
+                                "conditions": [
+                                    {
+                                        "type": "frontmost_application_if",
+                                        "bundle_identifiers": [
+                                            "^com\\.mitchellh\\.ghostty$"
+                                        ]
+                                    }
+                                ],
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_last",
+                                            "expression": "ghostty_cur"
+                                        }
+                                    },
+                                    {
+                                        "key_code": "left_arrow",
+                                        "modifiers": [
+                                            "shift"
+                                        ]
+                                    },
+                                    {
+                                        "shell_command": "/bin/sh \"$HOME/.local/bin/ghostty-tab-sync\""
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "right_arrow",
+                                    "modifiers": {
+                                        "optional": [
+                                            "caps_lock"
+                                        ],
+                                        "mandatory": [
+                                            "shift"
+                                        ]
+                                    }
+                                },
+                                "conditions": [
+                                    {
+                                        "type": "frontmost_application_if",
+                                        "bundle_identifiers": [
+                                            "^com\\.mitchellh\\.ghostty$"
+                                        ]
+                                    }
+                                ],
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_last",
+                                            "expression": "ghostty_cur"
+                                        }
+                                    },
+                                    {
+                                        "key_code": "right_arrow",
+                                        "modifiers": [
+                                            "shift"
+                                        ]
+                                    },
+                                    {
+                                        "shell_command": "/bin/sh \"$HOME/.local/bin/ghostty-tab-sync\""
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "t",
+                                    "modifiers": {
+                                        "optional": [
+                                            "caps_lock"
+                                        ],
+                                        "mandatory": [
+                                            "command"
+                                        ]
+                                    }
+                                },
+                                "conditions": [
+                                    {
+                                        "type": "frontmost_application_if",
+                                        "bundle_identifiers": [
+                                            "^com\\.mitchellh\\.ghostty$"
+                                        ]
+                                    }
+                                ],
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_last",
+                                            "expression": "ghostty_cur"
+                                        }
+                                    },
+                                    {
+                                        "key_code": "t",
+                                        "modifiers": [
+                                            "command"
+                                        ]
+                                    },
+                                    {
+                                        "shell_command": "/bin/sh \"$HOME/.local/bin/ghostty-tab-sync\""
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "w",
+                                    "modifiers": {
+                                        "optional": [
+                                            "caps_lock"
+                                        ],
+                                        "mandatory": [
+                                            "command"
+                                        ]
+                                    }
+                                },
+                                "conditions": [
+                                    {
+                                        "type": "frontmost_application_if",
+                                        "bundle_identifiers": [
+                                            "^com\\.mitchellh\\.ghostty$"
+                                        ]
+                                    }
+                                ],
+                                "to": [
+                                    {
+                                        "key_code": "w",
+                                        "modifiers": [
+                                            "command"
+                                        ]
+                                    },
+                                    {
+                                        "shell_command": "/bin/sh \"$HOME/.local/bin/ghostty-tab-sync\""
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "a",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "conditions": [
+                                    {
+                                        "type": "frontmost_application_if",
+                                        "bundle_identifiers": [
+                                            "^com\\.mitchellh\\.ghostty$"
+                                        ]
+                                    },
+                                    {
+                                        "type": "expression_if",
+                                        "expression": "ghostty_prefix_until > system.now.milliseconds"
+                                    }
+                                ],
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_prefix_until",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "key_code": "a"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "b",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "conditions": [
+                                    {
+                                        "type": "frontmost_application_if",
+                                        "bundle_identifiers": [
+                                            "^com\\.mitchellh\\.ghostty$"
+                                        ]
+                                    },
+                                    {
+                                        "type": "expression_if",
+                                        "expression": "ghostty_prefix_until > system.now.milliseconds"
+                                    }
+                                ],
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_prefix_until",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "key_code": "b"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "d",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "conditions": [
+                                    {
+                                        "type": "frontmost_application_if",
+                                        "bundle_identifiers": [
+                                            "^com\\.mitchellh\\.ghostty$"
+                                        ]
+                                    },
+                                    {
+                                        "type": "expression_if",
+                                        "expression": "ghostty_prefix_until > system.now.milliseconds"
+                                    }
+                                ],
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_prefix_until",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "key_code": "d"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "e",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "conditions": [
+                                    {
+                                        "type": "frontmost_application_if",
+                                        "bundle_identifiers": [
+                                            "^com\\.mitchellh\\.ghostty$"
+                                        ]
+                                    },
+                                    {
+                                        "type": "expression_if",
+                                        "expression": "ghostty_prefix_until > system.now.milliseconds"
+                                    }
+                                ],
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_prefix_until",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "key_code": "e"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "f",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "conditions": [
+                                    {
+                                        "type": "frontmost_application_if",
+                                        "bundle_identifiers": [
+                                            "^com\\.mitchellh\\.ghostty$"
+                                        ]
+                                    },
+                                    {
+                                        "type": "expression_if",
+                                        "expression": "ghostty_prefix_until > system.now.milliseconds"
+                                    }
+                                ],
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_prefix_until",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "key_code": "f"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "g",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "conditions": [
+                                    {
+                                        "type": "frontmost_application_if",
+                                        "bundle_identifiers": [
+                                            "^com\\.mitchellh\\.ghostty$"
+                                        ]
+                                    },
+                                    {
+                                        "type": "expression_if",
+                                        "expression": "ghostty_prefix_until > system.now.milliseconds"
+                                    }
+                                ],
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_prefix_until",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "key_code": "g"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "h",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "conditions": [
+                                    {
+                                        "type": "frontmost_application_if",
+                                        "bundle_identifiers": [
+                                            "^com\\.mitchellh\\.ghostty$"
+                                        ]
+                                    },
+                                    {
+                                        "type": "expression_if",
+                                        "expression": "ghostty_prefix_until > system.now.milliseconds"
+                                    }
+                                ],
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_prefix_until",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "key_code": "h"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "i",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "conditions": [
+                                    {
+                                        "type": "frontmost_application_if",
+                                        "bundle_identifiers": [
+                                            "^com\\.mitchellh\\.ghostty$"
+                                        ]
+                                    },
+                                    {
+                                        "type": "expression_if",
+                                        "expression": "ghostty_prefix_until > system.now.milliseconds"
+                                    }
+                                ],
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_prefix_until",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "key_code": "i"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "j",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "conditions": [
+                                    {
+                                        "type": "frontmost_application_if",
+                                        "bundle_identifiers": [
+                                            "^com\\.mitchellh\\.ghostty$"
+                                        ]
+                                    },
+                                    {
+                                        "type": "expression_if",
+                                        "expression": "ghostty_prefix_until > system.now.milliseconds"
+                                    }
+                                ],
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_prefix_until",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "key_code": "j"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "k",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "conditions": [
+                                    {
+                                        "type": "frontmost_application_if",
+                                        "bundle_identifiers": [
+                                            "^com\\.mitchellh\\.ghostty$"
+                                        ]
+                                    },
+                                    {
+                                        "type": "expression_if",
+                                        "expression": "ghostty_prefix_until > system.now.milliseconds"
+                                    }
+                                ],
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_prefix_until",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "key_code": "k"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "l",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "conditions": [
+                                    {
+                                        "type": "frontmost_application_if",
+                                        "bundle_identifiers": [
+                                            "^com\\.mitchellh\\.ghostty$"
+                                        ]
+                                    },
+                                    {
+                                        "type": "expression_if",
+                                        "expression": "ghostty_prefix_until > system.now.milliseconds"
+                                    }
+                                ],
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_prefix_until",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "key_code": "l"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "m",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "conditions": [
+                                    {
+                                        "type": "frontmost_application_if",
+                                        "bundle_identifiers": [
+                                            "^com\\.mitchellh\\.ghostty$"
+                                        ]
+                                    },
+                                    {
+                                        "type": "expression_if",
+                                        "expression": "ghostty_prefix_until > system.now.milliseconds"
+                                    }
+                                ],
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_prefix_until",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "key_code": "m"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "n",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "conditions": [
+                                    {
+                                        "type": "frontmost_application_if",
+                                        "bundle_identifiers": [
+                                            "^com\\.mitchellh\\.ghostty$"
+                                        ]
+                                    },
+                                    {
+                                        "type": "expression_if",
+                                        "expression": "ghostty_prefix_until > system.now.milliseconds"
+                                    }
+                                ],
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_prefix_until",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "key_code": "n"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "o",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "conditions": [
+                                    {
+                                        "type": "frontmost_application_if",
+                                        "bundle_identifiers": [
+                                            "^com\\.mitchellh\\.ghostty$"
+                                        ]
+                                    },
+                                    {
+                                        "type": "expression_if",
+                                        "expression": "ghostty_prefix_until > system.now.milliseconds"
+                                    }
+                                ],
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_prefix_until",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "key_code": "o"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "p",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "conditions": [
+                                    {
+                                        "type": "frontmost_application_if",
+                                        "bundle_identifiers": [
+                                            "^com\\.mitchellh\\.ghostty$"
+                                        ]
+                                    },
+                                    {
+                                        "type": "expression_if",
+                                        "expression": "ghostty_prefix_until > system.now.milliseconds"
+                                    }
+                                ],
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_prefix_until",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "key_code": "p"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "q",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "conditions": [
+                                    {
+                                        "type": "frontmost_application_if",
+                                        "bundle_identifiers": [
+                                            "^com\\.mitchellh\\.ghostty$"
+                                        ]
+                                    },
+                                    {
+                                        "type": "expression_if",
+                                        "expression": "ghostty_prefix_until > system.now.milliseconds"
+                                    }
+                                ],
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_prefix_until",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "key_code": "q"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "r",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "conditions": [
+                                    {
+                                        "type": "frontmost_application_if",
+                                        "bundle_identifiers": [
+                                            "^com\\.mitchellh\\.ghostty$"
+                                        ]
+                                    },
+                                    {
+                                        "type": "expression_if",
+                                        "expression": "ghostty_prefix_until > system.now.milliseconds"
+                                    }
+                                ],
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_prefix_until",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "key_code": "r"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "s",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "conditions": [
+                                    {
+                                        "type": "frontmost_application_if",
+                                        "bundle_identifiers": [
+                                            "^com\\.mitchellh\\.ghostty$"
+                                        ]
+                                    },
+                                    {
+                                        "type": "expression_if",
+                                        "expression": "ghostty_prefix_until > system.now.milliseconds"
+                                    }
+                                ],
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_prefix_until",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "key_code": "s"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "t",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "conditions": [
+                                    {
+                                        "type": "frontmost_application_if",
+                                        "bundle_identifiers": [
+                                            "^com\\.mitchellh\\.ghostty$"
+                                        ]
+                                    },
+                                    {
+                                        "type": "expression_if",
+                                        "expression": "ghostty_prefix_until > system.now.milliseconds"
+                                    }
+                                ],
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_prefix_until",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "key_code": "t"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "u",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "conditions": [
+                                    {
+                                        "type": "frontmost_application_if",
+                                        "bundle_identifiers": [
+                                            "^com\\.mitchellh\\.ghostty$"
+                                        ]
+                                    },
+                                    {
+                                        "type": "expression_if",
+                                        "expression": "ghostty_prefix_until > system.now.milliseconds"
+                                    }
+                                ],
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_prefix_until",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "key_code": "u"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "v",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "conditions": [
+                                    {
+                                        "type": "frontmost_application_if",
+                                        "bundle_identifiers": [
+                                            "^com\\.mitchellh\\.ghostty$"
+                                        ]
+                                    },
+                                    {
+                                        "type": "expression_if",
+                                        "expression": "ghostty_prefix_until > system.now.milliseconds"
+                                    }
+                                ],
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_prefix_until",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "key_code": "v"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "w",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "conditions": [
+                                    {
+                                        "type": "frontmost_application_if",
+                                        "bundle_identifiers": [
+                                            "^com\\.mitchellh\\.ghostty$"
+                                        ]
+                                    },
+                                    {
+                                        "type": "expression_if",
+                                        "expression": "ghostty_prefix_until > system.now.milliseconds"
+                                    }
+                                ],
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_prefix_until",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "key_code": "w"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "y",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "conditions": [
+                                    {
+                                        "type": "frontmost_application_if",
+                                        "bundle_identifiers": [
+                                            "^com\\.mitchellh\\.ghostty$"
+                                        ]
+                                    },
+                                    {
+                                        "type": "expression_if",
+                                        "expression": "ghostty_prefix_until > system.now.milliseconds"
+                                    }
+                                ],
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_prefix_until",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "key_code": "y"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "z",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "conditions": [
+                                    {
+                                        "type": "frontmost_application_if",
+                                        "bundle_identifiers": [
+                                            "^com\\.mitchellh\\.ghostty$"
+                                        ]
+                                    },
+                                    {
+                                        "type": "expression_if",
+                                        "expression": "ghostty_prefix_until > system.now.milliseconds"
+                                    }
+                                ],
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_prefix_until",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "key_code": "z"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "hyphen",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "conditions": [
+                                    {
+                                        "type": "frontmost_application_if",
+                                        "bundle_identifiers": [
+                                            "^com\\.mitchellh\\.ghostty$"
+                                        ]
+                                    },
+                                    {
+                                        "type": "expression_if",
+                                        "expression": "ghostty_prefix_until > system.now.milliseconds"
+                                    }
+                                ],
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_prefix_until",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "key_code": "hyphen"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "equal_sign",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "conditions": [
+                                    {
+                                        "type": "frontmost_application_if",
+                                        "bundle_identifiers": [
+                                            "^com\\.mitchellh\\.ghostty$"
+                                        ]
+                                    },
+                                    {
+                                        "type": "expression_if",
+                                        "expression": "ghostty_prefix_until > system.now.milliseconds"
+                                    }
+                                ],
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_prefix_until",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "key_code": "equal_sign"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "open_bracket",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "conditions": [
+                                    {
+                                        "type": "frontmost_application_if",
+                                        "bundle_identifiers": [
+                                            "^com\\.mitchellh\\.ghostty$"
+                                        ]
+                                    },
+                                    {
+                                        "type": "expression_if",
+                                        "expression": "ghostty_prefix_until > system.now.milliseconds"
+                                    }
+                                ],
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_prefix_until",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "key_code": "open_bracket"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "close_bracket",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "conditions": [
+                                    {
+                                        "type": "frontmost_application_if",
+                                        "bundle_identifiers": [
+                                            "^com\\.mitchellh\\.ghostty$"
+                                        ]
+                                    },
+                                    {
+                                        "type": "expression_if",
+                                        "expression": "ghostty_prefix_until > system.now.milliseconds"
+                                    }
+                                ],
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_prefix_until",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "key_code": "close_bracket"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "backslash",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "conditions": [
+                                    {
+                                        "type": "frontmost_application_if",
+                                        "bundle_identifiers": [
+                                            "^com\\.mitchellh\\.ghostty$"
+                                        ]
+                                    },
+                                    {
+                                        "type": "expression_if",
+                                        "expression": "ghostty_prefix_until > system.now.milliseconds"
+                                    }
+                                ],
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_prefix_until",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "key_code": "backslash"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "semicolon",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "conditions": [
+                                    {
+                                        "type": "frontmost_application_if",
+                                        "bundle_identifiers": [
+                                            "^com\\.mitchellh\\.ghostty$"
+                                        ]
+                                    },
+                                    {
+                                        "type": "expression_if",
+                                        "expression": "ghostty_prefix_until > system.now.milliseconds"
+                                    }
+                                ],
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_prefix_until",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "key_code": "semicolon"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "quote",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "conditions": [
+                                    {
+                                        "type": "frontmost_application_if",
+                                        "bundle_identifiers": [
+                                            "^com\\.mitchellh\\.ghostty$"
+                                        ]
+                                    },
+                                    {
+                                        "type": "expression_if",
+                                        "expression": "ghostty_prefix_until > system.now.milliseconds"
+                                    }
+                                ],
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_prefix_until",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "key_code": "quote"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "comma",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "conditions": [
+                                    {
+                                        "type": "frontmost_application_if",
+                                        "bundle_identifiers": [
+                                            "^com\\.mitchellh\\.ghostty$"
+                                        ]
+                                    },
+                                    {
+                                        "type": "expression_if",
+                                        "expression": "ghostty_prefix_until > system.now.milliseconds"
+                                    }
+                                ],
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_prefix_until",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "key_code": "comma"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "period",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "conditions": [
+                                    {
+                                        "type": "frontmost_application_if",
+                                        "bundle_identifiers": [
+                                            "^com\\.mitchellh\\.ghostty$"
+                                        ]
+                                    },
+                                    {
+                                        "type": "expression_if",
+                                        "expression": "ghostty_prefix_until > system.now.milliseconds"
+                                    }
+                                ],
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_prefix_until",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "key_code": "period"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "slash",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "conditions": [
+                                    {
+                                        "type": "frontmost_application_if",
+                                        "bundle_identifiers": [
+                                            "^com\\.mitchellh\\.ghostty$"
+                                        ]
+                                    },
+                                    {
+                                        "type": "expression_if",
+                                        "expression": "ghostty_prefix_until > system.now.milliseconds"
+                                    }
+                                ],
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_prefix_until",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "key_code": "slash"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "spacebar",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "conditions": [
+                                    {
+                                        "type": "frontmost_application_if",
+                                        "bundle_identifiers": [
+                                            "^com\\.mitchellh\\.ghostty$"
+                                        ]
+                                    },
+                                    {
+                                        "type": "expression_if",
+                                        "expression": "ghostty_prefix_until > system.now.milliseconds"
+                                    }
+                                ],
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_prefix_until",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "key_code": "spacebar"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "return_or_enter",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "conditions": [
+                                    {
+                                        "type": "frontmost_application_if",
+                                        "bundle_identifiers": [
+                                            "^com\\.mitchellh\\.ghostty$"
+                                        ]
+                                    },
+                                    {
+                                        "type": "expression_if",
+                                        "expression": "ghostty_prefix_until > system.now.milliseconds"
+                                    }
+                                ],
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_prefix_until",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "key_code": "return_or_enter"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "tab",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "conditions": [
+                                    {
+                                        "type": "frontmost_application_if",
+                                        "bundle_identifiers": [
+                                            "^com\\.mitchellh\\.ghostty$"
+                                        ]
+                                    },
+                                    {
+                                        "type": "expression_if",
+                                        "expression": "ghostty_prefix_until > system.now.milliseconds"
+                                    }
+                                ],
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_prefix_until",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "key_code": "tab"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "delete_or_backspace",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "conditions": [
+                                    {
+                                        "type": "frontmost_application_if",
+                                        "bundle_identifiers": [
+                                            "^com\\.mitchellh\\.ghostty$"
+                                        ]
+                                    },
+                                    {
+                                        "type": "expression_if",
+                                        "expression": "ghostty_prefix_until > system.now.milliseconds"
+                                    }
+                                ],
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_prefix_until",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "key_code": "delete_or_backspace"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "escape",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "conditions": [
+                                    {
+                                        "type": "frontmost_application_if",
+                                        "bundle_identifiers": [
+                                            "^com\\.mitchellh\\.ghostty$"
+                                        ]
+                                    },
+                                    {
+                                        "type": "expression_if",
+                                        "expression": "ghostty_prefix_until > system.now.milliseconds"
+                                    }
+                                ],
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "ghostty_prefix_until",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "key_code": "escape"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
                     {
                         "description": "Change Command + h/j/k/l to Arrows",
                         "manipulators": [
@@ -11,44 +2614,92 @@
                                 "from": {
                                     "key_code": "h",
                                     "modifiers": {
-                                        "mandatory": ["command"],
-                                        "optional": ["caps_lock", "shift", "option", "control", "fn"]
+                                        "mandatory": [
+                                            "command"
+                                        ],
+                                        "optional": [
+                                            "caps_lock",
+                                            "shift",
+                                            "option",
+                                            "control",
+                                            "fn"
+                                        ]
                                     }
                                 },
-                                "to": [{ "key_code": "left_arrow" }],
+                                "to": [
+                                    {
+                                        "key_code": "left_arrow"
+                                    }
+                                ],
                                 "type": "basic"
                             },
                             {
                                 "from": {
                                     "key_code": "y",
                                     "modifiers": {
-                                        "mandatory": ["command"],
-                                        "optional": ["caps_lock", "shift", "option", "control", "fn"]
+                                        "mandatory": [
+                                            "command"
+                                        ],
+                                        "optional": [
+                                            "caps_lock",
+                                            "shift",
+                                            "option",
+                                            "control",
+                                            "fn"
+                                        ]
                                     }
                                 },
-                                "to": [{ "key_code": "down_arrow" }],
+                                "to": [
+                                    {
+                                        "key_code": "down_arrow"
+                                    }
+                                ],
                                 "type": "basic"
                             },
                             {
                                 "from": {
                                     "key_code": "n",
                                     "modifiers": {
-                                        "mandatory": ["command"],
-                                        "optional": ["caps_lock", "shift", "option", "control", "fn"]
+                                        "mandatory": [
+                                            "command"
+                                        ],
+                                        "optional": [
+                                            "caps_lock",
+                                            "shift",
+                                            "option",
+                                            "control",
+                                            "fn"
+                                        ]
                                     }
                                 },
-                                "to": [{ "key_code": "up_arrow" }],
+                                "to": [
+                                    {
+                                        "key_code": "up_arrow"
+                                    }
+                                ],
                                 "type": "basic"
                             },
                             {
                                 "from": {
                                     "key_code": "u",
                                     "modifiers": {
-                                        "mandatory": ["command"],
-                                        "optional": ["caps_lock", "shift", "option", "control", "fn"]
+                                        "mandatory": [
+                                            "command"
+                                        ],
+                                        "optional": [
+                                            "caps_lock",
+                                            "shift",
+                                            "option",
+                                            "control",
+                                            "fn"
+                                        ]
                                     }
                                 },
-                                "to": [{ "key_code": "right_arrow" }],
+                                "to": [
+                                    {
+                                        "key_code": "right_arrow"
+                                    }
+                                ],
                                 "type": "basic"
                             }
                         ]
@@ -60,22 +2711,38 @@
                                 "from": {
                                     "key_code": "i",
                                     "modifiers": {
-                                        "mandatory": ["command"],
-                                        "optional": ["any"]
+                                        "mandatory": [
+                                            "command"
+                                        ],
+                                        "optional": [
+                                            "any"
+                                        ]
                                     }
                                 },
-                                "to": [{ "key_code": "page_up" }],
+                                "to": [
+                                    {
+                                        "key_code": "page_up"
+                                    }
+                                ],
                                 "type": "basic"
                             },
                             {
                                 "from": {
                                     "key_code": "g",
                                     "modifiers": {
-                                        "mandatory": ["command"],
-                                        "optional": ["any"]
+                                        "mandatory": [
+                                            "command"
+                                        ],
+                                        "optional": [
+                                            "any"
+                                        ]
                                     }
                                 },
-                                "to": [{ "key_code": "page_down" }],
+                                "to": [
+                                    {
+                                        "key_code": "page_down"
+                                    }
+                                ],
                                 "type": "basic"
                             }
                         ]
@@ -87,33 +2754,60 @@
                                 "from": {
                                     "key_code": "return_or_enter",
                                     "modifiers": {
-                                        "mandatory": ["command", "shift"],
-                                        "optional": ["any"]
+                                        "mandatory": [
+                                            "command",
+                                            "shift"
+                                        ],
+                                        "optional": [
+                                            "any"
+                                        ]
                                     }
                                 },
-                                "to": [{ "shell_command": "open -aterminal" }],
+                                "to": [
+                                    {
+                                        "shell_command": "open -aghostty"
+                                    }
+                                ],
                                 "type": "basic"
                             },
                             {
                                 "from": {
                                     "key_code": "b",
                                     "modifiers": {
-                                        "mandatory": ["option", "shift"],
-                                        "optional": ["any"]
+                                        "mandatory": [
+                                            "option",
+                                            "shift"
+                                        ],
+                                        "optional": [
+                                            "any"
+                                        ]
                                     }
                                 },
-                                "to": [{ "shell_command": "open -asafari'" }],
+                                "to": [
+                                    {
+                                        "shell_command": "open -asafari'"
+                                    }
+                                ],
                                 "type": "basic"
                             },
                             {
                                 "from": {
                                     "key_code": "m",
                                     "modifiers": {
-                                        "mandatory": ["option", "shift"],
-                                        "optional": ["any"]
+                                        "mandatory": [
+                                            "option",
+                                            "shift"
+                                        ],
+                                        "optional": [
+                                            "any"
+                                        ]
                                     }
                                 },
-                                "to": [{ "shell_command": "open -amail'" }],
+                                "to": [
+                                    {
+                                        "shell_command": "open -amail'"
+                                    }
+                                ],
                                 "type": "basic"
                             }
                         ]
@@ -129,16 +2823,34 @@
                     },
                     "simple_modifications": [
                         {
-                            "from": { "key_code": "grave_accent_and_tilde" },
-                            "to": [{ "apple_vendor_keyboard_key_code": "mission_control" }]
+                            "from": {
+                                "key_code": "grave_accent_and_tilde"
+                            },
+                            "to": [
+                                {
+                                    "apple_vendor_keyboard_key_code": "mission_control"
+                                }
+                            ]
                         },
                         {
-                            "from": { "key_code": "non_us_backslash" },
-                            "to": [{ "key_code": "grave_accent_and_tilde" }]
+                            "from": {
+                                "key_code": "non_us_backslash"
+                            },
+                            "to": [
+                                {
+                                    "key_code": "grave_accent_and_tilde"
+                                }
+                            ]
                         },
                         {
-                            "from": { "key_code": "right_option" },
-                            "to": [{ "key_code": "right_control" }]
+                            "from": {
+                                "key_code": "right_option"
+                            },
+                            "to": [
+                                {
+                                    "key_code": "right_control"
+                                }
+                            ]
                         }
                     ]
                 },
@@ -152,8 +2864,14 @@
                     "manipulate_caps_lock_led": false,
                     "simple_modifications": [
                         {
-                            "from": { "key_code": "left_option" },
-                            "to": [{ "key_code": "left_command" }]
+                            "from": {
+                                "key_code": "left_option"
+                            },
+                            "to": [
+                                {
+                                    "key_code": "left_command"
+                                }
+                            ]
                         }
                     ]
                 },
@@ -183,8 +2901,14 @@
                     },
                     "simple_modifications": [
                         {
-                            "from": { "key_code": "right_option" },
-                            "to": [{ "key_code": "right_control" }]
+                            "from": {
+                                "key_code": "right_option"
+                            },
+                            "to": [
+                                {
+                                    "key_code": "right_control"
+                                }
+                            ]
                         }
                     ]
                 },
@@ -196,24 +2920,54 @@
                     },
                     "simple_modifications": [
                         {
-                            "from": { "key_code": "caps_lock" },
-                            "to": [{ "key_code": "escape" }]
+                            "from": {
+                                "key_code": "caps_lock"
+                            },
+                            "to": [
+                                {
+                                    "key_code": "escape"
+                                }
+                            ]
                         },
                         {
-                            "from": { "key_code": "left_command" },
-                            "to": [{ "key_code": "left_option" }]
+                            "from": {
+                                "key_code": "left_command"
+                            },
+                            "to": [
+                                {
+                                    "key_code": "left_option"
+                                }
+                            ]
                         },
                         {
-                            "from": { "key_code": "left_option" },
-                            "to": [{ "key_code": "left_command" }]
+                            "from": {
+                                "key_code": "left_option"
+                            },
+                            "to": [
+                                {
+                                    "key_code": "left_command"
+                                }
+                            ]
                         },
                         {
-                            "from": { "key_code": "right_command" },
-                            "to": [{ "key_code": "right_option" }]
+                            "from": {
+                                "key_code": "right_command"
+                            },
+                            "to": [
+                                {
+                                    "key_code": "right_option"
+                                }
+                            ]
                         },
                         {
-                            "from": { "key_code": "right_option" },
-                            "to": [{ "key_code": "right_command" }]
+                            "from": {
+                                "key_code": "right_option"
+                            },
+                            "to": [
+                                {
+                                    "key_code": "right_command"
+                                }
+                            ]
                         }
                     ]
                 },
@@ -225,12 +2979,24 @@
                     },
                     "simple_modifications": [
                         {
-                            "from": { "key_code": "caps_lock" },
-                            "to": [{ "key_code": "escape" }]
+                            "from": {
+                                "key_code": "caps_lock"
+                            },
+                            "to": [
+                                {
+                                    "key_code": "escape"
+                                }
+                            ]
                         },
                         {
-                            "from": { "key_code": "right_option" },
-                            "to": [{ "key_code": "right_control" }]
+                            "from": {
+                                "key_code": "right_option"
+                            },
+                            "to": [
+                                {
+                                    "key_code": "right_control"
+                                }
+                            ]
                         }
                     ]
                 },
@@ -242,16 +3008,34 @@
                     },
                     "simple_modifications": [
                         {
-                            "from": { "key_code": "caps_lock" },
-                            "to": [{ "key_code": "escape" }]
+                            "from": {
+                                "key_code": "caps_lock"
+                            },
+                            "to": [
+                                {
+                                    "key_code": "escape"
+                                }
+                            ]
                         },
                         {
-                            "from": { "key_code": "left_command" },
-                            "to": [{ "key_code": "left_option" }]
+                            "from": {
+                                "key_code": "left_command"
+                            },
+                            "to": [
+                                {
+                                    "key_code": "left_option"
+                                }
+                            ]
                         },
                         {
-                            "from": { "key_code": "left_option" },
-                            "to": [{ "key_code": "left_command" }]
+                            "from": {
+                                "key_code": "left_option"
+                            },
+                            "to": [
+                                {
+                                    "key_code": "left_command"
+                                }
+                            ]
                         }
                     ]
                 },
@@ -263,16 +3047,34 @@
                     },
                     "simple_modifications": [
                         {
-                            "from": { "key_code": "caps_lock" },
-                            "to": [{ "key_code": "escape" }]
+                            "from": {
+                                "key_code": "caps_lock"
+                            },
+                            "to": [
+                                {
+                                    "key_code": "escape"
+                                }
+                            ]
                         },
                         {
-                            "from": { "key_code": "left_command" },
-                            "to": [{ "key_code": "left_option" }]
+                            "from": {
+                                "key_code": "left_command"
+                            },
+                            "to": [
+                                {
+                                    "key_code": "left_option"
+                                }
+                            ]
                         },
                         {
-                            "from": { "key_code": "left_option" },
-                            "to": [{ "key_code": "left_command" }]
+                            "from": {
+                                "key_code": "left_option"
+                            },
+                            "to": [
+                                {
+                                    "key_code": "left_command"
+                                }
+                            ]
                         }
                     ]
                 },
@@ -284,16 +3086,34 @@
                     },
                     "simple_modifications": [
                         {
-                            "from": { "key_code": "caps_lock" },
-                            "to": [{ "key_code": "escape" }]
+                            "from": {
+                                "key_code": "caps_lock"
+                            },
+                            "to": [
+                                {
+                                    "key_code": "escape"
+                                }
+                            ]
                         },
                         {
-                            "from": { "key_code": "left_command" },
-                            "to": [{ "key_code": "left_option" }]
+                            "from": {
+                                "key_code": "left_command"
+                            },
+                            "to": [
+                                {
+                                    "key_code": "left_option"
+                                }
+                            ]
                         },
                         {
-                            "from": { "key_code": "left_option" },
-                            "to": [{ "key_code": "left_command" }]
+                            "from": {
+                                "key_code": "left_option"
+                            },
+                            "to": [
+                                {
+                                    "key_code": "left_command"
+                                }
+                            ]
                         }
                     ]
                 },
@@ -308,7 +3128,9 @@
             ],
             "name": "Default profile",
             "selected": true,
-            "virtual_hid_keyboard": { "keyboard_type_v2": "ansi" }
+            "virtual_hid_keyboard": {
+                "keyboard_type_v2": "ansi"
+            }
         }
     ]
 }

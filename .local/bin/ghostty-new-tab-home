@@ -1,0 +1,15 @@
+#!/bin/sh
+# ` c: opens a Ghostty tab in $HOME at the end of the tab bar, then tells Karabiner its index.
+i=$(/usr/bin/osascript <<'EOF'
+set home to system attribute "HOME"
+tell application "Ghostty"
+	set w to front window
+	set t to new tab in w with configuration {initial working directory:home}
+	set n to count of tabs of w
+	set i to index of t
+	if i < n then perform action ("move_tab:" & (n - i)) on focused terminal of t
+	return n mod 10
+end tell
+EOF
+) || exit 1
+exec "/Library/Application Support/org.pqrs/Karabiner-Elements/bin/karabiner_cli" --set-variables "{\"ghostty_cur\":$i}"

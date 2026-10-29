@@ -7,11 +7,9 @@ font-family = SF Mono Terminal
 font-size = 16
 font-thicken = true
 
-# Color rendering - try srgb to match Terminal.app
+# Color rendering - sRGB to match Terminal.app, linear-corrected to avoid dark fringing artifacts
 window-colorspace = srgb
-
-# Shell command (runs tmux on startup like Terminal.app)
-command = /opt/homebrew/bin/tmux
+alpha-blending = linear-corrected
 
 # Bell settings (no audio, visual attention only)
 bell-features = no-audio,attention
@@ -24,8 +22,7 @@ foreground = e0e0e0
 background = 1e1e1e
 
 # macOS titlebar
-macos-titlebar-style = native
-title = tmux
+macos-titlebar-style = tabs
 
 # ANSI Color Palette (from terminal.vim - dunno's palette)
 # purple:  #a076f5 (comments)
@@ -77,3 +74,73 @@ window-padding-balance = false
 # Line spacing - reduce to match Terminal.app's tight 1.004 spacing
 adjust-cell-height = 3
 adjust-font-baseline = -2
+
+# tmux-like bindings, prefix = backtick (` e types a literal backtick)
+# 1-based; ` 0 is the 10th tab
+keybind = backquote>1=goto_tab:1
+keybind = backquote>2=goto_tab:2
+keybind = backquote>3=goto_tab:3
+keybind = backquote>4=goto_tab:4
+keybind = backquote>5=goto_tab:5
+keybind = backquote>6=goto_tab:6
+keybind = backquote>7=goto_tab:7
+keybind = backquote>8=goto_tab:8
+keybind = backquote>9=goto_tab:9
+keybind = backquote>0=goto_tab:10
+# drop Cmd+1..9 so the tab bar stops showing ⌘1, ⌘2 hints
+keybind = super+1=unbind
+keybind = super+2=unbind
+keybind = super+3=unbind
+keybind = super+4=unbind
+keybind = super+5=unbind
+keybind = super+6=unbind
+keybind = super+7=unbind
+keybind = super+8=unbind
+keybind = super+9=unbind
+keybind = super+digit_1=unbind
+keybind = super+digit_2=unbind
+keybind = super+digit_3=unbind
+keybind = super+digit_4=unbind
+keybind = super+digit_5=unbind
+keybind = super+digit_6=unbind
+keybind = super+digit_7=unbind
+keybind = super+digit_8=unbind
+keybind = super+digit_9=unbind
+# mainly so tabs show ⌥1..⌥9, ⌥0 labels matching ` 1..` 9, ` 0
+keybind = alt+1=goto_tab:1
+keybind = alt+2=goto_tab:2
+keybind = alt+3=goto_tab:3
+keybind = alt+4=goto_tab:4
+keybind = alt+5=goto_tab:5
+keybind = alt+6=goto_tab:6
+keybind = alt+7=goto_tab:7
+keybind = alt+8=goto_tab:8
+keybind = alt+9=goto_tab:9
+keybind = alt+0=goto_tab:10
+keybind = backquote>x=new_tab
+# Karabiner runs ~/.local/bin/ghostty-new-tab-home for ` c (new tab in ~ at the end)
+keybind = backquote>c=ignore
+keybind = backquote>e=text:`
+# Karabiner turns ` ` into ` <last tab digit>; fallback lands here (see ~/.config/karabiner/karabiner.json)
+keybind = backquote>backquote=ignore
+keybind = backquote>comma=prompt_tab_title
+keybind = backquote>r=reload_config
+keybind = shift+left=previous_tab
+keybind = shift+right=next_tab
+keybind = backquote>v=new_split:right
+keybind = backquote>s=new_split:down
+keybind = backquote>h=goto_split:left
+keybind = backquote>j=goto_split:down
+keybind = backquote>k=goto_split:up
+keybind = backquote>l=goto_split:right
+keybind = backquote>shift+h=resize_split:left,50
+keybind = backquote>shift+j=resize_split:down,50
+keybind = backquote>shift+k=resize_split:up,50
+keybind = backquote>shift+l=resize_split:right,50
+keybind = backquote>z=toggle_split_zoom
+keybind = backquote>slash=start_search
+keybind = ctrl+k=clear_screen
+
+window-new-tab-position = current
+window-inherit-working-directory = true
+copy-on-select = clipboard
