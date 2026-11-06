@@ -1,0 +1,66 @@
+KEY          ACTION                           ARGS                              SOURCE
+ctrl+k       com.superlogical.terminal.clear  -                                 init.lua:165
+alt+shift+0  goto_tab                         {"index":-1}                      init.lua:163
+` 0          goto_tab                         {"index":-1}                      init.lua:162
+alt+shift+9  goto_tab                         {"index":9}                       init.lua:160
+` 9          goto_tab                         {"index":9}                       init.lua:159
+alt+shift+8  goto_tab                         {"index":8}                       init.lua:160
+` 8          goto_tab                         {"index":8}                       init.lua:159
+alt+shift+7  goto_tab                         {"index":7}                       init.lua:160
+` 7          goto_tab                         {"index":7}                       init.lua:159
+alt+shift+6  goto_tab                         {"index":6}                       init.lua:160
+` 6          goto_tab                         {"index":6}                       init.lua:159
+alt+shift+5  goto_tab                         {"index":5}                       init.lua:160
+` 5          goto_tab                         {"index":5}                       init.lua:159
+alt+shift+4  goto_tab                         {"index":4}                       init.lua:160
+` 4          goto_tab                         {"index":4}                       init.lua:159
+alt+shift+3  goto_tab                         {"index":3}                       init.lua:160
+` 3          goto_tab                         {"index":3}                       init.lua:159
+alt+shift+2  goto_tab                         {"index":2}                       init.lua:160
+` 2          goto_tab                         {"index":2}                       init.lua:159
+alt+shift+1  goto_tab                         {"index":1}                       init.lua:160
+` 1          goto_tab                         {"index":1}                       init.lua:159
+` z          pane.zoom                        -                                 init.lua:156
+` shift+l    pane.resize                      {"amount":5,"direction":"right"}  init.lua:155
+` shift+h    pane.resize                      {"amount":5,"direction":"left"}   init.lua:154
+` shift+k    pane.resize                      {"amount":5,"direction":"up"}     init.lua:153
+` shift+j    pane.resize                      {"amount":5,"direction":"down"}   init.lua:152
+` l          pane.focus                       {"direction":"right"}             init.lua:151
+` k          pane.focus                       {"direction":"up"}                init.lua:150
+` j          pane.focus                       {"direction":"down"}              init.lua:149
+` h          pane.focus                       {"direction":"left"}              init.lua:148
+` s          pane.split                       {"direction":"down"}              init.lua:147
+` v          pane.split                       {"direction":"right"}             init.lua:146
+shift+right  step_tab                         {"offset":1}                      init.lua:144
+shift+left   step_tab                         {"offset":-1}                     init.lua:143
+` `          last_tab                         -                                 init.lua:142
+` c          new_tab_home                     -                                 init.lua:141
+` x          new_tab_here                     -                                 init.lua:140
+` r          session.rename                   -                                 init.lua:139
+` n          session.new                      -                                 init.lua:138
+` ]          session.next                     -                                 init.lua:137
+` [          session.previous                 -                                 init.lua:136
+alt+shift+]  session.next                     -                                 init.lua:135
+alt+shift+[  session.previous                 -                                 init.lua:134
+alt+=        client.tab.next                  -                                 init.lua:133
+alt+-        client.tab.previous              -                                 init.lua:132
+alt+]        client.tab.next                  -                                 init.lua:131
+alt+[        client.tab.previous              -                                 init.lua:130
+cmd+\        client.sidebar.toggle            -                                 init.lua:129
+alt+0        client.tab.goto                  {"index":-1}                      init.lua:128
+alt+9        client.tab.goto                  {"index":9}                       init.lua:126
+alt+8        client.tab.goto                  {"index":8}                       init.lua:126
+alt+7        client.tab.goto                  {"index":7}                       init.lua:126
+alt+6        client.tab.goto                  {"index":6}                       init.lua:126
+alt+5        client.tab.goto                  {"index":5}                       init.lua:126
+alt+4        client.tab.goto                  {"index":4}                       init.lua:126
+alt+3        client.tab.goto                  {"index":3}                       init.lua:126
+alt+2        client.tab.goto                  {"index":2}                       init.lua:126
+alt+1        client.tab.goto                  {"index":1}                       init.lua:126
+` w          session.switch                   -                                 init.lua:123
+` shift+r    client.config.reload             -                                 init.lua:121
+` e          pane.send_key                    {"key":"`"}                       init.lua:120
+
+config: /Users/andrii/.config/rex/init.lua (exists: yes, generation: 10)
+instance: e52e0d3f-4ac8-4df4-bb03-cee40e73f7d7
+hash: 58c409304da689cd097c5242be35b8daf9d911777b778b2427e742fda945cade
